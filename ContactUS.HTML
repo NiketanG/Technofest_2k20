@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<head>
+    <title>COMeIT Event Registration</title>
+    <link rel="Stylesheet" href="Styles.css">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+<body>
+    <div id="topnav" class="topnav">
+        <div onclick="window.location.href = 'main.HTML';" class="nav" id="title">COMeIT</div>
+        <div class="menu">
+            <div onclick="window.location.href = 'contactus.HTML';" class="nav">CONTACT US</div>
+            <div onclick="javascript:NavBarResize()" class="icon nav">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="emailsupport">
+        <h3 class="custcare">Get in touch</h3><br>
+        <h3 class="emailsupport">Email</h3>
+        <p class="emailsupport">info@comeitgpp<br></p>
+
+        <br>
+        <h3 class="emailsupport">Phone No : </h3>
+        <p class="emailsupport">91-020-25559200<br>020-25559219<br></p>
+
+        <br>
+        <h3 class="emailsupport">Address</h3>
+        <p class="emailsupport">Ganeshkhind, University Road,<br>Shivajinagar,Pune-411016, Maharashtra, India.<br></p>
+        <br><br>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.780518113032!2d73.82976451485753!3d18.538817887398377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf7ac9514abb%3A0x11d0cebbb7eb6392!2sGovernment%20Polytechnic!5e0!3m2!1sen!2sin!4v1566679020564!5m2!1sen!2sin"
+            width="500" height="300" class="map" allowfullscreen=""></iframe>
+
+    </div>
+
+    <div class="faq">
+        <h3 class="faq">Frequently Asked Questions</h3>
+        <br>
+        <button class="accordion">Question 1 </button>
+        <div class="panel">
+            <p>Answer1</p>
+        </div>
+
+        <button class="accordion">Question2</button>
+        <div class="panel">
+            <p>Answer2</p>
+        </div>
+
+        <button class="accordion">Question3</button>
+        <div class="panel">
+            <p>Answer3</p>
+        </div>
+
+        <script>
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
+            }
+        </script>
+    </div>
+
+
+    <div id="totop" onclick="window.scrollTo(0, 0);">
+        <img src="pictures/arrow_right.png" />
+    </div>
+
+    <footer>
+        <div id="Copyright">Developed by COMeIT Technical Team - Government Polytechnic Pune. Copyright © 2019 All
+            rights reserved.</div>
+    </footer>
+
+</body>
+
+</html>
