@@ -5,7 +5,8 @@
 
 * {
     padding: 0;
-    margin: 0;   
+    margin: 0; 
+      
 }
 
 html {
@@ -15,24 +16,19 @@ html {
 body {
     overflow-x:hidden;
     font-family: 'Montserrat';
-    background: transparent;
-}
-
-a {
-    text-decoration: none;
 }
 
 div#totop{
     width: 48px;
     height: 48px;
     position: fixed;
-    display: none;
     right: 25px;
     bottom: 75px;
     background-color: #282828;
     border-radius: 50%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
     cursor: pointer;
+    display: none;
     transition: 0.3s ease-in-out;
 }
 
@@ -50,12 +46,11 @@ div#totop img{
 
 /*TOP NAVIGATION BAR*/
 div#topnav{
-    width: 100vw;
+    width: 100%;
     position: fixed;
     z-index: 3;
     transition: 0.3s ease-in-out background-color, 0.1s linear color, 0.2s ease-in-out;
     padding: 20px 10px;
-    overflow: hidden;
 }
 
 div#topnav:hover{
@@ -65,64 +60,78 @@ div#topnav:hover{
 }
 
 .sticky{
-    position: fixed;
     background-color : black;
     color: white;
+    
 }
 
-.nav:not(#title){
+.nav{
     display: inline-block;
     text-align: center;
     padding: 20px 15px 0px 15px; /*top right bottom left*/
     height: 40px;
-    transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out background-color;
 }
 
 .nav:hover:not(#title){
     color:black;
     background-color: white;
 }
+
 div#topnav .icon{
     display: none;
     float: right;
     margin-right: 15%;
+    
+    
 }
 
 #title{
     font-weight: 600;
     padding: 10px 15px 0px 12.5%;
     float: left;
-    height: 40px;
     font-size: 30px;
     transition: 0.2s ease-in-out;
+    
 }
 
 @media screen and (max-width: 960px) {
-    .nav:not(#title) {display: none;}
+    .nav:not(#title) {display: none;
+    }
+    
     div#topnav .icon{
-        display: block;}
+        display: block;
+    }
+
+        .topnav.responsive div.icon {
+            position: absolute;
+            right: 7px;
+            top: 0;
+            margin-top: 20px;
+          }
+
+        .topnav.responsive:not(.icon) {position: relative;
+        }
   }
 
+#topnav.responsive div:not(.icon){
+    display: block;
+    float: none;
+    display: block;
+    text-align: left;
+    
+}
 
-@media screen and (max-width: 960px) {
-    .topnav.responsive {position: relative;}
-    .topnav.responsive div.icon {
-      position: absolute;
-      right: 11;
-      top: 20;
-    }
-    .topnav.responsive div {
-      float: none;
-      display: block;
-      text-align: left;
-    }
-  }
+#topnav.responsive div:not(#title):not(.icon){
+    padding-left: 6.25%;
+    margin-top: 10px;
+    margin-right: 6.25%;
+    
+}
 
-    #topnav.responsive div {
-      float: none;
-      display: block;
-      text-align: left;
-    }
+
+
+
 
 /*Social Links*/
 .social{
@@ -192,6 +201,12 @@ div.registration{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 
 }
 
+@media screen and (max-width: 960px) {
+    div.registration{
+        width: 60%;
+    }
+  }
+
 div.registration p{
     margin-top: 5px;
 }
@@ -217,7 +232,7 @@ input[type=radio]{
 
 input.registerbtn {
     background-color: black;
-    width: 25%;
+    width: 200px;
     height: 50px;
     color: white;
     transition: 0.3s ease-in-out;
@@ -274,6 +289,15 @@ div.faq{
      float: right;
      margin-right: 100px;
   }
+
+  @media screen and (max-width: 960px) {
+    div.faq{
+        float: left;
+        margin-left: 100px;
+        margin-top: 25px;
+        width: calc(100% - 200px);
+    }
+  }
   
   .accordion {
       background-color: #eee;
@@ -324,11 +348,12 @@ div.faq{
 /*the container must be positioned relative:*/
 .custom-select {
     position: relative;
-    font-family: Arial;
+    transition: 0.2s ease-in-out;
   }
   
   .custom-select select {
-    display: none; /*hide original SELECT element:*/
+    display: none; /*hide original SELECT element:*/ 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   }
   
   .select-selected {
@@ -342,7 +367,7 @@ div.faq{
     top: 14px;
     right: 10px;
     width: 0;
-    height: 0;
+    transition: 0.2s ease-in-out;
     border: 6px solid transparent;
     border-color: #fff transparent transparent transparent;
   }
@@ -351,6 +376,7 @@ div.faq{
   .select-selected.select-arrow-active:after {
     border-color: transparent transparent #fff transparent;
     top: 7px;
+    transition: 0.2s ease-in-out;
   }
   
   /*style the items (options), including the selected item:*/
@@ -371,6 +397,7 @@ div.faq{
     left: 0;
     right: 0;
     z-index: 99;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   }
   
   /*hide the items when the select box is closed:*/
@@ -380,6 +407,7 @@ div.faq{
   
   .select-items div:hover, .same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
   }
 
   .map{
