@@ -9,11 +9,13 @@
 }
 
 html {
+    user-zoom: fixed;
+    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
 body {
-    overflow-x:hidden;
+    height: 100%;
     font-family: 'Montserrat';
 }
 
@@ -81,8 +83,6 @@ div#topnav .icon{
     display: none;
     float: right;
     margin-right: 15%;
-    
-    
 }
 
 #title{
@@ -90,48 +90,21 @@ div#topnav .icon{
     padding: 10px 15px 0px 12.5%;
     float: left;
     font-size: 30px;
-    transition: 0.2s ease-in-out;
-    
+    transition:  0.2s ease-in-out;
 }
-
-@media screen and (max-width: 960px) {
-    .nav:not(#title) {display: none;
-    }
-    
-    div#topnav .icon{
-        display: block;
-    }
-
-        .topnav.responsive div.icon {
-            position: absolute;
-            right: 7px;
-            top: 0;
-            margin-top: 20px;
-          }
-
-        .topnav.responsive:not(.icon) {position: relative;
-        }
-  }
 
 #topnav.responsive div:not(.icon){
     display: block;
     float: none;
     display: block;
     text-align: left;
-    
 }
 
 #topnav.responsive div:not(#title):not(.icon){
     padding-left: 6.25%;
     margin-top: 10px;
-    margin-right: 6.25%;
-    
+    margin-right: 6.25%;   
 }
-
-
-
-
-
 /*Social Links*/
 .social{
     display: inline-block;
@@ -200,18 +173,12 @@ div.registration{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 
 }
 
-@media screen and (max-width: 960px) {
-    div.registration{
-        width: 60%;
-    }
-  }
-
 div.registration p{
     margin-top: 5px;
 }
 
 input.inputs, select.inputs, div.radio_inputs{
-    width: calc(100% - 15px);
+    width: calc(100% - 10px);
     margin-top: 15px;
     margin-bottom: 15px;
     height: 30px;
@@ -226,7 +193,7 @@ input.inputs{
 }
 
 input[type=radio]{
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 input.registerbtn {
@@ -242,7 +209,6 @@ input.registerbtn {
     margin-top: 10px;
     transform: translate(-50%, 0%);
     text-transform: uppercase;
-    
     border-radius: 25px;
 }
 
@@ -269,6 +235,7 @@ input.inputs{
     transition: 0.4s linear border-bottom, 0.2s linear;
 }
 
+
 input.inputs:hover {
     border-bottom: 1px solid #1565C0;
 }
@@ -280,22 +247,12 @@ input.inputs:focus {
     border-radius: 4px;
 }
 
-
 div.faq{
     position: relative;
     top: 150px;
-     width: 40%;
-     float: right;
-     margin-right: 100px;
-  }
-
-  @media screen and (max-width: 960px) {
-    div.faq{
-        float: left;
-        margin-left: 100px;
-        margin-top: 25px;
-        width: calc(100% - 200px);
-    }
+    width: 40%;
+    float: right;
+    margin-right: 100px;
   }
   
   .accordion {
@@ -331,7 +288,6 @@ div.faq{
       padding: 0 18px;
       background-color: white;
       max-height: 0;
-      overflow: hidden;
       transition: max-height 0.2s ease-out;
     }
   
@@ -413,3 +369,148 @@ div.faq{
     border: solid 1px black;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   }
+
+@media screen and (max-width: 960px) {
+    div.registration{
+        width: 60%;
+    }
+
+    div.faq{
+        float: left;
+        margin-left: 100px;
+        margin-top: 25px;
+        width: calc(100% - 200px);
+    }
+
+    .nav:not(#title) {display: none;}
+    
+    div#topnav .icon{
+        display: block;
+        margin-right: 26%;
+    }
+    
+        .topnav.responsive div.icon {
+            position: absolute;
+            right: 7px;
+            top: 0;
+            margin-top: 20px;
+          }
+
+        .topnav.responsive:not(.icon) {position: relative;
+        }
+
+        div#totop{
+            display: none !important;
+            visibility: hidden;
+        }
+  }
+
+@media screen and (max-width: 360px) {
+    
+    input.registerbtn {
+        width: 150px;
+        height: 40px;
+        font-size: 13px;
+        line-height: 40px;  
+        transition: 0.2s ease-in-out;
+    }
+    input.inputs{
+        height: 32px;
+        font-size: 14px;
+        transition: 0.2s linear;
+    }
+    input.inputs:focus {
+        border-radius: 3px;
+    }
+    div.registration p{
+        margin-top: 5px;
+        font-size: 15px;
+    }
+    .validation {
+        width: 100%;
+    }
+    #title{
+        font-size: 25px;
+        padding-left: 6.25%;
+    }
+
+    div#topnav .icon{
+        margin-right: 18% !important; 
+    }
+    
+    footer div {
+        font-size: 12px;
+        padding: 5%;
+    }
+
+    div.registration{
+        width: 80%;
+        padding: 40px 40px 50px 40px;   
+    }
+}
+
+@media screen and (max-width: 460px) {
+    div.emailsupport{
+        font-size: 14px;
+        margin-left: 50px;
+        margin-right: 50px;
+        top: 100px;
+    } 
+    .accordion {
+        font-size: 13px;
+      }
+      div.faq{
+        top: 150px;
+        width: calc(100vw - 100px);
+        float: none;
+        margin-left: 50px;
+        margin-bottom: 50px;
+      }
+      .panel {
+        font-size: 13px;
+      }
+      .map{
+        height: auto;
+        width: 100%;
+    }
+    input.registerbtn {
+        width: 175px;
+        height: 40px;
+        font-size: 13px;
+        line-height: 40px;  
+        transition: 0.2s ease-in-out;
+    }
+    input.inputs{
+        height: 35px;
+        font-size: 16px;
+        transition: 0.2s linear;
+    }
+    input.inputs:focus {
+        border-radius: 3px;
+    }
+    div.registration p{
+        margin-top: 5px;
+        font-size: 16px;
+    }
+    .validation {
+        width: 100%;
+    }
+    #title{
+        font-size: 25px;
+        padding-left: 6.25%;
+    }
+
+    div#topnav .icon{
+        margin-right: 36% !important; 
+    }
+    
+    footer div {
+        font-size: 14px;
+        padding: 5%;
+    }
+
+    div.registration{
+        width: 82%;
+        padding: 40px 40px 50px 40px;   
+    }
+}

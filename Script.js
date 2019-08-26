@@ -78,7 +78,6 @@ function closeAllSelect(elmnt) {
 then close all select boxes:*/
 document.addEventListener("click", closeAllSelect);
 
-
 window.onscroll = function() {
     NavBarPos();
 }
@@ -106,21 +105,20 @@ function NavBarResize() {
 }
 
 function NavBarPos() {
-    if (window.pageYOffset >= 60) {
+    if (Math.max(document.body.scrollTop,window.pageYOffset) >= 60) {
         document.getElementById("topnav").classList.add("sticky");
         document.getElementById("totop").style.display = "block";
         document.getElementById("topnav").style.padding = "0px 10px";
         document.getElementById("title").style.fontSize = "16px";
-        document.getElementById("title").style.padding = "20px 10px 0px 12.5% ";
+        document.getElementById("title").style.paddingTop = "20px";
     } else {
         document.getElementById("topnav").classList.remove("sticky");
         document.getElementById("totop").style.display = "none";
         document.getElementById("topnav").style.padding = "20px 10px";
         document.getElementById("title").style.fontSize = "30px";
-        document.getElementById("title").style.padding = "10px 10px 0px 12.5% ";
+        document.getElementById("title").style.paddingTop = "10px";
     }
 }
-
 
 function validate_form() {
     var email= document.getElementById("email").value;

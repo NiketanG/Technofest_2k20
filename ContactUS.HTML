@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 
 <head>
-    <title>COMeIT Event Registration</title>
+    <title>COMeIT : Contact Us</title>
     <link rel="Stylesheet" href="Styles.css">
     <script src="script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
 </head>
-
-
+<style>
+    @media screen and (max-width: 960px) {
+    div#topnav .icon{
+        margin-right: 18% !important; 
+    }
+    @media screen and (max-width: 460px) {
+    div#topnav .icon{
+        margin-right: 18% !important; 
+    }
+}
+    
+    </style>
 <body>
     <div id="topnav" class="topnav">
         <div onclick="window.location.href = 'main.HTML';" class="nav" id="title">COMeIT</div>
@@ -74,15 +87,23 @@
         </script>
     </div>
 
-
-    <div id="totop" onclick="window.scrollTo(0, 0);">
-        <img src="pictures/arrow_right.png" />
+    <div style="position: relative; top: 150px;">
+        <p class="center">Connect with us</p>
+        <div class="social">
+            <p class="social">Instagram</p>
+            <p class="social">Facebook</p>
+            <p class="social">Twitter
+        </div>
     </div>
 
     <footer>
         <div id="Copyright">Developed by COMeIT Technical Team - Government Polytechnic Pune. Copyright © 2019 All
             rights reserved.</div>
     </footer>
+
+    <div id="totop" onclick="window.scrollTo(0, 0);">
+            <img src="pictures/arrow_right.png" />
+    </div>
 
 </body>
 
