@@ -103,20 +103,34 @@ function NavBarResize() {
         x.className = "topnav";
     }
 }
-
 function NavBarPos() {
-    if (Math.max(document.body.scrollTop,window.pageYOffset) >= 60) {
-        document.getElementById("topnav").classList.add("sticky");
-        document.getElementById("totop").style.display = "block";
-        document.getElementById("topnav").style.padding = "0px 10px";
-        document.getElementById("title").style.fontSize = "16px";
-        document.getElementById("title").style.paddingTop = "20px";
+    if (Math.max(document.body.scrollTop, window.pageYOffset) >= 60) {
+        document.getElementsByClassName("menu")[0].classList.add("sticky");
+        document.getElementsByClassName("logo")[0].style.lineHeight = "40px";
+        document.getElementsByClassName("logo")[0].style.fontSize = "20px";
+        /*document.getElementById("totop").style.display = "block";*/
     } else {
-        document.getElementById("topnav").classList.remove("sticky");
-        document.getElementById("totop").style.display = "none";
-        document.getElementById("topnav").style.padding = "20px 10px";
-        document.getElementById("title").style.fontSize = "30px";
-        document.getElementById("title").style.paddingTop = "10px";
+        document.getElementById("nav").classList.remove("sticky");
+        document.getElementsByClassName("logo")[0].style.lineHeight = "80px";
+        document.getElementsByClassName("logo")[0].style.fontSize = "25px";
+        /*document.getElementById("totop").style.display = "none";*/
+    }
+}
+
+function toggle() {
+    if ($(".item").hasClass("active")) {
+        $(".item").removeClass("active");
+        $(".menu").find("div").html("<i class='fas fa-bars'></i>");
+        /*if (Math.max(document.body.scrollTop, window.pageYOffset) <= 60) {
+            document.getElementsByClassName("navbar")[0].style.paddingBottom = "125px";
+        }*/
+
+    } else {
+        $(".item").addClass("active");
+        $(".menu").find("div").html("<i class='fas fa-times'></i>");
+        /*if (Math.max(document.body.scrollTop, window.pageYOffset) <= 60) {
+            document.getElementsByClassName("navbar")[0].style.paddingBottom = "325px";
+        }*/
     }
 }
 

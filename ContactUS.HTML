@@ -1,36 +1,29 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>COMeIT : Contact Us</title>
-    <link rel="Stylesheet" href="Styles.css">
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Styles.css">
+    <script src="jQuery.js"></script>
+    <script src="Script.js"></script>
+    <script src="https://kit.fontawesome.com/191afe825b.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact Us</title>
 </head>
-<style>
-    @media screen and (max-width: 960px) {
-    div#topnav .icon{
-        margin-right: 18% !important; 
-    }
-    @media screen and (max-width: 460px) {
-    div#topnav .icon{
-        margin-right: 18% !important; 
-    }
-}
-    
-    </style>
 <body>
-    <div id="topnav" class="topnav">
-        <div onclick="window.location.href = 'main.HTML';" class="nav" id="title">COMeIT</div>
-        <div class="menu">
-            <div onclick="window.location.href = 'contactus.HTML';" class="nav">CONTACT US</div>
-            <div onclick="javascript:NavBarResize()" class="icon nav">
-                <i class="fa fa-bars"></i>
+        <div class="navbar">
+                <ul class="menu" id="nav">
+                    <li class="logo" onclick="window.location.href = 'main.HTML';">COMeIT</li>
+                    <li class="item" onclick="window.location.href = 'main.HTML';">About Us</li>
+                    <li class="item" onclick="window.location.href = 'ContactUS.HTML';">Contact Us</li>
+                    <li class="toggle" onclick="toggle()">
+                        <div><i class="fas fa-bars"></i></div>
+                    </li>
+                </ul>
             </div>
-        </div>
-    </div>
 
     <div class="emailsupport">
         <h3 class="custcare">Get in touch</h3><br>
@@ -75,7 +68,7 @@
 
             for (i = 0; i < acc.length; i++) {
                 acc[i].addEventListener("click", function () {
-                    this.classList.toggle("active");
+                    this.classList.toggle("active_ac");
                     var panel = this.nextElementSibling;
                     if (panel.style.maxHeight) {
                         panel.style.maxHeight = null;
