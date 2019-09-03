@@ -10,16 +10,12 @@
 }
 
 html {
-    user-zoom: fixed;
-    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
 body {
     font-family: Montserrat;
 }
-
-
 
 /*Navigation Bar*/
 
@@ -48,7 +44,7 @@ ul:hover {
 }
 
 .toggle {
-    margin-right: 100px;
+    margin-right: 200px;
 }
 
 .menu li :not(.logo){
@@ -56,6 +52,7 @@ ul:hover {
     padding: 15px 5px;
     white-space: nowrap;
 }
+
 .logo {
     padding: 15px 0px;
     transition: 0.2s linear;
@@ -75,21 +72,23 @@ ul:hover {
 
 .menu .item {
     margin-bottom: 10px;
+    
 }
 
 .toggle {
     cursor: pointer;
     order: 1;
+    margin-right: 100px;
 }
 
 .item {
     width: calc(100% - 200px);
     order: 3;
     display: none;
-    margin-left: 100px;
     padding: 15px 10px !important;
     cursor: pointer;
     transition: 0.2s linear;
+    margin-left: 100px;
 }
 
 .item:hover {
@@ -120,7 +119,7 @@ ul:hover {
         text-align: center;
         display: block;
         width: 120px;
-        right: 100px;
+        right: 200px;
         margin: 0;
         position: relative;
     }
@@ -130,6 +129,7 @@ ul:hover {
     }
 
     .logo {
+        margin-left: 200px;
         order: 0;
     }
 
@@ -179,10 +179,10 @@ footer {
     position: relative;
 }
 
-footer div {
-    font-size: 15px;
-    display: table-cell;
-    vertical-align: middle;
+footer div{
+font-size: 15px;
+display: table-cell;
+vertical-align: middle;
 }
 
 .validation {
@@ -215,23 +215,45 @@ div.registration p{
     margin-top: 5px;
 }
 
-input.inputs, select.inputs, div.radio_inputs{
+input.inputs, select.inputs{
     width: calc(100% - 10px);
     margin-top: 15px;
     margin-bottom: 15px;
     height: 30px;
     border-width: 0px;
     padding-left: 10px;
+    display: block;
+}
+div.radio_inputs{
+    margin: 10px 0px;
+}
+
+input[type=radio]{
+    margin: 5px 15px;
+}
+
+div.radio{
+    display: inline;
 }
 
 input.inputs{
     float: left;
-    color: grey; 
+    color: rgba(255, 255, 255, 0.7); 
     border: solid 1px rgb(185, 185, 185);
 }
 
-input[type=radio]{
-    margin-left: 15px;
+input.inputs:focus{
+    font-size: 17px;
+    height: 40px;
+    color: black;
+} 
+
+input.inputs:invalid{
+    color: rgba(244, 67, 54, 0.8);
+}
+input.inputs::placeholder{
+    color: grey;
+    font-size: 17px;
 }
 
 input.registerbtn {
@@ -248,14 +270,15 @@ input.registerbtn {
     transform: translate(-50%, 0%);
     text-transform: uppercase;
     border-radius: 25px;
+    cursor: pointer;
 }
 
-input[disabled=true].registerbtn{
+input.registerbtn:disabled,input.registerbtn[disabled]{
     cursor: not-allowed;
 }
+
 input.registerbtn:hover {
     background-color: transparent;
-    /*#c2d616;*/
     border-color: white;
     border-width: 1.5px;
     color:white;
@@ -418,10 +441,7 @@ div.faq{
         margin-left: 100px;
         margin-top: 25px;
         width: calc(100% - 200px);
-    }
-
-    
-
+    } 
         div#totop{
             display: none !important;
             visibility: hidden;
@@ -453,7 +473,7 @@ div.faq{
         width: 100%;
     }
     
-    footer div {
+    footer {
         font-size: 12px;
         padding: 5%;
     }
@@ -511,9 +531,10 @@ div.faq{
         width: 100%;
     }
     
-    footer div {
+    footer {
         font-size: 14px;
         padding: 5%;
+        width: 110%;
     }
 
     div.registration{
@@ -521,7 +542,6 @@ div.faq{
         padding: 40px 40px 50px 40px;   
     }
 }
-
 
 div#totop{
     width: 48px;
@@ -545,6 +565,11 @@ div#totop:hover{
 div#totop img{
     transform: rotate(-90deg);
     padding: 10px;
-    width: 28px;
-    height: 28px;
+    width: 46px;
+}
+
+@media screen and (max-width: 650px){
+    div.radio{
+        display: block;
+    }
 }

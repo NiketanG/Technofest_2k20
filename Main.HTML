@@ -13,69 +13,82 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>COMeIT Event Registration</title>
 </head>
+
 <body>
-        <div class="navbar">
-                <ul class="menu" id="nav">
-                    <li class="logo" onclick="window.location.href = 'main.HTML';">COMeIT</li>
-                    <li class="item" onclick="window.location.href = 'main.HTML';">About Us</li>
-                    <li class="item" onclick="window.location.href = 'ContactUS.HTML';">Contact Us</li>
-                    <li class="toggle" onclick="toggle()">
-                        <div><i class="fas fa-bars"></i></div>
-                    </li>
-                </ul>
-            </div>
 
-    <div class="registration">
-
-        <p class="reg_header">Name : </p>
-        <p id="name_v" class="validation">Invalid Name</p>
-        <p id="name_vb" class="validation">Name cannot be left blank</p>
-        <input type="text" name="name" id="name" class="inputs" onblur="validate_form()" onchange="validate_form()">
-
-        <p class="reg_header">Phone No. : </p>
-        <p id="phone_v" class="validation">Invalid Phone No.</p>
-        <p id="phone_vb" class="blank validation">Phone No. cannot be left blank</p>
-        <input type="text" maxlength="10" name="PhNo" id="PhNo" class="inputs" onblur="validate_form()"
-            onchange="validate_form()">
-
-        <p class="reg_header">Email Address. : </p>
-        <p id="email_v" class="validation">Invalid Email Address</p>
-        <p id="email_vb" class="blank validation">Email Address cannot be left blank</p>
-        <input type="text" name="email" id="email" class="inputs" onblur="validate_form()" onchange="validate_form()"><placeholder>severus@hogwarts.edu</placeholder>
-
-        <p class="reg_header">College Name : </p>
-        <p id="clg_vb" class="blank validation">College Name cannot be left blank</p>
-        <input type="text" name="ClgName" id="ClgName" class="inputs" onblur="validate_form()"
-            onchange="validate_form()">
-
-        <p class="reg_header">Event to participate in : </p>
-        <div class="custom-select" style="width:200px; margin-top: 15px; margin-bottom: 15px;">
-            <select id="events" name="events" class="inputs">
-                <option value="0">Select Event : </option>
-                <option value="1">Webber</option>
-                <option value="2">Clash Of Codes</option>
-                <option value="3">Hotkeys</option>
-                <option value="4">Speedy Typing</option>
-            </select>
-        </div>
-
-        <p class="reg_header">No. of Participants : </p>
-        <div class="radio_inputs">
-            <input type="radio" name="radio_team" value="solo" id="radio_team" checked onclick="setgrp()"> Solo
-            <input type="radio" name="radio_team" value="duo" id="radio_team" onclick="setgrp()"> Duo
-            <input type="radio" name="radio_team" value="squad" id="radio_team" onclick="setgrp()"> Squad
-        </div>
-
-        <p class="reg_header grp">Group Name : </p>
-        <p id="group_vb" class=" grp validation">Group Name cannot be left blank</p>
-        <input type="text" name="GrpName" id="GrpName" class="grp inputs" onblur="validate_form()"
-            onchange="validate_form()">
-
-        <input type="button" id="registerbtn" value="Register" class="registerbtn" onclick="register()">
+    <div class="navbar">
+        <ul class="menu" id="nav">
+            <li class="logo" onclick="window.location.href = 'main.HTML';">COMeIT</li>
+            <li class="item" onclick="window.location.href = 'main.HTML';">About Us</li>
+            <li class="item" onclick="window.location.href = 'ContactUS.HTML';">Contact Us</li>
+            <li class="toggle" onclick="toggle()">
+                <div><i class="fas fa-bars"></i></div>
+            </li>
+        </ul>
     </div>
 
+    <form name="Register" action="" method="POST">
+        <div class="registration">
 
-    
+            <p class="reg_header">Name : </p>
+            <p id="name_v" class="validation">Invalid Name</p>
+            <p id="name_vb" class="validation">Name cannot be left blank</p>
+            <input type="text" name="name" id="name" class="inputs" placeholder="Severus Snape" onblur="validate_name()"
+                onchange="validate_name()" required />
+
+            <p class="reg_header">Phone No. : </p>
+            <p id="phone_v" class="validation">Invalid Phone No.</p>
+            <p id="phone_vb" class="blank validation">Phone No. cannot be left blank</p>
+            <input type="tel" placeholder="(605) 475-6961" maxlength="10" pattern="[0-9]{10}" name="PhNo" id="PhNo"
+                class="inputs" onblur="validate_phno()" onchange="validate_phno()" required />
+
+            <p class="reg_header">Email Address. : </p>
+            <p id="email_v" class="validation">Invalid Email Address</p>
+            <p id="email_vb" class="blank validation">Email Address cannot be left blank</p>
+            <input type="email" name="email" id="email" class="inputs" placeholder="severus@hogwarts.edu"
+                onblur="validate_email()" onchange="validate_email()" required />
+
+            <p class="reg_header">Institute Name : </p>
+            <p id="clg_vb" class="blank validation">Institute Name cannot be left blank</p>
+            <input type="text" name="ClgName" id="ClgName" class="inputs"
+                placeholder="Hogwarts School of Witchcraft and Wizardry" onblur="validate_clg()"
+                onchange="validate_clg()" required />
+
+            <p class="reg_header">Event to participate in : </p>
+            <div class="custom-select" style="width:200px; margin-top: 15px; margin-bottom: 15px;"
+                onclick="event_check()">
+                <select id="events" name="events" class="inputs">
+                    <option value="0">Select Event : </option>
+                    <option value="1">Webber</option>
+                    <option value="2">Clash Of Codes</option>
+                    <option value="3">Hotkeys</option>
+                    <option value="4">Speedy Typing</option>
+                </select>
+            </div>
+
+            <p class="reg_header">No. of Participants : </p>
+            <div class="radio_inputs">
+                <div class="radio">
+                    <input type="radio" name="radio_team" value="solo" id="radio_team" checked onclick="setgrp()"><label
+                        class="radio">Solo</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="radio_team" value="duo" id="radio_team" onclick="setgrp()"><label
+                        class="radio">Duo</label></div>
+                <div class="radio">
+                    <input type="radio" name="radio_team" value="squad" id="radio_team" onclick="setgrp()"><label
+                        class="radio">Squad</label></div>
+            </div>
+
+            <p class="reg_header grp">Group Name : </p>
+            <p id="group_vb" class=" grp validation">Group Name cannot be left blank</p>
+            <input type="text" name="GrpName" id="GrpName" class="grp inputs" onblur="validate_grp()"
+                onchange="validate_grp()" required>
+
+            <input type="button" value="Register" id="registerbtn" class="registerbtn" onclick="validate()"
+                disabled=true>
+        </div>
+    </form>
 
     <div style="position: relative; top: 150px;">
         <p class="center">Connect with us</p>
@@ -91,8 +104,8 @@
             rights reserved.</div>
     </footer>
 
-    <div id="totop" onclick="window.scrollTo(0, 0);">
-            <img src="pictures/arrow_right.png" />
+    <div id="totop">
+        <img src="pictures/arrow_right.png" onclick="window.scrollTo(0, 0);" />
     </div>
 
 </body>

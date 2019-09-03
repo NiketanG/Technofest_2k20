@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jQuery.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="https://kit.fontawesome.com/191afe825b.js"></script>
+<script>
+    window.onscroll = function () {
+        NavBarPos();
+    }
+
+    function NavBarPos() {
+        if (Math.max(document.body.scrollTop, window.pageYOffset) >= 60) {
+            document.getElementsByClassName("menu")[0].classList.add("sticky");
+            document.getElementsByClassName("logo")[0].style.lineHeight = "40px";
+            document.getElementsByClassName("logo")[0].style.fontSize = "20px";
+            /*document.getElementById("totop").style.display = "block";*/
+        } else {
+            document.getElementById("nav").classList.remove("sticky");
+            document.getElementsByClassName("logo")[0].style.lineHeight = "80px";
+            document.getElementsByClassName("logo")[0].style.fontSize = "25px";
+            /*document.getElementById("totop").style.display = "none";*/
+        }
+    }
+
+    function toggle() {
+        if ($(".item").hasClass("active")) {
+            $(".item").removeClass("active");
+            $(".menu").find("div").html("<i class='fas fa-bars'></i>");
+            if (Math.max(document.body.scrollTop, window.pageYOffset) <= 60) {
+                document.getElementsByClassName("navbar")[0].style.paddingBottom = "125px";
+            }
+
+        } else {
+            $(".item").addClass("active");
+            $(".menu").find("div").html("<i class='fas fa-times'></i>");
+            if (Math.max(document.body.scrollTop, window.pageYOffset) <= 60) {
+                document.getElementsByClassName("navbar")[0].style.paddingBottom = "325px";
+            }
+        }
+    }
+
+</script>
+<style>
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('fonts/Montserrat-Regular.ttf');
+    }
+
+    body {
+        font-family: Montserrat;
+    }
+
+    /* Basic styling */
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+
+    .navbar {
+        padding-bottom: 125px;
+    }
+
+    ul {
+        width: 100%;
+        position: fixed;
+        background-color: transparent;
+        list-style-type: none;
+        color: black;
+        transition: 0.3s ease-in-out;
+    }
+
+    ul:hover {
+        background-color: black;
+        color: white;
+    }
+
+    .sticky {
+        background-color: black;
+        color: white;
+    }
+
+    .toggle {
+        margin-right: 100px;
+    }
+
+    .menu li :not(.logo){
+        font-size: 20px;
+        padding: 15px 5px;
+        white-space: nowrap;
+    }
+    .logo {
+        padding: 15px 0px;
+        transition: 0.2s linear;
+        line-height: 80px;
+        padding-top: 20px;
+        font-size: 25px;
+        font-weight: 600;
+        margin-left: 100px;
+    }
+    /* Mobile menu */
+    .menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu .item {
+        margin-bottom: 10px;
+    }
+
+    .toggle {
+        cursor: pointer;
+        order: 1;
+    }
+
+    .item {
+        width: calc(100% - 200px);
+        order: 3;
+        display: none;
+        margin-left: 100px;
+        padding: 15px 10px !important;
+        cursor: pointer;
+        transition: 0.2s linear;
+    }
+
+    .item:hover {
+        background-color: white;
+        color: black;
+    }
+
+    .item.active {
+        display: block;
+    }
+
+    /* Tablet menu */
+    @media all and (min-width: 600px) {
+        .logo {
+            flex: 1;
+        }
+
+        .toggle {
+            order: 2;
+            flex: 1;
+            text-align: right;
+        }
+    }
+
+    /* Desktop menu */
+    @media all and (min-width: 900px) {
+        .item {
+            text-align: center;
+            display: block;
+            width: 120px;
+            right: 100px;
+            margin: 0;
+            position: relative;
+        }
+
+        .toggle {
+            display: none;
+        }
+
+        .logo {
+            order: 0;
+        }
+
+        .item {
+            order: 1;
+            margin-top: 10px;
+        }
+
+        .menu li {
+            padding: 15px 10px;
+        }
+    }
+
+
+    /*e.g. severus@hogwarts.edu*/
+</style>
+
+<body>
+    <div class="navbar">
+        <ul class="menu" id="nav">
+            <li class="logo" onclick="window.location.href = 'main.HTML';">COMeIT</li>
+            <li class="item">Home</li>
+            <li class="item">About</li>
+            <li class="item">Contact</li>
+            <li class="toggle" onclick="toggle()">
+                <div><i class="fas fa-bars"></i></div>
+            </li>
+        </ul>
+    </div>
+
+    <p>
+        Skip to main content
+        CSS-Tricks
+        Open Search Open Navigation
+        Home / Articles /
+        Sticky, Smooth, Active Nav
+        Photo of Chris Coyier
+        Author
+        Chris Coyier
+        12 Comments
+        Go to Comments
+        Published
+        Aug 7, 2018
+        Updated
+        Aug 7, 2018
+        NAVIGATION STICKY
+        Easily manage projects with monday.com
+
+        Just like the title says! Here's a sidebar navigation bar that...
+
+        Uses sticky positioning. It stays on the screen when it can, but won't overlap the header, footer, or ever make
+        any of it's links inaccessible.
+        Scrolls smoothly to the sections you click to.
+        Activates the current nav based on scroll position (it's a single page thing).
+
+
+        #Sticky
+        It's easy to toss position: sticky; top: 0; on something. But for it to work, it's gotta be wicontent area.
+        However, note that that we also gotta position: -webkit-sticky; for iOS.
+
+        I also tossed in a magic number for the vertical media query so that it doesn't stick in such a way that you
+        can't get to the lower navigation items:
+
+        /* Only stick if you can fit */
+        @media (min-height: 300px) {
+        nav ul {
+        position: sticky;
+        top: 0;
+        }
+        }
+
+        #Smooth
+        In my first crack at this, I thought about JavaScript-based smooth scrolling. It's even native these days with
+        no need for frameworks. You can target an element and smoothly scroll to it:
+
+        document.querySelector('.hello').scrollIntoView({
+        behavior: 'smooth'
+        });
+        Bringing that to an arbitrary set of nav...
+
+        let mainNavLinks = document.querySelectorAll("nav ul li a");
+
+        mainNavLinks.forEach(link => {
+        link.addEventListener("click", event => {
+        event.preventDefault();
+        let target = document.querySelector(event.target.hash);
+        target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+        });
+        });
+        });
+        That's supported in both Chrome and Firefox, but not Edge or Safari.
+
+        Then it occurred to me, CSS can do this! There is a scroll-behavior property and you can put it on the document
+        to make everything scroll that way:
+
+        html {
+        scroll-behavior: smooth;
+        }
+        Since our navigational <a> links are hash/jump/anchor links, that's literally all we need. Forget the
+            JavaScript. Especially because the browser support for scroll-behavior is the same as the "smooth" version
+            of .scrollIntoView().
+
+            #Active
+            This is a bit trickier, particularly because this is a single-page scrolling app rather than individual
+            pages with their own separate documents. If they were separate documents, we'd change an active class
+            somewhere in the navigation or use a body.specific_page class or something.
+
+            Instead, we'll need to look at the scroll position of the page, decide which section is in view and mark it
+            that way. There might be some kinda fancy IntersectionObserver way to handle this, but I couldn't quite wrap
+            my head around that, so instead I'm just looking at all the relevant sections, doing a little measuring and
+            math, and deciding if the link is active that way.
+
+            let mainNavLinks = document.querySelectorAll("nav ul li a");
+            let mainSections = document.querySelectorAll("main section");
+
+            let lastId;
+            let cur = [];
+
+            window.addEventListener("scroll", event => {
+            let fromTop = window.scrollY;
+
+            mainNavLinks.forEach(link => {
+            let section = document.querySelector(link.hash);
+
+            if (
+            section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight> fromTop
+                ) {
+                link.classList.add("current");
+                } else {
+                link.classList.remove("current");
+                }
+                });
+                });
+                The scroll handler there should trigger a little warning flag. That's the kind of thing that should
+                probably be throttled, like if you have lodash available:
+
+                window.addEventListener("scroll", () => {
+                _.throttle(doThatStuff, 100);
+                });
+                I just didn't do that here to keep the demo dependency-free.
+
+                Oh! And it largely works fine on mobile (iOS here):
+
+
+                #A Free Template for JavaScript Library Homepages
+                I used all this stuff in this template I made that you're free to use for whatever.
+
+
+                Comments
+                User Avatar
+                Nicolas Hoffmann
+                Permalink to comment# August 7, 2018
+                Did you consider using IntersectionObserver? (really interesting from performance point of view)
+
+                I’ve tested it for making a simple clone of RevealJS (with CSS Scroll Snap points and ScrollIntoView),
+                see
+                https://medium.com/@Nico3333fr/creating-a-light-revealjs-clone-with-css-scroll-snap-points-306dfba71652
+
+                User Avatar
+                bersLucas
+                Permalink to comment# August 7, 2018
+                I found a weird bug (I’m calling it a ‘bug’ because I don’t understand it) in Firefox 62dev.
+
+                body{overflow-x: hidden;}
+                causes the nav ul element to not be sticky. Removing that declaration from body fixes this.
+
+                Show All Comments
+                This comment thread is closed. If you have important information to share, please contact us.
+                Stickybits: an alternative to `position: sticky` polyfills
+                Stickybits is a small JavaScript utility plugin. It's goal is not to get in the way. It does one thing
+                well: help with sticky elements. It is not dependent on other JavaScript Plugins, can be imported via
+                npm, and approaches sticky elements in a very utility-oriented way. Solving the sticky…
+
+                June 25, 2017
+
+                Sticky as a Local Fixed?
+                Sticky as a Local Fixed?
+                You know how position: relative creates a new context for absolute positioning within an element? Well,
+                position: sticky is a locally scoped version of position: fixed. Let's take a look at how that works
+                using a modal with a sticky close button as an example.
+
+                March 26, 2018
+
+                Creating sliding effects using sticky positioning
+                Creating sliding effects using sticky positioning
+                Sticky elements are predominantly used for keeping something shown on the screen throughout scrolling.
+                As cool as that is, we can also hide elements in the same way! Here’s a typical (um) sticky situation:
+                See the Pen position:sticky (CSS) by Preethi Sam (@rpsthecoder) on CodePen. Sticky elements (position:
+                sticky;) are…
+
+                September 10, 2018
+
+                How do you stay up to date in this fast⁠-⁠moving industry?
+                A good start is to sign up for our weekly hand-written newsletter. We bring you the best articles and
+                ideas from around the web, and what we think about them.
+
+                Email Address
+                lovetricks@internet.cool
+                Subscribe
+                👋
+                CSS-Tricks* is created, written by, and maintained by Chris Coyier and a team of swell people. The tech
+                stack for this site is fairly boring. That's a good thing! I've used WordPress since day one all the way
+                up to v17, a decision I'm very happy with. I also leverage Jetpack for extra functionality and Local for
+                local development.
+
+                *May or may not contain any actual "CSS" or "Tricks".
+
+                Other Nav
+                Contact
+                About
+                Forums
+                Advertise
+                License
+                Subscribe
+                Guest Posting
+                All Authors
+                CodePen
+                CodePen is a place to experiment, debug, and show off your HTML, CSS, and JavaScript creations.
+
+                Flywheel
+                CSS-Tricks is hosted by Flywheel, the best WordPress hosting in the business, with a local development
+                tool to match.
+
+                ShopTalk Show
+                ShopTalk is a podcast all about front-end web design and development.
+
+                CSS-Tricks Presents
+                📅 Upcoming Front-End Conferences
+                CSS-Tricks Presents
+                The Power of Serverless for Front-End Developers
+    </p>
+
+
+
+</body>
+
+</html>
