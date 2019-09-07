@@ -1,12 +1,12 @@
 @font-face {
-    font-family: 'Montserrat';
+    font-family: 'Preload_Montserrat';
     src: url('fonts/Montserrat-Regular.ttf');
 }
 
 * {
     box-sizing: border-box;
     padding: 0;
-    margin: 0;      
+    margin: 0;
 }
 
 html {
@@ -14,11 +14,94 @@ html {
 }
 
 body {
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*Pre-loader*/
+.loader {
+    background-color: #282828;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1001;
+    margin-top: 0px;
+    top: 0px;
+}
+
+.box {
+    width: 250px;
+    height: 250px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+}
+
+.box .b {
+    border-width: 4px;
+    border-radius: 50%;
+    border-left: 4px solid;
+    border-right: 4px solid;
+    border-top: 4px solid transparent !important;
+    border-bottom: 4px solid transparent !important;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    animation: ro 2s ease-in-out infinite;
+
+}
+
+.box .b1 {
+    border-color: #4a69bd;
+    width: 120px;
+    height: 120px;
+}
+
+.box .b2 {
+    border-color: #f6b93b;
+    width: 100px;
+    height: 100px;
+    animation-delay: 0.1s;
+}
+
+.box .b3 {
+    border-color: #009688;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0.2s;
+}
+
+.box .b4 {
+    border-color: #34495e;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0.3s;
+}
+
+@keyframes ro {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) rotate(-180deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
+
+.ready {
+    font-family: 'Preload_Montserrat' !important;
+    color: white;
+    text-align: center;
+    margin-top: 210px;
 }
 
 /*Navigation Bar*/
-
 .navbar {
     padding-bottom: 25px;
 }
@@ -34,8 +117,8 @@ ul {
 }
 
 ul:hover {
-    background-color: black;
-    color: white;
+    background-color: black !important;
+    color: white !important;
 }
 
 .sticky {
@@ -47,7 +130,7 @@ ul:hover {
     margin-right: 200px;
 }
 
-.menu li :not(.logo){
+.menu li :not(.logo) {
     font-size: 20px;
     padding: 15px 5px;
     white-space: nowrap;
@@ -59,9 +142,10 @@ ul:hover {
     line-height: 80px;
     padding-top: 20px;
     font-size: 25px;
-    font-weight: 600;
-    margin-left: 100px;
+    font-weight: 500;
+    margin-left: 50px;
 }
+
 /* Mobile menu */
 .menu {
     display: flex;
@@ -72,25 +156,26 @@ ul:hover {
 
 .menu .item {
     margin-bottom: 10px;
-    
+
 }
 
 .toggle {
     cursor: pointer;
     order: 1;
-    margin-right: 100px;
+    margin-right: 50px;
 }
 
 .item {
-    width: calc(100% - 200px);
+    width: calc(100% - 100px);
     order: 3;
     display: none;
     padding: 15px 10px !important;
     cursor: pointer;
     transition: 0.2s linear;
-    margin-left: 100px;
+    margin-left: 50px;
 }
 
+.item:active,
 .item:hover {
     background-color: white;
     color: black;
@@ -102,11 +187,18 @@ ul:hover {
 
 /* Tablet menu */
 @media all and (min-width: 600px) {
+    .item {
+        width: calc(100% - 200px);
+        margin-left: 100px;
+    }
+
     .logo {
         flex: 1;
+        margin-left: 100px;
     }
 
     .toggle {
+        margin-right: 100px;
         order: 2;
         flex: 1;
         text-align: right;
@@ -119,7 +211,7 @@ ul:hover {
         text-align: center;
         display: block;
         width: 120px;
-        right: 200px;
+        right: 100px;
         margin: 0;
         position: relative;
     }
@@ -129,7 +221,7 @@ ul:hover {
     }
 
     .logo {
-        margin-left: 200px;
+        margin-left: 100px;
         order: 0;
     }
 
@@ -143,33 +235,61 @@ ul:hover {
     }
 }
 
+@media all and (min-width: 1200px) {
+    .logo {
+        margin-left: 200px;
+    }
+
+    .item {
+        text-align: center;
+        display: block;
+        width: 120px;
+        right: 200px;
+        margin: 0;
+        position: relative;
+    }
+}
+
+/*NavBar Styling End*/
+
 /*Social Links*/
-.social{
+div.connect{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    top: 125px;
+}
+.center {
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: -50px;
+}
+
+.social {
     display: inline-block;
     text-align: center;
     width: 100%;
     height: 30px;
     padding: 15px 10px 10px 10px;
-    margin-top: 50px;
+    /*Top Right Bottom Left*/
+    margin: 50px 0px 25px 0px;
     transition: 0.2s color linear, 0.2s color linear;
+    color: rgb(185, 185, 185);
 }
 
-div.social:Hover{
-    color:rgb(200, 200, 200);
-}
-
-p.social{
+p.social {
     display: inline;
 }
 
-div p.social:Hover{
-    color: Black;
+p.social:active,
+p.social:hover {
+    color: black;
 }
 
 /* Footer */
 footer {
     background-color: #282828;
-    color:rgb(175, 175, 175);
+    color: rgb(175, 175, 175);
     width: 100%;
     height: 60px;
     display: table;
@@ -179,86 +299,80 @@ footer {
     position: relative;
 }
 
-footer div{
-font-size: 15px;
-display: table-cell;
-vertical-align: middle;
+footer div {
+    padding: 15px 30px;
+    font-size: 13px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+@media screen and (min-width: 600px) {
+    footer div {
+        padding: 15px 30px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    footer div {
+        font-size: 15px;
+        padding: 0px 0px;
+    }
+}
+
+/*Registration Form*/
+form#Register {
+    background-color: #282828;
+    width: 100%;
+    color: white;
+    padding: 40px 25px;
+    position: relative;
+    top: 100px;
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px;
+    transition: 0.3s ease-in-out;
 }
 
 .validation {
+    margin-top: 5px;
     font-size: 13px;
-    width: 60%;
+    width: calc(100% - 15px);
     display: inline-block;
     color: rgba(244, 67, 54, 0.9);
     display: none;
 }
 
-.center{
-    text-align: center;
-    margin-bottom: -50px;
+input.inputs,
+select.inputs,
+div.radio_inputs {
+    margin: 15px 0px;
 }
 
-div.registration{
-    background-color: #282828;
-    border-radius: 5px;
-    width: 50%;
-    color:white;
-    padding: 50px;
-    position: relative;
-    top: 100px;
-    margin-left: 50%;
-    transform: translate(-50%, 0%);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 
+input[type=radio] {
+    margin: 5px 10px 5px 15px;
 }
 
-div.registration p{
-    margin-top: 5px;
+input.inputs {
+    color: rgba(255, 255, 255, 0.7);
 }
 
-input.inputs, select.inputs{
-    width: calc(100% - 10px);
-    margin-top: 15px;
-    margin-bottom: 15px;
-    height: 30px;
-    border-width: 0px;
-    padding-left: 10px;
-    display: block;
-}
-div.radio_inputs{
-    margin: 10px 0px;
-}
-
-input[type=radio]{
-    margin: 5px 15px;
-}
-
-div.radio{
-    display: inline;
-}
-
-input.inputs{
-    float: left;
-    color: rgba(255, 255, 255, 0.7); 
-    border: solid 1px rgb(185, 185, 185);
-}
-
-input.inputs:focus{
-    font-size: 17px;
+input.inputs:focus {
+    font-size: 16px;
     height: 40px;
     color: black;
-} 
+}
 
-input.inputs:invalid{
+input.inputs:invalid {
     color: rgba(244, 67, 54, 0.8);
 }
-input.inputs::placeholder{
+
+input.inputs::placeholder {
     color: grey;
-    font-size: 17px;
+    font-size: 16px;
 }
 
-input.registerbtn {
+input[type=button] {
     background-color: black;
-    width: 200px;
+    width: 125px;
     height: 50px;
     color: white;
     transition: 0.3s ease-in-out;
@@ -266,39 +380,28 @@ input.registerbtn {
     border-width: 0px;
     font-size: 16px;
     margin-left: 50%;
-    margin-top: 10px;
+    margin-top: 20px;
     transform: translate(-50%, 0%);
     text-transform: uppercase;
     border-radius: 25px;
     cursor: pointer;
 }
 
-input.registerbtn:disabled,input.registerbtn[disabled]{
+
+input.registerbtn:disabled,
+input.registerbtn[disabled] {
     cursor: not-allowed;
 }
 
-input.registerbtn:hover {
-    background-color: transparent;
-    border-color: white;
-    border-width: 1.5px;
-    color:white;
-    /*box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px;*/
-}
-
-input.inputs{
+input.inputs {
     width: calc(100% - 15px);
     padding: 0 0 0 10px;
     height: 35px;
     background-color: transparent;
-    border:none;
+    border: none;
     font-size: 15px;
     border-bottom: 1.5px solid rgba(200, 200, 200, 0.7);
     transition: 0.4s linear border-bottom, 0.2s linear;
-}
-
-
-input.inputs:hover {
-    border-bottom: 1px solid #1565C0;
 }
 
 input.inputs:focus {
@@ -306,58 +409,112 @@ input.inputs:focus {
     background-color: #F7F7F7;
     outline: none;
     border-radius: 4px;
+    border-bottom: 2px solid #1565C0;
 }
 
-div.faq{
-    position: relative;
-    top: 150px;
-    width: 40%;
-    float: right;
-    margin-right: 100px;
-  }
-  
-  .accordion {
-      background-color: #eee;
-      color: #444;
-      cursor: pointer;
-      padding: 18px;
-      width: 100%;
-      border: none;
-      text-align: left;
-      outline: none;
-      font-size: 15px;
-      transition: 0.4s;
+/*Special Mobile Only Styles*/
+@media screen and (min-width: 320px) {
+    input[type=button] {
+        width: 150px;
     }
-    
-    .active_ac, .accordion:hover {
-      background-color: #ccc;
+}
+
+/*Tablets*/
+@media screen and (min-width: 426px) {
+    form#Register {
+        border-radius: 5px;
+        width: 80%;
+        padding: 50px;
+        margin-left: 50%;
+        transform: translate(-50%, 0%);
     }
-    
-    .accordion:after {
-      content: '\002B';
-      color: #777;
-      font-weight: bold;
-      float: right;
-      margin-left: 5px;
+}
+
+@media screen and (min-width: 600px) {
+    form#Register {
+        width: 70%;
     }
-    
-    .active_ac:after {
-      content: "\2212";
+
+    div.radio {
+        display: inline;
     }
-    
-    .panel {
-      padding: 0 18px;
-      background-color: white;
-      max-height: 0;
-      transition: max-height 0.2s ease-out;
+
+    input.inputs:focus {
+        font-size: 17px;
+        height: 40px;
+        color: black;
     }
-  
-    div.emailsupport{
-        display: inline-block;
-        margin-left: 100px;
-        top: 150px;
-        position: relative;
-    }  
+
+    input.inputs::placeholder {
+        color: grey;
+        font-size: 17px;
+    }
+
+    input[type=button] {
+        width: 200px;
+        height: 50px;
+    }
+
+    input.registerbtn:hover {
+        background-color: transparent;
+        border-color: white;
+        border-width: 1.5px;
+        color: white;
+    }
+
+    input.inputs:hover {
+        border-bottom: 1.5px solid #1565C0;
+    }
+}
+
+/*Desktops*/
+@media screen and (min-width: 1200px) {
+    form#Register {
+        border-radius: 5px;
+        width: 60%;
+        padding: 50px;
+        margin-left: 50%;
+        transform: translate(-50%, 0%);
+    }
+
+    .validation {
+        font-size: 14px;
+    }
+
+    div.radio {
+        display: inline;
+    }
+
+    input.inputs:focus {
+        font-size: 17px;
+        height: 40px;
+        color: black;
+
+    }
+
+    input.inputs::placeholder {
+        color: grey;
+        font-size: 17px;
+    }
+
+    input[type=button] {
+        width: 200px;
+        height: 50px;
+    }
+
+    input.registerbtn:hover {
+        background-color: transparent;
+        border-color: white;
+        border-width: 1.5px;
+        color: white;
+    }
+
+    input.inputs:hover {
+        border-bottom: 1.5px solid #1565C0;
+    }
+
+
+}
 
 /*Select List*/
 
@@ -365,19 +522,20 @@ div.faq{
 .custom-select {
     position: relative;
     transition: 0.2s ease-in-out;
-  }
-  
-  .custom-select select {
-    display: none; /*hide original SELECT element:*/ 
+}
+
+.custom-select select {
+    display: none;
+    /*hide original SELECT element:*/
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
-  }
-  
-  .select-selected {
+}
+
+.select-selected {
     background-color: DodgerBlue;
-  }
-  
-  /*style the arrow inside the select element:*/
-  .select-selected:after {
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
     position: absolute;
     content: "";
     top: 14px;
@@ -386,27 +544,28 @@ div.faq{
     transition: 0.2s ease-in-out;
     border: 6px solid transparent;
     border-color: #fff transparent transparent transparent;
-  }
-  
-  /*point the arrow upwards when the select box is open (active):*/
-  .select-selected.select-arrow-active:after {
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
     border-color: transparent transparent #fff transparent;
     top: 7px;
     transition: 0.2s ease-in-out;
-  }
-  
-  /*style the items (options), including the selected item:*/
-  .select-items div,.select-selected {
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,
+.select-selected {
     color: #ffffff;
     padding: 8px 16px;
     border: 1px solid transparent;
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
     user-select: none;
-  }
-  
-  /*style items (options):*/
-  .select-items {
+}
+
+/*style items (options):*/
+.select-items {
     position: absolute;
     background-color: DodgerBlue;
     top: 100%;
@@ -414,136 +573,21 @@ div.faq{
     right: 0;
     z-index: 99;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
-  }
-  
-  /*hide the items when the select box is closed:*/
-  .select-hide {
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
     display: none;
-  }
-  
-  .select-items div:hover, .same-as-selected {
+}
+
+.select-items div:hover,
+.same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
     transition: 0.3s ease-in-out;
-  }
-
-  .map{
-    border: solid 1px black;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
-  }
-
-@media screen and (max-width: 960px) {
-    div.registration{
-        width: 60%;
-    }
-
-    div.faq{
-        float: left;
-        margin-left: 100px;
-        margin-top: 25px;
-        width: calc(100% - 200px);
-    } 
-        div#totop{
-            display: none !important;
-            visibility: hidden;
-        }
-  }
-
-@media screen and (max-width: 360px) {
-    
-    input.registerbtn {
-        width: 150px;
-        height: 40px;
-        font-size: 13px;
-        line-height: 40px;  
-        transition: 0.2s ease-in-out;
-    }
-    input.inputs{
-        height: 32px;
-        font-size: 14px;
-        transition: 0.2s linear;
-    }
-    input.inputs:focus {
-        border-radius: 3px;
-    }
-    div.registration p{
-        margin-top: 5px;
-        font-size: 15px;
-    }
-    .validation {
-        width: 100%;
-    }
-    
-    footer {
-        font-size: 12px;
-        padding: 5%;
-    }
-
-    div.registration{
-        width: 80%;
-        padding: 40px 40px 50px 40px;   
-    }
 }
 
-@media screen and (max-width: 460px) {
-    div.emailsupport{
-        font-size: 14px;
-        margin-left: 50px;
-        margin-right: 50px;
-        top: 100px;
-    } 
-    .accordion {
-        font-size: 13px;
-      }
-      div.faq{
-        top: 150px;
-        width: calc(100vw - 100px);
-        float: none;
-        margin-left: 50px;
-        margin-bottom: 50px;
-      }
-      .panel {
-        font-size: 13px;
-      }
-      .map{
-        height: auto;
-        width: 100%;
-    }
-    input.registerbtn {
-        width: 175px;
-        height: 40px;
-        font-size: 13px;
-        line-height: 40px;  
-        transition: 0.2s ease-in-out;
-    }
-    input.inputs{
-        height: 35px;
-        font-size: 16px;
-        transition: 0.2s linear;
-    }
-    input.inputs:focus {
-        border-radius: 3px;
-    }
-    div.registration p{
-        margin-top: 5px;
-        font-size: 16px;
-    }
-    .validation {
-        width: 100%;
-    }
-    
-    footer {
-        font-size: 14px;
-        padding: 5%;
-        width: 110%;
-    }
 
-    div.registration{
-        width: 82%;
-        padding: 40px 40px 50px 40px;   
-    }
-}
-
-div#totop{
+div#totop {
     width: 48px;
     height: 48px;
     position: fixed;
@@ -557,19 +601,150 @@ div#totop{
     transition: 0.3s ease-in-out;
 }
 
-div#totop:hover{
+div#totop:hover {
     background-color: #000;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
 
-div#totop img{
+div#totop img {
     transform: rotate(-90deg);
     padding: 10px;
     width: 46px;
 }
 
-@media screen and (max-width: 650px){
-    div.radio{
-        display: block;
+@media screen and (max-width: 960px) {
+    div#totop {
+        display: none !important;
+        visibility: hidden;
+    }
+}
+
+/*Styling for the Contact Us page*/
+div.emailsupport {
+    margin-left: 100px;
+    top: 150px;
+    position: relative;
+    width: calc(100% - 200px);
+}
+
+.map {
+    width: 100%;
+    height: 250px;
+    border: solid 1px black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+}
+
+div.faq {
+    margin-left: 100px;
+    top: 200px;
+    margin-bottom: 125px;
+    position: relative;
+    width: calc(100% - 200px);
+}
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active_ac,
+.accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active_ac:after {
+    content: "\2212";
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+@media all and (min-width: 320px) {
+    div.emailsupport {
+        margin-left: 25px;
+        width: calc(100% - 50px);
+    }
+    
+    .map {
+        width: 100%;
+        height: 150px;
+    }
+    
+    div.faq {
+        margin-left: 25px;
+        width: calc(100% - 50px);
+    }
+}
+
+@media all and (min-width: 600px) {
+    div.emailsupport {
+        margin-left: 100px;
+        width: calc(100% - 200px);
+    }
+    
+    .map {
+        width: 75%;
+        height: 200px;
+    }
+    
+    div.faq {
+        margin-left: 100px;
+        width: calc(100% - 200px);
+    }
+}
+
+
+@media all and (min-width: 900px) {
+    div.emailsupport {
+        margin-left: 120px;
+        width: calc(40% - 100px);
+        float: left;
+    }
+    
+    .map {
+        width: 100%;
+        height: 250px;
+    }
+    
+    div.faq {
+        top: 150px;
+        float: right;
+        margin-right: 120px;
+        width: calc(40% - 100px);
+        margin-bottom: 0px;
+    }
+
+    div.connect{
+        top: 250px;
+        margin-bottom: 50px;
+    }
+}
+
+
+@media all and (min-width: 1200px) {
+    div.connect{
+        top: 250px;
+        margin-bottom: 100px;
     }
 }

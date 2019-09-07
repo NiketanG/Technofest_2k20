@@ -1,8 +1,22 @@
-window.onload = function () {
+window.onload = function load() {
+    hidePreloader();
+    NavBarPos();
+    //Preloader
+    function hidePreloader() {
+        $('.loader').fadeOut(500);
+    }
+    
+    setTimeout(() => {
+        hidePreloader();
+    }, 1000);
+}
+
+function loadform() {
     selectlist();
     setgrp();
     event_check();
 }
+
 
 function selectlist() {
     var x, i, j, selElmnt, a, b, c;
@@ -99,45 +113,44 @@ function NavBarPos() {
         document.getElementsByClassName("logo")[0].style.lineHeight = "40px";
         document.getElementsByClassName("logo")[0].style.fontSize = "20px";
         document.getElementById("totop").style.display = "block";
+            $("ul").css("background-color", "black");
+            $("ul").css("color", "white");
     } else {
         document.getElementById("nav").classList.remove("sticky");
         document.getElementsByClassName("logo")[0].style.lineHeight = "80px";
         document.getElementsByClassName("logo")[0].style.fontSize = "25px";
         document.getElementById("totop").style.display = "none";
+        
         if (($(".item").hasClass("active"))) {
             document.getElementsByClassName("navbar")[0].style.paddingBottom = "145px";
+            $("ul").css("background-color", "black");
+            $("ul").css("color", "white");
+        } else {
+            document.getElementsByClassName("navbar")[0].style.paddingBottom = "25px";
+            $("ul").css("background-color", "white");
+            $("ul").css("color", "black");
         }
+        
     }
-
 }
 
-function toggle(n) {
-    if (n == 1) {
+
+function toggle() {
+    if ($(".item").hasClass("active")) {
         $(".item").removeClass("active");
         $(".menu").find("div").html("<i class='fas fa-bars'></i>");
         if (Math.max(document.body.scrollTop, window.pageYOffset) <= 60) {
+            $("ul").css("background-color", "white");
+            $("ul").css("color", "black");
             document.getElementsByClassName("navbar")[0].style.paddingBottom = "25px";
         }
-    } else if (n == 0) {
+    } else {
         $(".item").addClass("active");
         $(".menu").find("div").html("<i class='fas fa-times'></i>");
         if (Math.max(document.body.scrollTop, window.pageYOffset) <= 60) {
+            $("ul").css("background-color", "black");
+            $("ul").css("color", "white");
             document.getElementsByClassName("navbar")[0].style.paddingBottom = "145px";
-        }
-    } else {
-        if ($(".item").hasClass("active")) {
-            $(".item").removeClass("active");
-            $(".menu").find("div").html("<i class='fas fa-bars'></i>");
-            if (Math.max(document.body.scrollTop, window.pageYOffset) <= 60) {
-                document.getElementsByClassName("navbar")[0].style.paddingBottom = "25px";
-            }
-
-        } else {
-            $(".item").addClass("active");
-            $(".menu").find("div").html("<i class='fas fa-times'></i>");
-            if (Math.max(document.body.scrollTop, window.pageYOffset) <= 60) {
-                document.getElementsByClassName("navbar")[0].style.paddingBottom = "145px";
-            }
         }
     }
 }
@@ -152,8 +165,7 @@ function validate_name() {
         document.getElementById("name_v").style.display = 'block';
         document.getElementById("name_vb").style.display = 'none';
         return false;
-    }
-    else if ((re_name.test(name)) || (name.length < 1)) {
+    } else if ((re_name.test(name)) || (name.length < 1)) {
         document.getElementById("name_v").style.display = 'none';
         document.getElementById("name_vb").style.display = 'none';
         return true;
@@ -171,8 +183,7 @@ function validate_email() {
         document.getElementById("email_v").style.display = 'block';
         document.getElementById("email_vb").style.display = 'none';
         return false;
-    }
-    else if ((re_email.test(email)) || (email.length < 1)) {
+    } else if ((re_email.test(email)) || (email.length < 1)) {
         document.getElementById("email_v").style.display = 'none';
         document.getElementById("email_vb").style.display = 'none';
         return true;
@@ -190,13 +201,13 @@ function validate_phno() {
         document.getElementById("phone_v").style.display = 'block';
         document.getElementById("phone_vb").style.display = 'none';
         return false;
-    }
-    else if ((re_phno.test(phno)) || (phno.length < 1)) {
+    } else if ((re_phno.test(phno)) || (phno.length < 1)) {
         document.getElementById("phone_v").style.display = 'none';
         document.getElementById("phone_vb").style.display = 'none';
         return true;
     }
 }
+
 function validate_clg() {
     blank_check();
     var clgname = document.getElementById("ClgName").value;
@@ -228,8 +239,7 @@ function validate_grp() {
 
     if (checkedrdbtn == "solo") {
         return true;
-    }
-    else {
+    } else {
         var grpname = document.getElementById("GrpName").value;
         if (grpname.length < 1) {
             document.getElementById("group_vb").style.display = 'block';
@@ -266,7 +276,6 @@ function event_check() {
     }
 }
 
-
 function validate() {
     if (validate_name() && event_check() && validate_phno() && validate_email() && validate_clg() && validate_grp() && blank_check()) {
         //Submit Form 
@@ -275,6 +284,4 @@ function validate() {
     } else {
         alert("Please check all fields.")
     }
-
-
 }

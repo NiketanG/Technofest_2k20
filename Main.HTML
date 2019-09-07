@@ -7,29 +7,58 @@
     <link rel="stylesheet" href="Styles.css">
     <script src="jQuery.js"></script>
     <script src="Script.js"></script>
-    <script src="https://kit.fontawesome.com/191afe825b.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>COMeIT Event Registration</title>
+
+    <script lnaguage="javascript" type="text/javascript">
+        window.onload = function () {
+            loadform();
+            NavBarPos();
+            
+            //Preloader
+            function hidePreloader() {
+                $('.loader').fadeOut(500);
+            }
+            setTimeout(() => {
+                hidePreloader();
+            }, 1000);
+        }
+    </script>
+
 </head>
 
 <body>
-
-    <div class="navbar">
-        <ul class="menu" id="nav">
-            <li class="logo" onclick="window.location.href = 'main.HTML';">COMeIT</li>
-            <li class="item" onclick="window.location.href = 'main.HTML';">About Us</li>
-            <li class="item" onclick="window.location.href = 'ContactUS.HTML';">Contact Us</li>
-            <li class="toggle" onclick="toggle()">
-                <div><i class="fas fa-bars"></i></div>
-            </li>
-        </ul>
+    <div class="loader">
+        <div class="box">
+            <div class="b b1"></div>
+            <div class="b b2"></div>
+            <div class="b b3"></div>
+            <div class="b b4"></div>
+            <div class="ready">Getting Ready
+            </div>
+        </div>
     </div>
 
-    <form name="Register" action="" method="POST">
-        <div class="registration">
+    <!--<script src="https://kit.fontawesome.com/191afe825b.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600&display=swap" rel="stylesheet">
+    -->
+    <div class="content">
+        <div class="navbar">
+            <ul class="menu" id="nav">
+                <li class="logo" onclick="window.location.href = 'main.HTML';">COMeIT</li>
+                <li class="item" onclick="window.location.href = 'main.HTML';">Events</li>
+                <li class="item" onclick="window.location.href = 'ContactUS.HTML';">Contact Us</li>
+                <li class="toggle" onclick="toggle()">
+                    <div><i class="fas fa-bars"></i></div>
+                </li>
+            </ul>
+        </div>
+
+        <form id="Register" name="Register" action="" method="POST">
             <p class="reg_header">Name : </p>
             <p id="name_v" class="validation">Invalid Name</p>
             <p id="name_vb" class="validation">Name cannot be left blank</p>
@@ -55,6 +84,7 @@
                 onchange="validate_clg()" required />
 
             <p class="reg_header">Event to participate in : </p>
+
             <div class="custom-select" style="width:200px; margin-top: 15px; margin-bottom: 15px;"
                 onclick="event_check()">
                 <select id="events" name="events" class="inputs">
@@ -68,16 +98,22 @@
 
             <p class="reg_header">No. of Participants : </p>
             <div class="radio_inputs">
+
                 <div class="radio">
-                    <input type="radio" name="radio_team" value="solo" id="radio_team" checked onclick="setgrp()"><label
-                        class="radio">Solo</label>
+                    <input type="radio" name="radio_team" value="solo" id="radio_team" checked onclick="setgrp()">
+                    <label class="radio">Solo</label>
                 </div>
+
                 <div class="radio">
-                    <input type="radio" name="radio_team" value="duo" id="radio_team" onclick="setgrp()"><label
-                        class="radio">Duo</label></div>
+                    <input type="radio" name="radio_team" value="duo" id="radio_team" onclick="setgrp()">
+                    <label class="radio">Duo</label>
+                </div>
+
                 <div class="radio">
-                    <input type="radio" name="radio_team" value="squad" id="radio_team" onclick="setgrp()"><label
-                        class="radio">Squad</label></div>
+                    <input type="radio" name="radio_team" value="squad" id="radio_team" onclick="setgrp()">
+                    <label class="radio">Squad</label>
+                </div>
+
             </div>
 
             <p class="reg_header grp">Group Name : </p>
@@ -87,25 +123,26 @@
 
             <input type="button" value="Register" id="registerbtn" class="registerbtn" onclick="validate()"
                 disabled=true>
+        </form>
+
+        <div style="position: relative; top: 150px;">
+            <p class="center">Connect with us</p>
+            <div class="social">
+                <p class="social">Instagram</p>
+                <p class="social">Facebook</p>
+                <p class="social">Twitter
+            </div>
         </div>
-    </form>
 
-    <div style="position: relative; top: 150px;">
-        <p class="center">Connect with us</p>
-        <div class="social">
-            <p class="social">Instagram</p>
-            <p class="social">Facebook</p>
-            <p class="social">Twitter
+        <footer>
+            <div id="Copyright">Developed by COMeIT Technical Team - Government Polytechnic Pune. Copyright © 2019 All
+                rights reserved.</div>
+        </footer>
+
+        <div id="totop">
+            <img src="pictures/arrow_right.png" onclick="window.scrollTo(0, 0);" />
         </div>
-    </div>
 
-    <footer>
-        <div id="Copyright">Developed by COMeIT Technical Team - Government Polytechnic Pune. Copyright © 2019 All
-            rights reserved.</div>
-    </footer>
-
-    <div id="totop">
-        <img src="pictures/arrow_right.png" onclick="window.scrollTo(0, 0);" />
     </div>
 
 </body>
