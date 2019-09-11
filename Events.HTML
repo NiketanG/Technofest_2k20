@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>COMeIT - Home</title>
+    <link rel="stylesheet" href="Styles.css">
+    <script src="jQuery.js"></script>
+    <script src="Script.js"></script>
+
+    <style>
+        ul {
+            color: white !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loader">
+        <div class="box">
+            <div class="b b1"></div>
+            <div class="b b2"></div>
+            <div class="b b3"></div>
+            <div class="b b4"></div>
+            <div class="ready">Getting Ready
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/191afe825b.js"></script>
+
+    <!--
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600&display=swap" rel="stylesheet">
+    -->
+
+    <div class="content">
+        <div class="navbar">
+            <ul class="menu" id="nav">
+                <li class="logo" onclick="window.location.href = 'home.HTML';">COMeIT</li>
+                <li class="item" onclick="window.location.href = 'Events.HTML';">Events</li>
+                <li class="item" onclick="window.location.href = 'main.HTML';">Register</li>
+                <li class="item" onclick="window.location.href = 'ContactUS.HTML';">Contact Us</li>
+                <li class="toggle" onclick="toggle()">
+                    <div><i class="fas fa-bars"></i></div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bgimg">
+            <img src="Pictures/anas-alshanti-feXpdV001o4-unsplash.jpg">
+            <h3>COMeIT Presents</h3>
+            <h1>Competitions</h1>
+            <p>A series of competitions to challenge your impactful creativity, innovation and skills</p>
+            <i class="fas fa-angle-down" onclick="document.getElementsByTagName('footer')[0].scrollIntoView();"></i>
+        </div>
+
+        <div class="gallery">
+            <div class="col" onclick="event_desc(1)">
+                <div class="img">
+                    <img src="Pictures/safar-safarov-LKsHwgzyk7c-unsplash.jpg" alt="">
+                    <div class="text-block">
+                        <p>Clash of Code</p>
+                    </div>
+                </div>
+                <div class="active_event" id="event_1"></i></div>
+            </div>
+
+            <div class="col" onclick="event_desc(2)">
+                <div class="img">
+                    <img src="Pictures/safar-safarov-LKsHwgzyk7c-unsplash.jpg" alt="">
+                    <div class="text-block">
+                        <p>Webber</p>
+                    </div>
+                </div>
+                <div class="active_event" id="event_2"></div>
+            </div>
+
+            <div class="col" onclick="event_desc(3)">
+                <div class="img">
+                    <img src="Pictures/safar-safarov-LKsHwgzyk7c-unsplash.jpg" alt="">
+                    <div class="text-block">
+                        <p>Hotkeys</p>
+                    </div>
+                </div>
+                <div class="active_event" id="event_3"></div>
+            </div>
+        </div>
+
+        <br><br><br>
+
+        <div class="event_desc">
+            <p class="event_desc_text">
+                <b>Clash of Code</b><br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem impedit, nihil sit repellendus aliquid
+                porro accusantium, vitae, nobis exercitationem perferendis temporibus recusandae minus sequi quis
+                debitis voluptate quam laudantium. Deserunt!<br>
+                <b>Participants</b> : 1 | 2 | 4<br>
+                <b>Entry Fee</b>: 200 <br>
+                <b>Prize</b>: 500<br>
+            </p>
+            <p class="event_desc_text">
+                <b>Webber</b><br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem impedit, nihil sit repellendus aliquid
+                porro accusantium, vitae, nobis exercitationem perferendis temporibus recusandae minus sequi quis
+                debitis voluptate quam laudantium. Deserunt!<br>
+                <b>Participants</b> : 1 | 2 | 4<br>
+                <b>Entry Fee</b>: 200 <br>
+                <b>Prize</b>: 500<br>
+            </p>
+            <p class="event_desc_text">
+                <b>Hotkeys</b><br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem impedit, nihil sit repellendus aliquid
+                porro accusantium, vitae, nobis exercitationem perferendis temporibus recusandae minus sequi quis
+                debitis voluptate quam laudantium. Deserunt!<br>
+                <b>Participants</b> : 1 | 2 | 4<br>
+                <b>Entry Fee</b>: 200 <br>
+                <b>Prize</b>: 500<br>
+            </p>
+            <p class="event_desc_text">
+                <b>Flash</b><br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem impedit, nihil sit repellendus aliquid
+                porro accusantium, vitae, nobis exercitationem perferendis temporibus recusandae minus sequi quis
+                debitis voluptate quam laudantium. Deserunt!<br>
+                <b>Participants</b> : 1 | 2 | 4<br>
+                <b>Entry Fee</b>: 200 <br>
+                <b>Prize</b>: 500<br>
+            </p>
+            <p class="event_desc_text">
+                <b>Capture</b><br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem impedit, nihil sit repellendus aliquid
+                porro accusantium, vitae, nobis exercitationem perferendis temporibus recusandae minus sequi quis
+                debitis voluptate quam laudantium. Deserunt!<br>
+                <b>Participants</b> : 1 | 2 | 4<br>
+                <b>Entry Fee</b>: 200 <br>
+                <b>Prize</b>: 500<br>
+            </p>
+            <p class="event_desc_text">
+                <b>Project Presentation</b><br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem impedit, nihil sit repellendus aliquid
+                porro accusantium, vitae, nobis exercitationem perferendis temporibus recusandae minus sequi quis
+                debitis voluptate quam laudantium. Deserunt!<br>
+                <b>Participants</b> : 1 | 2 | 4<br>
+                <b>Entry Fee</b>: 200 <br>
+                <b>Prize</b>: 500<br>
+            </p>
+        </div>
+
+        <div class="gallery">
+            <div class="col" onclick="event_desc(4)">
+                <div class="active_event" id="event_4"></div>
+                <div class="img">
+                    <img src="Pictures/safar-safarov-LKsHwgzyk7c-unsplash.jpg" alt="">
+                    <div class="text-block">
+                        <p>Flash</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col" onclick="event_desc(5)">
+                <div class="active_event" id="event_5"></div>
+                <div class="img">
+                    <img src="Pictures/safar-safarov-LKsHwgzyk7c-unsplash.jpg" alt="">
+                    <div class="text-block">
+                        <p>Capture</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col" onclick="event_desc(6)">
+                <div class="active_event" id="event_6"></div>
+                <div class="img">
+                    <img src="Pictures/safar-safarov-LKsHwgzyk7c-unsplash.jpg" alt="">
+                    <div class="text-block">
+                        <p>Project Present-ation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="totop">
+            <img src="pictures/arrow_right.png" onclick="window.scrollTo(0, 0);" />
+        </div>
+
+        <footer>
+            <div id="Copyright">Developed by COMeIT Technical Team - Government Polytechnic Pune. Copyright © 2019 All
+                rights reserved.
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

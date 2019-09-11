@@ -1,3 +1,9 @@
+/*Designed By Niketan Gulekar for COMeIT
+Copyright 2019. All Rights Reserved
+Github Profile : https://github.com/NiketanG/
+Github Repo : https://github.com/NiketanG/COMEIT_RegistrationApp
+*/
+
 @font-face {
     font-family: 'Preload_Montserrat';
     src: url('fonts/Montserrat-Regular.ttf');
@@ -15,6 +21,11 @@ html {
 
 body {
     font-family: 'Montserrat', sans-serif;
+}
+
+footer a {
+    text-decoration: none;
+    color: rgb(200, 200, 200);
 }
 
 /*Pre-loader*/
@@ -181,6 +192,7 @@ ul:hover {
     color: black;
 }
 
+
 .item.active {
     display: block;
 }
@@ -253,12 +265,13 @@ ul:hover {
 /*NavBar Styling End*/
 
 /*Social Links*/
-div.connect{
+div.connect {
     position: relative;
     display: inline-block;
     width: 100%;
     top: 125px;
 }
+
 .center {
     font-size: 15px;
     text-align: center;
@@ -685,12 +698,12 @@ div.faq {
         margin-left: 25px;
         width: calc(100% - 50px);
     }
-    
+
     .map {
         width: 100%;
         height: 150px;
     }
-    
+
     div.faq {
         margin-left: 25px;
         width: calc(100% - 50px);
@@ -702,12 +715,12 @@ div.faq {
         margin-left: 100px;
         width: calc(100% - 200px);
     }
-    
+
     .map {
         width: 75%;
         height: 200px;
     }
-    
+
     div.faq {
         margin-left: 100px;
         width: calc(100% - 200px);
@@ -721,12 +734,12 @@ div.faq {
         width: calc(40% - 100px);
         float: left;
     }
-    
+
     .map {
         width: 100%;
         height: 250px;
     }
-    
+
     div.faq {
         top: 150px;
         float: right;
@@ -735,7 +748,7 @@ div.faq {
         margin-bottom: 0px;
     }
 
-    div.connect{
+    div.connect {
         top: 250px;
         margin-bottom: 50px;
     }
@@ -743,8 +756,258 @@ div.faq {
 
 
 @media all and (min-width: 1200px) {
-    div.connect{
+    div.connect {
         top: 250px;
         margin-bottom: 100px;
     }
+}
+
+
+/*Styling for the Home Page*/
+
+/*Statistics Section*/
+div.stats {
+    top: 150px;
+    position: relative;
+    width: 50%;
+    margin-left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.stats div {
+    float: left;
+    width: 33.33%;
+    text-align: center;
+}
+
+div.stats h2 {
+    text-align: center;
+    font-weight: 100;
+    margin-bottom: 50px;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+}
+
+
+
+.stats div:not(:last-child) {
+    border-right: #999 solid 1px;
+}
+
+.stats div img {
+    width: 64px;
+}
+
+.stats div h3 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.stats div h3::after {
+    content: '\002B';
+    color: #777;
+}
+
+.stats div p {
+    font-weight: 100;
+    color: grey;
+    text-transform: uppercase;
+}
+
+div.parallax {
+    /* Set a specific height */
+    height: 384px;
+    width: 100%;
+    top: 150px;
+    margin-bottom: 50px;
+    max-width: 100%;
+    position: relative;
+}
+
+div.parallax .parallax_img {
+    /* Set a specific height */
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    background-image: url("Pictures/matt-ragland-02z1I7gv4ao-unsplash.jpg");
+    filter: brightness(50%);
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div.parallax_text {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    width: 30%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+div.parallax_text h2 {
+    padding-bottom: 25px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width: 900px) {
+    div.parallax .parallax_img {
+        background-attachment: scroll;
+    }
+}
+
+/*Events Page Styling*/
+div.bgimg {
+    width: 100%;
+    max-width: 100vw;
+    margin-top: -75px;
+    position: relative;
+    height: calc(100vh + 50px);
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+div.bgimg img {
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    left: -10px;
+    position: relative;
+    filter: blur(7px);
+}
+
+div.bgimg h3 {
+    position: absolute;
+    top: calc(50% - 50px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 100;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+div.bgimg h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+}
+
+div.bgimg p {
+    margin-top: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 100;
+    font-size: 17px;
+    width: 35%;
+    color: rgba(255, 255, 255, 0.7);
+
+}
+
+div.bgimg i {
+    bottom: 25px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    font-size: 50px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    50% {
+        bottom: 50px;
+    }
+}
+
+div.gallery {
+    top: 100px;
+    position: relative;
+    display: flex;
+    width: 60%;
+    margin-left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+div.gallery div.col {
+    margin: 0px 15px;
+    width: calc(33.33%);
+    height: 250px;
+    position: relative;
+}
+
+div.col div.img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+div.col img {
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    margin-top: -10px;
+    margin-left: -10px;
+    filter: blur(5px);
+    transition: 0.3s ease-in-out;
+}
+
+div.col img:hover {
+    filter: blur(0px);
+}
+
+div.col div.text-block {
+    position: absolute;
+    max-width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 10px;
+    word-wrap: break-word;
+}
+
+div.event_desc {
+    background-color: rgba(0, 0, 0, 0.1);
+    width: calc(60% - 30px);
+    padding: 25px;
+    position: relative;
+    top: 80px;
+    margin-left: 50%;
+    margin-bottom: 10px;
+    transform: translate(-50%, 0%);
+    display: none;
+    transition: 0.2s ease-in-out;
+}
+
+div.event_desc p {
+    display: none;
+    color: rgba(0, 0, 0, 0.7);
+    line-height: 25px;
+}
+
+div.event_desc p b {
+    margin: 5px 0px;
+    font-weight: 100;
+    color: rgba(0, 0, 0, 1);
+}
+
+.active_event {
+    width: 100%;
+    background-color: #37474F;
+    height: 2px;
+    margin: 10px 0px;
+    display: none;
 }

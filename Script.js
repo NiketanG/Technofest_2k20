@@ -1,11 +1,10 @@
 window.onload = function load() {
-    hidePreloader();
     NavBarPos();
     //Preloader
     function hidePreloader() {
         $('.loader').fadeOut(500);
     }
-    
+
     setTimeout(() => {
         hidePreloader();
     }, 1000);
@@ -16,7 +15,6 @@ function loadform() {
     setgrp();
     event_check();
 }
-
 
 function selectlist() {
     var x, i, j, selElmnt, a, b, c;
@@ -113,24 +111,24 @@ function NavBarPos() {
         document.getElementsByClassName("logo")[0].style.lineHeight = "40px";
         document.getElementsByClassName("logo")[0].style.fontSize = "20px";
         document.getElementById("totop").style.display = "block";
-            $("ul").css("background-color", "black");
-            $("ul").css("color", "white");
+        $("ul").css("background-color", "black");
+        $("ul").css("color", "white");
     } else {
         document.getElementById("nav").classList.remove("sticky");
         document.getElementsByClassName("logo")[0].style.lineHeight = "80px";
         document.getElementsByClassName("logo")[0].style.fontSize = "25px";
         document.getElementById("totop").style.display = "none";
-        
+
         if (($(".item").hasClass("active"))) {
             document.getElementsByClassName("navbar")[0].style.paddingBottom = "145px";
             $("ul").css("background-color", "black");
             $("ul").css("color", "white");
         } else {
             document.getElementsByClassName("navbar")[0].style.paddingBottom = "25px";
-            $("ul").css("background-color", "white");
+            $("ul").css("background-color", "transparent");
             $("ul").css("color", "black");
         }
-        
+
     }
 }
 
@@ -140,7 +138,7 @@ function toggle() {
         $(".item").removeClass("active");
         $(".menu").find("div").html("<i class='fas fa-bars'></i>");
         if (Math.max(document.body.scrollTop, window.pageYOffset) <= 60) {
-            $("ul").css("background-color", "white");
+            $("ul").css("background-color", "transparent");
             $("ul").css("color", "black");
             document.getElementsByClassName("navbar")[0].style.paddingBottom = "25px";
         }
@@ -283,5 +281,25 @@ function validate() {
         alert("Registration Successful ! :)")
     } else {
         alert("Please check all fields.")
+    }
+}
+
+function scrolltoelement(element) {
+    var element = document.getElementById("element");
+    element.scrollIntoView();
+}
+
+function event_desc(event_id) {
+    if ($(".event_desc_text:nth-child(" + event_id + ")").is(':hidden')) {
+        $(".event_desc").fadeIn("slow");
+        $(".event_desc_text").hide();
+        $(".event_desc_text:nth-child(" + event_id + ")").show("500");
+        $(".active_event").hide();
+        $("#event_" + event_id).fadeIn("500");
+
+    } else {
+        $(".event_desc_text:nth-child(" + event_id + ")").hide("fast");
+        $(".event_desc").hide();
+        $(".active_event").hide();
     }
 }

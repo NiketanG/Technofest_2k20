@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Designed By Niketan Gulekar for COMeIT
+        Copyright 2019. All Rights Reserved
+        Github Profile : https://github.com/NiketanG/
+        Github Repo : https://github.com/NiketanG/COMEIT_RegistrationApp
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>COMeIT - Home</title>
+    <link rel="stylesheet" href="Styles.css">
+    <script src="jQuery.js"></script>
+    <script src="Script.js"></script>
+
+    <style>
+        div.container_box {
+            position: relative;
+            top: 180px;
+            width: 50%;
+            margin-left: 50%;
+            transform: translate(-50%, 0%);
+        }
+
+        div.container_box div.container-item {
+            margin: 10px;
+            float: left;
+            width: calc(50% - 20px);
+            height: 125px;
+            background-color: #282828;
+            color: white;
+        }
+
+        div.container_box div.container-item:first-child,
+        div.container_box div.container-item:last-child {
+            background-color: #414141;
+        }
+
+        div.container_box div.container-item img {
+            width: 20%;
+            float: left;
+            margin-left: 12.5%;
+            margin-top: 80px;
+            transform: translateY(-75%);
+        }
+
+        div.container_box div.container-item div.text-block {
+            width: 50%;
+            margin-left: 50%;
+            margin-top: 75px;
+            height: auto;
+            transform: translateY(-80%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loader">
+        <div class="box">
+            <div class="b b1"></div>
+            <div class="b b2"></div>
+            <div class="b b3"></div>
+            <div class="b b4"></div>
+            <div class="ready">Getting Ready
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/191afe825b.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600&display=swap" rel="stylesheet">
+
+    <div class="content">
+        <div class="navbar">
+            <ul class="menu" id="nav">
+                <li class="logo" onclick="window.location.href = 'home.HTML';">COMeIT</li>
+                <li class="item" onclick="window.location.href = 'Events.HTML';">Events</li>
+                <li class="item" onclick="window.location.href = 'main.HTML';">Register</li>
+                <li class="item" onclick="window.location.href = 'ContactUS.HTML';">Contact Us</li>
+                <li class="toggle" onclick="toggle()">
+                    <div><i class="fas fa-bars"></i></div>
+                </li>
+            </ul>
+        </div>
+
+        <!--
+            <div>Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>
+        -->
+
+        <!--
+            Icons are made by Eucalyp (https://www.flaticon.com/authors/eucalyp) from Flaticon.com
+        -->
+
+        <div class="parallax">
+            <div class="parallax_img"></div>
+            <div class="parallax_text">
+                <h2>Heading</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum nostrum consectetur eos? Veniam
+                    repellat quis, eveniet distinctio maxime modi aspernatur velit ratione labore deleniti et, possimus
+                    porro sint, libero culpa!</p>
+            </div>
+        </div>
+
+        <div class="stats">
+            <h2>Statistics</h2>
+            <div class="competitions">
+                <img src="Pictures/trophy (1).png" alt="Competitions">
+                <h3>8 </h3>
+                <p>Competitions</p>
+            </div>
+            <div class="prices">
+                <img src="Pictures/money.png" alt="Competitions">
+                <h3>₹10000 </h3>
+                <p>Price Money</p>
+            </div>
+            <div class="participants">
+                <img src="Pictures/participant.png" alt="Competitions">
+                <h3>5000 </h3>
+                <p>Participants</p>
+            </div>
+        </div>
+
+
+        <div class="container_box">
+            <div class="container-item">
+                <img src="Pictures/money.png">
+                <div class="text-block">
+                    <h3>Creativity</h3>
+                    <p>Creativity Text</p>
+                </div>
+            </div>
+
+            <div class="container-item">
+                <img src="Pictures/money.png">
+                <div class="text-block">
+                    <h3>Creativity</h3>
+                    <p>Creativity Text</p>
+                </div>
+            </div>
+
+            <div class="container-item">
+                <img src="Pictures/money.png">
+                <div class="text-block">
+                    <h3>Creativity</h3>
+                    <p>Creativity Text</p>
+                </div>
+            </div>
+
+            <div class="container-item">
+                <img src="Pictures/money.png">
+                <div class="text-block">
+                    <h3>Creativity</h3>
+                    <p>Creativity Text</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="totop">
+            <img src="pictures/arrow_right.png" onclick="window.scrollTo(0, 0);" />
+        </div>
+
+        <footer>
+            <div id="Copyright">Developed by COMeIT Technical Team - Government Polytechnic Pune. Copyright © 2019 All
+                rights reserved.
+                <br>Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a
+                    href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+
+            </div>
+
+        </footer>
+
+    </div>
+</body>
+
+</html>
