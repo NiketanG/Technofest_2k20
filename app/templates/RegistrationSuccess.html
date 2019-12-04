@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script>
+$(document).ready(function () {
+        set_event();
+        set_fields()
+    });
+
+function set_event(){
+    var list = {{ evlist|tojson }};
+    var event_id = {{ registration['event_id'] }} - 1;
+    event_selected = list[event_id][1];
+    $("#event_name").html(event_selected);
+}
+
+function set_fields(){
+    grpname = $("#grpname").html();
+    if (grpname == '') {
+        $(".grpname").hide();
+    }
+}
+
+</script>
+<style>
+    h2.heading {
+        text-indent: 25px;
+        letter-spacing: 25px;
+        font-weight: 400;
+        margin-bottom: -70px;
+        text-align: center;
+        margin-top: 125px;
+    }
+
+    p.sub.heading {
+        text-indent: 25px;
+        font-weight: 400;
+        margin: 10px 100px 0px 100px;
+        text-align: center;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    table {
+        width: 30%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+
+    th,
+    td {
+        padding: 10px 20px;
+        text-align: left;
+    }
+</style>
+
+{% endblock%}
+{% block content %}
+
+<h2 class="heading">REGISTRATION SUCCESSFUL </h2>
+<p class="sub heading" style="margin-top:90px;">ORDER ID : {{ paytmParams['ORDER_ID'] }}</p>
+
+<p class="sub heading">AMOUNT :  INR {{ paytmParams['TXN_AMOUNT'] }} </p>
+
+<h2 class="heading" style="margin-top: 50px;">REGISTRATION DETAILS</h2>
+<table style="margin-top: 125px">
+    <tr>
+        <th> NAME : </th>
+        <td>{{ registration["name"] }}</td>
+    </tr>
+    <tr>
+        <th> EMAIL : </th>
+        <td>{{ registration["email"] }}</td>
+    </tr>
+    <tr>
+        <th> PHONE NO : </th>
+        <td>{{ registration["phno"] }}</td>
+    </tr>
+    <tr>
+        <th> USER ID : </th>
+        <td>{{ registration["cust_id"] }}</td>
+    </tr>
+
+    <tr>
+        <th> TICKET ID : </th>
+        <td>{{ registration["order_id"] }}</td>
+    </tr>
+
+    <tr>
+        <th> Institute Name : </th>
+        <td>{{ registration["clgname"] }}</td>
+    </tr>
+
+    <tr>
+        <th> EVENT ID : </th>
+        <td>{{ registration["event_id"] }}</td>
+    </tr>
+
+    <tr>
+        <th> EVENT NAME : </th>
+        <td id="event_name"></td>
+    </tr>
+
+    <tr>
+        <th> TEAM MEMBERS : </th>
+        <td>{{ registration["team"] }}</td>
+    </tr>
+
+    <tr class="grpname">
+        <th> GROUPNAME : </th>
+        <td id="grpname">{{ registration["grpname"] }}</td>
+    </tr>
+
+    <tr class="user">
+        <th> REGISTRATION USER : </th>
+        <td id="user">{{ registration["user"] }}</td>
+    </tr>
+</table>
+
+{% endblock%}

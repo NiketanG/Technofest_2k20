@@ -1,0 +1,21 @@
+<html>
+
+<head>
+    <title>Merchant Checkout Page</title>
+</head>
+
+<body>
+        <h1 style="text-align: center;">Please do not refresh this page...</h1>
+        <h2 style="text-align: center;">Redirecting you to Secure PayTM payment Gateway...</h2>
+    <form method="post" action={{ url }} name="paytm_form">
+        {% for name, value in paytmParams.items() %}
+            <input type="hidden" name={{ name }} value={{ value }}>
+        {% endfor %}
+        <input type="hidden" name="CHECKSUMHASH" value={{ checksum }}>
+    </form>
+    <script type="text/javascript">
+        document.paytm_form.submit();
+    </script>
+</body>
+
+</html>

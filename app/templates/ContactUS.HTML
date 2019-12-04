@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<style>
+    div.emailsupport {
+        margin-left: 25px;
+        width: calc(100% - 50px);
+        top: 125px;
+        position: relative;
+        font-size: 14px;
+    }
+
+    .map {
+        width: 100%;
+        border: solid 1px black;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    div.faq {
+        margin: 175px 0px 0px 5%;
+        position: relative;
+        width: 90%;
+    }
+
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+
+    .active_ac,
+    .accordion:active {
+        background-color: #ccc;
+    }
+
+    .accordion:after {
+        content: '\002B';
+        color: #777;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
+
+    .active_ac:after {
+        content: "\2212";
+    }
+
+    .panel {
+        padding: 0 18px;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="emailsupport">
+    <h3 class="custcare">Get in touch</h3><br>
+    <h3 class="emailsupport">Email</h3>
+    <p class="emailsupport">info@comeitgpp<br></p>
+    <br>
+    <h3 class="emailsupport">Phone No : </h3>
+    <p class="emailsupport">91-020-25559200<br>020-25559219<br></p>
+    <br>
+    <h3 class="emailsupport">Address</h3>
+    <p class="emailsupport">Ganeshkhind, University Road,<br>Shivajinagar,Pune-411016, Maharashtra, India.<br>
+    </p>
+    <br><br>
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.780518113032!2d73.82976451485753!3d18.538817887398377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf7ac9514abb%3A0x11d0cebbb7eb6392!2sGovernment%20Polytechnic!5e0!3m2!1sen!2sin!4v1566679020564!5m2!1sen!2sin"
+        class="map" allowfullscreen=""></iframe>
+</div>
+<div class="faq">
+    <h3 class="faq">Frequently Asked Questions</h3>
+    <br>
+    <button class="accordion">Section 1</button>
+    <div class="panel">
+        <p>Answer 1 </p>
+    </div>
+
+    <button class="accordion">Section 2</button>
+    <div class="panel">
+        <p>Answer 2 </p>
+    </div>
+
+    <button class="accordion">Section 3</button>
+    <div class="panel">
+        <p>Answer 3</p>
+    </div>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active_ac");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+    
+</div>
+<div class="connect">
+    <p class="center">Connect with us</p>
+    <div class="social">
+        <p class="social" onclick="location.href='https:\/\/www.instagram.com\/comeit2k19';">Instagram</p>
+        <p class="social">Facebook</p>
+        <p class="social">Twitter
+    </div>
+</div>
+{% endblock %}

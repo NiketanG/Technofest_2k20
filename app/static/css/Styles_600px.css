@@ -1,0 +1,184 @@
+@media screen and (min-width: 600px) and (max-width: 899px) {
+
+    /*NavBar*/
+    .item {
+        margin-left: 5% !important;
+        width: 85%;
+    }
+
+    .logo {
+        flex: 1;
+        margin-left: 5%;
+    }
+
+    .toggle {
+        margin-right: 10%;
+        order: 2;
+        flex: 1;
+        text-align: right;
+    }
+
+    /*footer*/
+    footer {
+        bottom: 0;
+        font-size: 14px;
+    }
+
+    footer div{
+        padding: 0px 20px;
+    }
+    div#totop{ 
+        visibility: visible;
+    }
+    /*Home Page Styling*/
+    div.bgimg h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    div.bgimg h1 {
+        font-size: 28px;
+    }
+
+    div.landing #coming_soon {
+        font-size: 26px !important;
+    }
+
+    div.landing div.countdown {
+        margin-top: 40px;
+    }
+
+    div.landing div.countdown div h2 {
+        font-size: 30px;
+    }
+
+    div.landing div.countdown div h4 {
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    div.stats {
+        width: 75%;
+        margin-left: 50%;
+        transform: translate(-50%, 0%);
+    }
+
+    .stats div img {
+        width: 64px;
+    }
+
+    .stats div h3 {
+        font-size: 16px;
+    }
+
+    .stats div p {
+        font-size: 16px;
+    }
+
+    /*Registration Form Page Styling*/
+
+    form#Register {
+        border-radius: 5px;
+        width: 80%;
+        padding: 50px;
+        margin-left: 50%;
+        transform: translate(-50%, 0%);
+    }
+
+    div.radio {
+        display: inline;
+    }
+
+    input.inputs:focus {
+        font-size: 17px;
+        height: 40px;
+        color: black;
+    }
+
+    input.inputs::placeholder {
+        color: grey;
+        font-size: 17px;
+    }
+
+    input[type=button] {
+        width: 200px;
+        height: 50px;
+    }
+
+    input.registerbtn:hover,
+    input.registerbtn:active {
+        background-color: transparent;
+        border-color: white;
+        border-width: 1.5px;
+        color: white;
+    }
+
+    input.inputs:hover,
+    input.inputs:active {
+        border-bottom: 1.5px solid #1565C0;
+    }
+
+    /*Contact US Page Styling*/
+    div.emailsupport {
+        margin-left: 100px;
+        width: calc(100% - 200px);
+    }
+
+    .map {
+        width: 75%;
+        height: 200px;
+    }
+
+    div.faq {
+        margin-left: 100px;
+        width: calc(100% - 200px);
+    }
+
+    /*About US Page Styling*/
+    .grid-container {
+        width: 80%;
+        grid-template-columns: 32.99% 32.99% 32.99%;
+
+    }
+
+    .item1 {
+        grid-column: 1 / span 3;
+        grid-row: 1;
+    }
+
+    .item5 {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    .item9 {
+        grid-column: 3;
+        grid-row: 4;
+    }
+
+    .item17 {
+        grid-column: 2;
+        grid-row: 7;
+    }
+
+    .item26 {
+        grid-column: 2;
+        grid-row: 9;
+    }
+
+    .item30 {
+        grid-column: 3;
+        grid-row: 11;
+    }
+
+    div.gallery {
+        width: 60%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+
+    div.event_desc {
+        width: calc(60%);
+        margin-left: calc(50% + 12.5px);
+    }
+}

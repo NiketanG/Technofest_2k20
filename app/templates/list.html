@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+   <body>
+      <p>{{ msg }}</p>
+      <table border = 1>
+         <thead>
+            <td>Registration ID</td>
+            <td>Name</td>
+            <td>Phone No</td>
+            <td>Email Address</td>
+            <td>College Name</td>
+            <td>Event Name</td>
+            <td>Team</td>
+            <td>Group name</td>
+            <td>User</td>
+            <td>Date Registered</td>
+            <td>Order_ID</td>
+            <td>cust_id</td>
+            <td>Paid</td>
+            <td>Amount</td>
+         </thead>
+         
+         {% for row in rows %}
+            <tr>
+               <td>{{row["reg_id"]}}</td>
+               <td>{{row["name"]}}</td>
+               <td>{{row["phno"]}}</td>
+               <td> {{ row["email"]}}</td>
+               <td>{{row["clgname"]}}</td>
+               <td>{{row["event_id"]}}</td>
+               <td> {{ row["team"]}}</td>
+               <td> {{ row["grpname"]}}</td>
+               <td> {{ row["user"]}}</td>
+               <td> {{ row["date_registered"]}}</td>
+               <td> {{ row["order_id"]}}</td>
+               <td> {{ row["cust_id"]}}</td>
+               <td> {{ row["paid"]}}</td>
+               <td> {{ row["amt"]}}</td>
+            </tr>
+         {% endfor %}
+      </table>
+      
+      <a href = "/">Go back to home page</a>
+   </body>
+</html>

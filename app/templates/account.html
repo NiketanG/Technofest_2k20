@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<style>
+    h2.heading {
+        text-indent: 25px;
+        letter-spacing: 25px;
+        font-weight: 400;
+        margin-bottom: -70px;
+        text-align: center;
+        margin-top: 125px;
+    }
+
+    p.sub.heading {
+        text-indent: 25px;
+        font-weight: 400;
+        margin: 90px 100px 0px 100px;
+        text-align: center;
+    }
+
+    form {
+        background-color: #282828;
+        width: 100%;
+        color: white;
+        padding: 40px 25px;
+        position: relative;
+        top: 100px;
+        /*box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px;*/
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        transition: 0.3s ease-in-out;
+    }
+
+    .validation {
+        margin-top: 5px;
+        font-size: 13px;
+        width: calc(100% - 15px);
+        display: inline-block;
+        color: rgba(244, 67, 54, 0.9);
+    }
+
+    input.inputs {
+        margin: 15px 0px;
+    }
+
+    input.inputs {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    input.inputs:focus {
+        font-size: 16px;
+        height: 40px;
+        color: black;
+    }
+
+    input.inputs:invalid {
+        color: rgba(244, 67, 54, 0.8);
+    }
+
+    input.inputs::placeholder {
+        color: grey;
+        font-size: 16px;
+    }
+
+    input[type=submit],
+    input[type=button] {
+        background-color: black;
+        width: 125px;
+        height: 50px;
+        color: white;
+        transition: 0.2s ease-in-out;
+        line-height: 50px;
+        border-width: 0px;
+        font-size: 16px;
+        margin: 20px 0px 0px 50%;
+        transform: translate(-50%, 0%);
+        border-radius: 25px;
+        cursor: pointer;
+    }
+
+    input.inputs {
+        width: calc(100% - 15px);
+        padding: 0 0 0 10px;
+        height: 35px;
+        background-color: transparent;
+        border: none;
+        font-size: 15px;
+        border-bottom: 1.5px solid rgba(200, 200, 200, 0.7);
+        transition: 0.4s linear border-bottom, 0.2s linear;
+    }
+
+    input.inputs:focus {
+        border-width: 1.5px;
+        background-color: #F7F7F7;
+        outline: none;
+        border-radius: 4px;
+        border-bottom: 2px solid #1565C0;
+    }
+</style>
+{% endblock %}
+{% block content %}
+
+<h2 class="heading">ACCOUNT</h2>
+{% if current_user.is_authenticated %}
+<p class="sub heading ">Logged in as {{ current_user.username }}</p>
+{% else %}
+<p class="sub heading "> Not logged in</p>
+{% endif %}
+<input type="button" onclick="window.location.href = '/logout';" value="LOGOUT" class="registerbtn" id="registerbtn" style="margin-top: 25px;">
+
+<input type="button" onclick="window.location.href = '/list';" value="View Registrations" class="registerbtn" id="registerbtn" style="margin-top: 25px;">
+
+
+
+<form method="POST" action="{{ url_for('user.account') }}" id="Register" name="Register" style="margin-top: -60px;">
+    
+    {{ form.csrf_token }}
+ 
+    <p class="reg_header">
+        {{ form.name.label }}
+    </p>
+    {% if form.name.errors %}
+    <p class="validation">
+        {% for error in form.name.errors %}
+        {{ error }}
+        {% endfor %}
+        {% endif %}
+    </p>
+    {{ form.name }}
+
+    <p class="reg_header">
+        {{ form.username.label }}
+    </p>
+    {% if form.username.errors %}
+    <p class="validation">
+        {% for error in form.username.errors %}
+        {{ error }}
+        {% endfor %}
+        {% endif %}
+    </p>
+    {{ form.username }}
+
+    <p class="reg_header">
+            {{ form.email.label }}
+        </p>
+        {% if form.email.errors %}
+        <p class="validation">
+            {% for error in form.email.errors %}
+            {{ error }}
+            {% endfor %}
+            {% endif %}
+        </p>
+        {{ form.email }}
+
+    <p class="reg_header">
+        {{ form.old_password.label }}
+    </p>
+    {% if form.old_password.errors %}
+    <p class="validation">
+        {% for error in form.old_password.errors %}
+        {{ error }}
+        {% endfor %}
+        {% endif %}
+    </p>
+    {{ form.old_password }}
+
+    <p class="reg_header">
+        {{ form.new_password.label }}
+    </p>
+    {% if form.new_password.errors %}
+    <p class="validation">
+        {% for error in form.new_password.errors %}
+        {{ error }}
+        {% endfor %}
+        {% endif %}
+    </p>
+    {{ form.new_password }}
+
+    {{ form.submit }}
+
+</form>
+
+{% endblock %}

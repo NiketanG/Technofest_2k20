@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script>
+    function event_desc(event_id) {
+        if ($(".event_desc_text:nth-child(" + event_id + ")").is(':hidden')) {
+            $(".event_desc").fadeIn("slow");
+            $(".event_desc_text").hide();
+            $(".event_desc_text:nth-child(" + event_id + ")").slideDown("500");
+
+            $('html, body').animate({
+                scrollTop: ($('.event_desc').offset().top) - 100
+            }, 10);
+            $(".active_event").hide();
+            $("#event_" + event_id).fadeIn("500");
+        } else {
+            $(".active_event").slideUp();
+            $(".event_desc").slideUp();
+            $(".event_desc_text:nth-child(" + event_id + ")").hide("300");
+        }
+    }
+</script>
+<style>
+    ul {
+        color: white !important;
+    }
+
+    .toggle {
+        filter: invert(0) !important;
+    }
+
+    div.gallery {
+        top: 100px;
+        position: relative;
+        width: 90%;
+        display: block;
+    }
+
+    div.gallery div.col {
+        margin: 0px 15px;
+        height: 250px;
+        position: relative;
+        width: 100%;
+    }
+
+    div.col div.img {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    div.col img {
+        width: calc(100% + 20px);
+        height: calc(100% + 20px);
+        margin: -10px 0px 0px -10px;
+        filter: blur(5px);
+        transition: 0.3s ease-in-out;
+        object-fit: cover;
+    }
+
+    div.col img:active {
+        filter: blur(0px);
+        cursor: pointer;
+    }
+
+    div.col div.text-block {
+        position: absolute;
+        max-width: 80%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 25px;
+        font-weight: 300;
+        letter-spacing: 10px;
+        word-wrap: break-word;
+    }
+
+    div.event_desc {
+        background-color: rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        position: relative;
+        top: 80px;
+        margin: 0px 0px 10px 50%;
+        transform: translateX(-50%);
+        display: none;
+        transition: 0.2s ease-in-out;
+        width: 90%;
+        font-size: 15px;
+    }
+
+    div.event_desc p {
+        display: none;
+        color: rgba(0, 0, 0, 0.7);
+        line-height: 25px;
+    }
+
+    div.event_desc p b {
+        margin: 5px 0px;
+        font-weight: 100;
+        color: rgba(0, 0, 0, 1);
+    }
+
+    .active_event {
+        width: 100%;
+        background-color: #37474F;
+        height: 2px;
+        display: none;
+        margin: 15px 0px;
+    }
+</style>
+
+{% endblock %}
+{% block content %}
+
+<div class="bgimg">
+    <img alt="Background Image" src="{{ url_for('static', filename='img/christian-wiediger-WkfDrhxDMC8-unsplash.jpg') }}"
+        srcset="{{ url_for('static', filename='img/christian-wiediger-WkfDrhxDMC8-unsplash_min.jpg') }} 480w,{{ url_for('static', filename='img/christian-wiediger-WkfDrhxDMC8-unsplash_med.jpg') }} 960w,{{ url_for('static', filename='img/christian-wiediger-WkfDrhxDMC8-unsplash.jpg') }} 1920w"
+        sizes="(max-width: 480px) 320px,(max-width: 960px) 480px, 1920px">
+    <div class="text">
+        <h3>COMeIT Presents</h3>
+        <h1>Competitions</h1>
+        <p>A series of competitions to challenge your impactful creativity, innovation and skills</p>
+    </div>
+    <img alt="Scroll Down Arrow" class="arrow"
+        src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0yOTMuNzUxLDQ1NS44NjhjLTIwLjE4MSwyMC4xNzktNTMuMTY1LDE5LjkxMy03My42NzMtMC41OTVsMCwwYy0yMC41MDgtMjAuNTA4LTIwLjc3My01My40OTMtMC41OTQtNzMuNjcyICBsMTg5Ljk5OS0xOTBjMjAuMTc4LTIwLjE3OCw1My4xNjQtMTkuOTEzLDczLjY3MiwwLjU5NWwwLDBjMjAuNTA4LDIwLjUwOSwyMC43NzIsNTMuNDkyLDAuNTk1LDczLjY3MUwyOTMuNzUxLDQ1NS44Njh6Ii8+DQo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjIwLjI0OSw0NTUuODY4YzIwLjE4LDIwLjE3OSw1My4xNjQsMTkuOTEzLDczLjY3Mi0wLjU5NWwwLDBjMjAuNTA5LTIwLjUwOCwyMC43NzQtNTMuNDkzLDAuNTk2LTczLjY3MiAgbC0xOTAtMTkwYy0yMC4xNzgtMjAuMTc4LTUzLjE2NC0xOS45MTMtNzMuNjcxLDAuNTk1bDAsMGMtMjAuNTA4LDIwLjUwOS0yMC43NzIsNTMuNDkyLTAuNTk1LDczLjY3MUwyMjAuMjQ5LDQ1NS44Njh6Ii8+DQo8L3N2Zz4="
+        onclick="document.getElementsByClassName('gallery')[0].scrollIntoView();" />
+</div>
+<div class="gallery">
+    <div class="col" onclick="event_desc(1)">
+        <div class="img">
+            <img alt="Clash of Code Image" src="{{ url_for('static', filename='img/safar-safarov-LKsHwgzyk7c-unsplash.jpg') }}"
+                srcset="{{ url_for('static', filename='img/safar-safarov-LKsHwgzyk7c-unsplash_min.jpg') }} 480w,{{ url_for('static', filename='img/safar-safarov-LKsHwgzyk7c-unsplash_med.jpg') }} 960w, {{ url_for('static', filename='img/safar-safarov-LKsHwgzyk7c-unsplash.jpg') }} 1920w"
+                sizes="(max-width: 480px) 320px,(max-width: 960px) 480px, 1920px">
+            <div class="text-block">
+                <p>CLASH OF CODE</p>
+            </div>
+        </div>
+        <div class="active_event" id="event_1"></div>
+    </div>
+    <div class="col" onclick="event_desc(2)">
+        <div class="img">
+            <img alt="Webber Image" src="{{ url_for('static', filename='img/chris-ried-ieic5Tq8YMk-unsplash.jpg') }}"
+                srcset="{{ url_for('static', filename='img/chris-ried-ieic5Tq8YMk-unsplash_min.jpg') }} 480w,{{ url_for('static', filename='img/chris-ried-ieic5Tq8YMk-unsplash_med.jpg') }} 960w, {{ url_for('static', filename='img/chris-ried-ieic5Tq8YMk-unsplash.jpg') }} 1920w"
+                sizes="(max-width: 480px) 320px,(max-width: 960px) 480px, 1920px">
+            <div class="text-block">
+                <p>WEBBER</p>
+            </div>
+        </div>
+        <div class="active_event" id="event_2"></div>
+    </div>
+
+    <div class="col" onclick="event_desc(3)">
+        <div class="img">
+            <img alt="Hotkeys image" src="{{ url_for('static', filename='img/anas-alshanti-feXpdV001o4-unsplash.jpg') }}"
+                srcset="{{ url_for('static', filename='img/anas-alshanti-feXpdV001o4-unsplash_min.jpg') }} 480w,{{ url_for('static', filename='img/anas-alshanti-feXpdV001o4-unsplash_med.jpg') }} 960w, {{ url_for('static', filename='img/anas-alshanti-feXpdV001o4-unsplash.jpg') }} 1920w"
+                sizes="(max-width: 480px) 320px,(max-width: 960px) 480px, 1920px">
+            <div class="text-block">
+                <p>HOTKEYS</p>
+            </div>
+        </div>
+        <div class="active_event" id="event_3"></div>
+    </div>
+</div>
+<br><br><br>
+<div class="event_desc">
+    <p class="event_desc_text">
+        <b>Clash of Code</b><br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem impedit, nihil sit repellendus aliquid
+        porro accusantium, vitae, nobis exercitationem perferendis temporibus recusandae minus sequi quis
+        debitis voluptate quam laudantium. Deserunt!<br>
+        <b>Participants</b> : 1 | 2 | 4<br>
+        <b>Entry Fee</b>: 200 <br>
+        <b>Prize</b>: 500<br>
+    </p>
+    <p class="event_desc_text">
+        <b>Webber</b><br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem impedit, nihil sit repellendus aliquid
+        porro accusantium, vitae, nobis exercitationem perferendis temporibus recusandae minus sequi quis
+        debitis voluptate quam laudantium. Deserunt!<br>
+        <b>Participants</b> : 1 | 2 | 4<br>
+        <b>Entry Fee</b>: 200 <br>
+        <b>Prize</b>: 500<br>
+    </p>
+    <p class="event_desc_text">
+        <b>Hotkeys</b><br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem impedit, nihil sit repellendus aliquid
+        porro accusantium, vitae, nobis exercitationem perferendis temporibus recusandae minus sequi quis
+        debitis voluptate quam laudantium. Deserunt!<br>
+        <b>Participants</b> : 1 | 2 | 4<br>
+        <b>Entry Fee</b>: 200 <br>
+        <b>Prize</b>: 500<br>
+    </p>
+    <p class="event_desc_text">
+        <b>Flash</b><br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem impedit, nihil sit repellendus aliquid
+        porro accusantium, vitae, nobis exercitationem perferendis temporibus recusandae minus sequi quis
+        debitis voluptate quam laudantium. Deserunt!<br>
+        <b>Participants</b> : 1 | 2 | 4<br>
+        <b>Entry Fee</b>: 200 <br>
+        <b>Prize</b>: 500<br>
+    </p>
+    <p class="event_desc_text">
+        <b>Capture</b><br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem impedit, nihil sit repellendus aliquid
+        porro accusantium, vitae, nobis exercitationem perferendis temporibus recusandae minus sequi quis
+        debitis voluptate quam laudantium. Deserunt!<br>
+        <b>Participants</b> : 1 | 2 | 4<br>
+        <b>Entry Fee</b>: 200 <br>
+        <b>Prize</b>: 500<br>
+    </p>
+    <p class="event_desc_text">
+        <b>Project Presentation</b><br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem impedit, nihil sit repellendus aliquid
+        porro accusantium, vitae, nobis exercitationem perferendis temporibus recusandae minus sequi quis
+        debitis voluptate quam laudantium. Deserunt!<br>
+        <b>Participants</b> : 1 | 2 | 4<br>
+        <b>Entry Fee</b>: 200 <br>
+        <b>Prize</b>: 500<br>
+    </p>
+</div>
+<div class="gallery">
+    <div class="col" onclick="event_desc(4)">
+        <div class="active_event" id="event_4"></div>
+        <div class="img">
+            <img alt="Flash Image" src="{{ url_for('static', filename='img/n-RFId0_7kep4-unsplash.jpg') }}"
+                srcset="{{ url_for('static', filename='img/n-RFId0_7kep4-unsplash_min.jpg') }} 480w,{{ url_for('static', filename='img/n-RFId0_7kep4-unsplash_med.jpg') }} 960w, {{ url_for('static', filename='img/n-RFId0_7kep4-unsplash.jpg') }} 1920w"
+                sizes="(max-width: 480px) 320px,(max-width: 960px) 480px, 1920px">
+            <div class="text-block">
+                <p>FLASH</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col" onclick="event_desc(5)">
+        <div class="active_event" id="event_5"></div>
+        <div class="img">
+            <img alt="Capture Image" src="{{ url_for('static', filename='img/william-bayreuther-hfk6xOjQlFk-unsplash.jpg') }}"
+                srcset="{{ url_for('static', filename='img/william-bayreuther-hfk6xOjQlFk-unsplash_min.jpg') }} 480w,{{ url_for('static', filename='img/william-bayreuther-hfk6xOjQlFk-unsplash_med.jpg') }} 960w, {{ url_for('static', filename='img/william-bayreuther-hfk6xOjQlFk-unsplash.jpg') }} 1920w"
+                sizes="(max-width: 480px) 320px,(max-width: 960px) 480px, 1920px">
+            <div class="text-block">
+                <p>CAPTURE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col" onclick="event_desc(6)">
+        <div class="active_event" id="event_6"></div>
+        <div class="img">
+            <img alt="Project Presentation Image" src="{{ url_for('static', filename='img/alex-litvin-MAYsdoYpGuk-unsplash.jpg') }}"
+                srcset="{{ url_for('static', filename='img/alex-litvin-MAYsdoYpGuk-unsplash_min.jpg') }} 480w,{{ url_for('static', filename='img/alex-litvin-MAYsdoYpGuk-unsplash_med.jpg') }} 960w, {{ url_for('static', filename='img/alex-litvin-MAYsdoYpGuk-unsplash.jpg') }} 1920w"
+                sizes="(max-width: 480px) 320px,(max-width: 960px) 480px, 1920px">
+            <div class="text-block">
+                <p>PROJECT PRESENT- ATION</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

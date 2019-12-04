@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<style>
+    form {
+        background-color: #282828;
+        width: 100%;
+        color: white;
+        padding: 40px 25px;
+        position: relative;
+        top: 100px;
+        /*box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px;*/
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        transition: 0.3s ease-in-out;
+    }
+
+    .validation {
+        margin-top: 5px;
+        font-size: 13px;
+        width: calc(100% - 15px);
+        display: inline-block;
+        color: rgba(244, 67, 54, 0.9);
+    }
+
+    input.inputs {
+        margin: 15px 0px;
+    }
+
+    input.inputs {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    input.inputs:focus {
+        font-size: 16px;
+        height: 40px;
+        color: black;
+    }
+
+    input.inputs:invalid {
+        color: rgba(244, 67, 54, 0.8);
+    }
+
+    input.inputs::placeholder {
+        color: grey;
+        font-size: 16px;
+    }
+
+    input[type=submit] {
+        background-color: black;
+        width: 125px;
+        height: 50px;
+        color: white;
+        transition: 0.2s ease-in-out;
+        line-height: 50px;
+        border-width: 0px;
+        font-size: 16px;
+        margin: 20px 0px 0px 50%;
+        transform: translate(-50%, 0%);
+        border-radius: 25px;
+        cursor: pointer;
+    }
+
+    input.inputs {
+        width: calc(100% - 15px);
+        padding: 0 0 0 10px;
+        height: 35px;
+        background-color: transparent;
+        border: none;
+        font-size: 15px;
+        border-bottom: 1.5px solid rgba(200, 200, 200, 0.7);
+        transition: 0.4s linear border-bottom, 0.2s linear;
+    }
+
+    input.inputs:focus {
+        border-width: 1.5px;
+        background-color: #F7F7F7;
+        outline: none;
+        border-radius: 4px;
+        border-bottom: 2px solid #1565C0;
+    }
+
+    h2.heading {
+        text-indent: 25px;
+        letter-spacing: 25px;
+        font-weight: 400;
+        margin-bottom: -70px;
+        text-align: center;
+        margin-top: 125px;
+    }
+
+    p.sub.heading {
+        text-indent: 25px;
+        font-weight: 400;
+        margin:90px 100px 0px 100px;
+        text-align: center;
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<h2 class="heading">LOGIN</h2>
+<p class="sub heading">Registrations will be done on behalf of the user signed in</p>
+<div class="formwrapper">
+    <form method="POST" action="{{ url_for('user.login') }}" id="Register" name="Register">
+
+        {{ form.csrf_token }}
+
+        <p class="reg_header">
+            {{ form.email.label }}
+        </p>
+        {% if form.email.errors %}
+        <p class="validation">
+            {% for error in form.email.errors %}
+            {{ error }}
+            {% endfor %}
+            {% endif %}
+        </p>
+        {{ form.email }}
+
+
+        <p class="reg_header">
+            {{ form.password.label }}
+        </p>
+        {% if form.password.errors %}
+        <p class="validation">
+            {% for error in form.password.errors %}
+            {{ error }}
+            {% endfor %}
+            {% endif %}
+        </p>
+        {{ form.password }}
+
+        {{ form.remember(class="form-check-input") }}
+        {{ form.remember.label(class="form-check-label") }}
+
+        {{ form.submit }}
+
+        <br><br><br>
+        Dont have an account? <a style="color: white;" href="{{ url_for('user.signup') }}">Sign up</a>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<style>
+    div.error {
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        padding: 25px 40px;
+    }
+
+    h4 {
+        padding-top: 20px;
+        font-weight: 500;
+    }
+
+    p {
+        margin: 15px 0px;
+        color: rgba(0, 0, 0, 0.7);
+    }
+
+    div.left {
+        width: 100%;
+    }
+
+    div.right {
+        display: none;
+    }
+
+    input[type=button] {
+        margin-top: 20px;
+        background-color: black;
+        font-weight: 600;
+        color: white;
+        border: none;
+        padding: 12px 32px;
+        transition: 0.2s linear;
+    }
+
+    @media(hover: hover) and (pointer: fine) {
+        input[type=button]:hover {
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+            transition: 0.2s linear;
+            cursor: pointer;
+        }
+    }
+
+    @media screen and (min-width: 600px) {
+        div.error {
+            width: 80%;
+            padding: 50px;
+            border: 1px solid rgb(207, 197, 197);
+        }
+
+        div.left {
+            width: 50%;
+        }
+
+        div.right {
+            position: absolute;
+            display: block;
+            top: 50%;
+            right: 50px;
+            text-align: right;
+            transform: translateY(-50%);
+            font-size: 35px;
+            letter-spacing: 20px;
+        }
+    }
+
+    @media screen and (min-width: 900px) {
+        div.error {
+            width: 60%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="error">
+    <div class="left">
+        <h2>And that's a 404 !</h2>
+        <h4>You are not supposed to be here.</h4>
+        <p>Something's probably wrong. But don't worry. Not all those who wander are lost.<br>You seem to be looking
+            for something, that doesn't actually exist (yet).<br>You can fix this by returning to the homepage.</p>
+        <input type="button" value="Go Back" onclick="window.location.href = './';">
+    </div>
+    <div class="right">
+        <h1>404</h1>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}
