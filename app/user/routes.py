@@ -8,6 +8,7 @@ user = Blueprint('user', __name__)
 from app import db, bcrypt
 
 @user.route('/signup', methods=['POST', 'GET'])
+@login_required
 def signup():
     form = SignUpForm()
     if form.validate_on_submit():
