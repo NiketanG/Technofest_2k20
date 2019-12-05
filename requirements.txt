@@ -17,7 +17,7 @@ chardet==3.0.4
 chrome-gnome-shell==0.0.0
 Click==7.0
 cupshelpers==1.0
-Django==2.2.7
+Django==2.2.8
 Faker==2.0.1
 Flask==1.1.1
 Flask-Assets==0.12
