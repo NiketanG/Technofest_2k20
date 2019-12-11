@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<style>
+    .team {
+        margin-top: 125px;
+        text-align: center;
+    }
+
+    h2.heading{
+        margin-bottom: -50px;
+    }
+
+    .grid-container {
+        width: 100%;
+        margin-left: 50%;
+        margin-top: 100px;
+        transform: translateX(-50%);
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-gap: 5px;
+        padding: 5px 10px 5px 5px;
+    }
+
+    .grid-container div {
+        background-color: #282828;
+        color: white;
+        border: #282828 solid 1px;
+        padding: 20px;
+        transition: 0.3s ease-in-out;
+    }
+
+    .grid-container div:active {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+        transition: 0.3s ease-in-out;
+        background-color: #323232;
+    }
+
+    .grid-container div h3 {
+        font-weight: 500;
+        margin-top: 5px;
+        letter-spacing: 2px;
+        font-size: 14px;
+    }
+
+    .grid-container div h5 {
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    .grid-container div p {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .item1 {
+        grid-column: 1 / span 2;
+        grid-row: 1;
+    }
+</style>
+
+
+{% endblock %}
+{% block content %}
+
+<div class="team">
+    <h2 class="heading">TEAM</h2>
+    <div class="grid-container">
+        <div class="item1">
+            <h5>President</h5>
+            <h3>Amey Patil</h3>
+            <p>Computer Engg. (A2)</p>
+        </div>
+        <div class="item2">
+            <h5>Vice-President</h5>
+            <h3>Kishor Shivsharan</h3>
+            <p>IT</p>
+        </div>
+        <div class="item3">
+            <h5>Vice-President</h5>
+            <h3>Shreyash Battul</h3>
+            <p>Computer Engg. (A3)</p>
+        </div>
+        <div class="item4">
+            <h5>Vice-President</h5>
+            <h3>Tejas Atkale</h3>
+            <p>Computer Engg. (A1)</p>
+        </div>
+        <div class="item5">
+            <h5>Vice-President</h5>
+            <h3>Sameer Patil</h3>
+            <p>Computer Engg. (A2)</p>
+        </div>
+        <div class="item6">
+            <h5>Technical Secretary</h5>
+            <h3>Niketan Gulekar</h3>
+            <p>IT</p>
+        </div>
+        <div class="item7">
+            <h5>Technical Secretary</h5>
+            <h3>Vaishnavi Dadhiwal</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item8">
+            <h5>Technical Secretary</h5>
+            <h3>Hemil Ruparel</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item9">
+            <h5>Technical Secretary</h5>
+            <h3>Prathamesh Punde</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item10">
+            <h5>Cultural Secretary</h5>
+            <h3>Siddhi Gate</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item11">
+            <h5>Cultural Secretary</h5>
+            <h3>Sakshi Shinde</h3>
+            <p>IT</p>
+        </div>
+        <div class="item12">
+            <h5>Cultural Secretary</h5>
+            <h3>Aqsa Shaikh</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item13">
+            <h5>Cultural Secretary</h5>
+            <h3>Pritesh Naik</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item14">
+            <h5>Wall-Magazine</h5>
+            <h3>Himanshu Sangle</h3>
+            <p>IT</p>
+        </div>
+        <div class="item15">
+            <h5>Wall-Magazine</h5>
+            <h3>Ashlesha Jadhav</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item16">
+            <h5>Wall-Magazine</h5>
+            <h3>Nisarg Niwale</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item17">
+            <h5>Wall-Magazine</h5>
+            <h3>Ishika Patil</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item18">
+            <h5>Sport Secretary</h5>
+            <h3>Mehul Agrawal</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item19">
+            <h5>Sport Secretary</h5>
+            <h3>Aditi Polkam</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item20">
+            <h5>Sport Secretary</h5>
+            <h3>Anurag Jawalkar</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item21">
+            <h5>Sport Secretary</h5>
+            <h3>Atharva Deshmukh</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item22">
+            <h5>Sport Secretary</h5>
+            <h3>Suyash Bavalekar</h3>
+            <p>IT</p>
+        </div>
+        <div class="item23">
+            <h5>Cleanliness Secretary</h5>
+            <h3>Pankaj Desai</h3>
+            <p>IT</p>
+        </div>
+        <div class="item24">
+            <h5>Cleanliness Secretary</h5>
+            <h3>Vaishnavi Patil</h3>
+            <p>IT</p>
+        </div>
+        <div class="item25">
+            <h5>Cleanliness Secretary</h5>
+            <h3>Achal Mate</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item26">
+            <h5>Sport Secretary</h5>
+            <h3>Radhika Joshi</h3>
+            <p>IT</p>
+        </div>
+        <div class="item27">
+            <h5>Cleanliness Secretary</h5>
+            <h3>Vaishnavi Gabda</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item28">
+            <h5>Cleanliness Secretary</h5>
+            <h3>Vibha Waje</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item29">
+            <h5>Cleanliness Secretary</h5>
+            <h3>Shreeharsh Putambekar</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item30">
+            <h5>Cleanliness Secretary</h5>
+            <h3>Anushka Bandal</h3>
+            <p>IT</p>
+        </div>
+        <div class="item31">
+            <h5>Discipline Secretary</h5>
+            <h3>Nishant Lungare</h3>
+            <p>IT</p>
+        </div>
+        <div class="item32">
+            <h5>Discipline Secretary</h5>
+            <h3>Prashant Chavan</h3>
+            <p>IT</p>
+        </div>
+        <div class="item33">
+            <h5>Discipline Secretary</h5>
+            <h3>Pooja Patil</h3>
+            <p>IT</p>
+        </div>
+        <div class="item34">
+            <h5>Discipline Secretary</h5>
+            <h3>Trupti Shinde</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item35">
+            <h5>Discipline Secretary</h5>
+            <h3>Prathamesh Mane</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item36">
+            <h5>Discipline Secretary</h5>
+            <h3>Abhiraj Kale</h3>
+            <p>Computer Engg.</p>
+        </div>
+        <div class="item37">
+            <h5>Discipline Secretary</h5>
+            <h3>Kunal Tilekar</h3>
+            <p>Computer Engg.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

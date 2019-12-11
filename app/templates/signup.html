@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+
+<h2 class="heading">SIGN UP</h2>
+<p class="heading sub">Create an account that'll be used for Registrations</p>
+<div class="formwrapper">
+    <form method="POST" action="{{ url_for('user.signup') }}" id="Register" name="Register">
+
+        {{ form.csrf_token }}
+
+        <p class="reg_header">
+            {{ form.email.label }}
+        </p>
+
+        {% if form.email.errors %}
+        <p class="validation">
+            {% for error in form.email.errors %}
+            {{ error }}
+            {% endfor %}
+            {% endif %}
+        </p>
+        {{ form.email }}
+
+        <p class="reg_header">
+            {{ form.username.label }}
+        </p>
+
+        {% if form.username.errors %}
+        <p class="validation">
+            {% for error in form.username.errors %}
+            {{ error }}
+            {% endfor %}
+            {% endif %}
+        </p>
+        {{ form.username }}
+
+        <p class="reg_header">
+            {{ form.name.label }}
+        </p>
+        {% if form.name.errors %}
+        <p class="validation">
+            {% for error in form.name.errors %}
+            {{ error }}
+            {% endfor %}
+            {% endif %}
+        </p>
+        {{ form.name }}
+
+        <p class="reg_header">
+            {{ form.password.label }}
+        </p>
+        {% if form.password.errors %}
+        <p class="validation">
+            {% for error in form.password.errors %}
+            {{ error }}
+            {% endfor %}
+            {% endif %}
+        </p>
+        {{ form.password }}
+
+        <p class="reg_header">
+                {{ form.confirm_password.label }}
+            </p>
+            {% if form.confirm_password.errors %}
+            <p class="validation">
+                {% for error in form.confirm_password.errors %}
+                {{ error }}
+                {% endfor %}
+                {% endif %}
+            </p>
+            {{ form.confirm_password }}
+
+        {{ form.submit }}
+        <br><br><br>
+        Already have an account? <a style="color: white;" href="{{ url_for('user.login') }}">Sign In</a>
+    </form>
+</div>
+
+
+
+{% endblock %}

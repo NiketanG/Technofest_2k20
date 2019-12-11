@@ -1,0 +1,109 @@
+<html>
+
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        h2.heading {
+            text-indent: 25px;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        p.sub.heading {
+            text-indent: 25px;
+            font-weight: 400;
+            margin: 0;
+            text-align: center;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        table {
+            width: 60%;
+        }
+
+        th,
+        td {
+            padding: 12.5px 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="heading">REGISTRATION SUCCESSFUL</h2>
+    <p class="sub heading">You have successfully registered for COMeIT - {{ registration["event_name"] }}</p>
+    <br>
+    <p class="sub heading">Here are your registration details</p>
+
+    <table style="margin-top: 40px" align="center">
+        <tr>
+            <th> NAME : </th>
+            <td>{{ registration["name"] }}</td>
+        </tr>
+        <tr>
+            <th> EMAIL : </th>
+            <td>{{ registration["email"] }}</td>
+        </tr>
+        <tr>
+            <th> PHONE NO : </th>
+            <td>{{ registration["phno"] }}</td>
+        </tr>
+        <tr>
+            <th> USER ID : </th>
+            <td>{{ registration["cust_id"] }}</td>
+        </tr>
+
+        <tr>
+            <th> TICKET ID : </th>
+            <td>{{ registration["order_id"] }}</td>
+        </tr>
+
+        <tr>
+            <th> AMOUNT : </th>
+            <td>{{ registration["amt"] }}</td>
+        </tr>
+
+        <tr>
+            <th> Institute Name : </th>
+            <td>{{ registration["clgname"] }}</td>
+        </tr>
+
+        <tr>
+            <th> EVENT ID : </th>
+            <td>{{ registration["event_id"] }}</td>
+        </tr>
+
+        <tr>
+            <th> EVENT NAME : </th>
+            <td>{{ registration["event_name"] }}</td>
+        </tr>
+
+        <tr>
+            <th> TEAM MEMBERS : </th>
+            <td>{{ registration["team"] }}</td>
+        </tr>
+
+        <tr class="grpname">
+            <th> GROUPNAME : </th>
+            <td id="grpname">{{ registration["grpname"] }}</td>
+        </tr>
+
+        <tr class="user">
+            <th> REGISTRATION USER : </th>
+            <td id="user">{{ registration["user"] }}</td>
+        </tr>
+    </table>
+</body>
+
+</html>

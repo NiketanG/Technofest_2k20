@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="Description" content="Register for events organised by COMeIT Team in Government Polytechnic, Pune">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {% assets filters="jsmin", output="gen/packed.js",
+          "js/jquery.mini.js", "js/Script.js" %}
+          <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+
+    {% if title %}
+    <title>{{ title }} - COMeIT</title>
+    {% endif %}
+
+    {% block head %}{% endblock %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Styles.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Styles_600px.css') }}"
+        media="screen and (min-width: 600px) and (max-width: 899px)">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Styles_900px.css') }}"
+        media="screen and (min-width: 950px)">
+    
+</head>
+<body>
+    <div class="loader">
+        <div class="box">
+            <div class="b b1"></div>
+            <div class="b b2"></div>
+            <div class="b b3"></div>
+            <div class="b b4"></div>
+            <div class="ready">Getting Ready
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="team_content">
+            <div class="navbar">
+                <ul class="menu" id="nav">
+                    <li class="logo" onclick="window.location.href = '/';">COMeIT</li>
+                    <li class="item" onclick="window.location.href = '/events';">Events</li>
+                    <li class="item" onclick="window.location.href = '/register';">Register</li>
+                    <li class="item" onclick="window.location.href = '/contactus';">Contact Us</li>
+                    <li class="item" onclick="window.location.href = '/aboutus';">About Us</li> 
+                    {% if current_user.is_authenticated %}
+                    <li class="item" onclick="window.location.href = '/account';">{{ current_user.username }}</li>
+                    {% else %}
+                    <li class="item" onclick="window.location.href = '/login';">Login</li>
+                    {% endif %}                   
+                    <li class="toggle" onclick="toggle()">
+                        <div>
+                            <img alt="Hamburger Menu Icon"
+                                src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgMTI0IDEyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTI0IDEyNDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxnPgoJPHBhdGggZD0iTTExMiw2SDEyQzUuNCw2LDAsMTEuNCwwLDE4czUuNCwxMiwxMiwxMmgxMDBjNi42LDAsMTItNS40LDEyLTEyUzExOC42LDYsMTEyLDZ6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIiBmaWxsPSIjRkZGRkZGIi8+Cgk8cGF0aCBkPSJNMTEyLDUwSDEyQzUuNCw1MCwwLDU1LjQsMCw2MmMwLDYuNiw1LjQsMTIsMTIsMTJoMTAwYzYuNiwwLDEyLTUuNCwxMi0xMkMxMjQsNTUuNCwxMTguNiw1MCwxMTIsNTB6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIiBmaWxsPSIjRkZGRkZGIi8+Cgk8cGF0aCBkPSJNMTEyLDk0SDEyYy02LjYsMC0xMiw1LjQtMTIsMTJzNS40LDEyLDEyLDEyaDEwMGM2LjYsMCwxMi01LjQsMTItMTJTMTE4LjYsOTQsMTEyLDk0eiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgZmlsbD0iI0ZGRkZGRiIvPgo8L2c+PC9nPiA8L3N2Zz4K"
+                                style="width: 28px" class="habtn">
+                            <img alt="Close Menu Icon"
+                                src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgMzQ4LjMzMyAzNDguMzM0IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAzNDguMzMzIDM0OC4zMzQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBjbGFzcz0iIj48Zz48Zz4KCTxwYXRoIGQ9Ik0zMzYuNTU5LDY4LjYxMUwyMzEuMDE2LDE3NC4xNjVsMTA1LjU0MywxMDUuNTQ5YzE1LjY5OSwxNS43MDUsMTUuNjk5LDQxLjE0NSwwLDU2Ljg1ICAgYy03Ljg0NCw3Ljg0NC0xOC4xMjgsMTEuNzY5LTI4LjQwNywxMS43NjljLTEwLjI5NiwwLTIwLjU4MS0zLjkxOS0yOC40MTktMTEuNzY5TDE3NC4xNjcsMjMxLjAwM0w2OC42MDksMzM2LjU2MyAgIGMtNy44NDMsNy44NDQtMTguMTI4LDExLjc2OS0yOC40MTYsMTEuNzY5Yy0xMC4yODUsMC0yMC41NjMtMy45MTktMjguNDEzLTExLjc2OWMtMTUuNjk5LTE1LjY5OC0xNS42OTktNDEuMTM5LDAtNTYuODUgICBsMTA1LjU0LTEwNS41NDlMMTEuNzc0LDY4LjYxMWMtMTUuNjk5LTE1LjY5OS0xNS42OTktNDEuMTQ1LDAtNTYuODQ0YzE1LjY5Ni0xNS42ODcsNDEuMTI3LTE1LjY4Nyw1Ni44MjksMGwxMDUuNTYzLDEwNS41NTQgICBMMjc5LjcyMSwxMS43NjdjMTUuNzA1LTE1LjY4Nyw0MS4xMzktMTUuNjg3LDU2LjgzMiwwQzM1Mi4yNTgsMjcuNDY2LDM1Mi4yNTgsNTIuOTEyLDMzNi41NTksNjguNjExeiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgZmlsbD0iI0ZGRkZGRiIvPgo8L2c+PC9nPiA8L3N2Zz4K"
+                                style="width: 24px;" hidden class="close">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class=flashes>
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+
+            {% block content %}{% endblock %}
+
+            <div id="totop">
+                <img alt="Scroll to Top Icon"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAQAAABIkb+zAAAAsklEQVR42u3V4Q0BQQCEUQ2gSfo49IauRgiJyP0R5EzufQ3svGQ3u1hIkiRJ0k/KkKF5/i7XWgnZ51Ej4Wl+IyGHvNZEyDZj9RCyzBEBAQEBAQEBAQEBAQEBAQHhwyOmamgHfIuQlBOScgLAjK9Q+SPu+Myyqv6LzTd/xvNP5ptvvvnmvzf/bL75s5y/Nt98882fALCpnn8jDNXzRwht818IjfOfCK3z74Tm+ZIkSZL+ugsexKZhBnZnOgAAAABJRU5ErkJggg=="
+                    onclick="window.scrollTo(0, 0);" />
+            </div>
+
+            <footer>
+                <div id="Copyright">Designed and Developed by <a href="https://www.instagram.com/nikketan"
+                        target="_blank" rel="noopener">Niketan Gulekar</a> for COMeIT, Government Polytechnic Pune.
+                    Copyright © 2019 All
+                    rights
+                    reserved.<br>Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp"
+                        target="_blank" rel="noopener">Eucalyp</a> from <a href="https://www.flaticon.com/"
+                        title="Flaticon" target="_blank" rel="noopener">www.flaticon.com</a></div>
+            </footer>
+        </div>
+</body>
+
+</html>
