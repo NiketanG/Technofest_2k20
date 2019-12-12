@@ -64,7 +64,7 @@ def register():
             "MOBILE_NO": str(form.phno.data),
             "EMAIL": form.email.data,
             "TXN_AMOUNT": str(TXN_AMOUNT),
-            "CALLBACK_URL": "http://127.0.0.1:5000/payment",
+            "CALLBACK_URL": request.host_url + "payment",
         }
         # Generate checksum by parameters we have
         # Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys
@@ -94,8 +94,9 @@ def register():
         session['reg_info'] = registration_dict
         registration_dict = session['reg_info']
         registration = registrations(**registration_dict)
+
         try:
-            if request.form['submit_ofc'] == "REGISTER ( Pay via Cash )":
+            if request.form.get('submit_ofc', False) == "REGISTER ( Pay via Cash )":
                 try:
                     registration.paid = True
                     registration.paymentmode = 'Cash'
@@ -115,10 +116,11 @@ def register():
                 
                 return redirect(url_for('.success'))
                 #return render_template('RegistrationSuccess.html', registration=registration_dict, evlist=evlist)
-                
+            else:
+                return render_template('/paymentform.html', paytmParams=paytmParams, url=url, checksum=checksum)
         except Exception as error:
             print(error)
-            return render_template('/paymentform.html', paytmParams=paytmParams, url=url, checksum=checksum)
+            
     
     return render_template('/Main.HTML', title='Registrations', form=form, evlist=evlist)
 

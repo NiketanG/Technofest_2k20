@@ -11,15 +11,11 @@ def set_envvars():
             print("Key Generated : " + SECRET_KEY)
         else:
             SECRET_KEY = str(input('Enter Secret Key : '))
-        print('SQLALCHEMY_DATABASE_URI configuration : \n Press 1 for default (Recommended), or Press 2 for manually entering.')
-        ch_2 = int(input())
-        if (ch_2 == 1):
-            SQLALCHEMY_DATABASE_URI ='postgresql://postgres:N!kketanGT16@localhost/comeit_db'
-            print('SQLALCHEMY_DATABASE_URI : ' + SQLALCHEMY_DATABASE_URI)
-        else:
-            SQLALCHEMY_DATABASE_URI = str(input('Enter SQLALCHEMY_DATABASE_URI : '))
+            
+        print('SQLALCHEMY_DATABASE_URI configuration : \n')
+        SQLALCHEMY_DATABASE_URI = str(input('Enter SQLALCHEMY_DATABASE_URI : '))
 
-        print('MAIL configuration : \n Press 1 for default (Recommended), or Press 2 for manually entering.')
+        print('MAIL configuration : \n')
         ch_3 = int(input())
         if (ch_3 == 1):
             MAIL_USERNAME = 'nikegulekar@gmail.com'

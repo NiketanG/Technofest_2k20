@@ -21,7 +21,6 @@ def signup():
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for('user.login'))
-
     else:
         print(form.errors)
     return render_template('signup.html', title='Sign Up', form=form)
@@ -41,6 +40,8 @@ def account():
             flash('Your account has been updated!')
         else:
             flash('Invalid password entered')
+    else:
+        print(form.errors)
     return render_template('account.html', title='Account', form=form)
 
 @user.route("/login", methods=['GET', 'POST'])
@@ -57,6 +58,8 @@ def login():
             flash('Login Successful.')
         else:
             flash('Login Unsuccessful. Please check email and password')
+    else:
+        print(form.errors)
     return render_template('login.html', title='Login', form=form)
 
 @user.route("/logout")
