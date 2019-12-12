@@ -1,4 +1,4 @@
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 950px) {
 
     /*Navbar*/
     .item {
@@ -287,7 +287,7 @@
     }
 
     /*Registration Form*/
-    /*form {
+    form {
         border-radius: 5px;
         width: 60%;
         padding: 50px;
@@ -332,5 +332,14 @@
     input.inputs:active {
         border-bottom: 1.5px solid #1565C0;
     }
-*/
+
+    div.flashes {
+        margin: 100px 0px -75px 0px; 
+        border: 1px solid black; 
+        padding: 10px; 
+        width: 60%;
+        margin-left: 50%;
+        transform: translate(-50%, 0%);
+    }
+
 }

@@ -2,64 +2,93 @@
 
 {% block head %}
 <script>
-$(document).ready(function () {
+    /*if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }*/
+
+    $(document).ready(function () {
         set_event();
         set_fields()
     });
 
-function set_event(){
-    var list = {{ evlist|tojson }};
+    function set_event() {
+        var list = {{ evlist| tojson
+    }};
     var event_id = {{ registration['event_id'] }} - 1;
     event_selected = list[event_id][1];
     $("#event_name").html(event_selected);
 }
 
-function set_fields(){
-    grpname = $("#grpname").html();
-    if (grpname == '') {
-        $(".grpname").hide();
+    function set_fields() {
+        grpname = $("#grpname").html();
+        if (grpname == '') {
+            $(".grpname").hide();
+        }
+        user = $("#user").html();
+        if (user == '') {
+            $(".user").hide();
+        }
     }
-    user = $("#user").html();
-    if (user == '') {
-        $(".user").hide();
-    }
-}
 
 </script>
 <style>
-    h2.heading {
-        text-indent: 25px;
-        letter-spacing: 25px;
-        font-weight: 400;
-        margin-bottom: -70px;
-        text-align: center;
-        margin-top: 125px;
-    }
-
-    p.sub.heading {
-        text-indent: 25px;
-        font-weight: 400;
-        margin: 10px 100px 0px 100px;
-        text-align: center;
-    }
-
     table,
     th,
     td {
+        overflow: hidden;
         border: 1px solid black;
         border-collapse: collapse;
     }
 
     table {
-        width: 30%;
+        width: 20%;
         margin-left: 50%;
         transform: translateX(-50%);
     }
 
     th,
     td {
-        padding: 10px 20px;
+        padding: 10px 10px;
         text-align: left;
+    }
+
+    h2.heading {
+        font-size: 20px;
+    }
+
+    p.sub.heading {
+        margin: 10px 0px 10px 0px !important;
+    }
+
+    @media screen and (min-width: 600px) and (max-width: 949px) {
+
+        th,
+        td {
+            padding: 10px 20px;
+            text-align: left;
+        }
+
+        h2.heading {
+            font-size: 25px;
+        }
+
+        p.sub.heading {
+            margin: 0px !important;
+        }
+
+    }
+
+    @media screen and (min-width: 950px) {
+
+        th,
+        td {
+            padding: 10px 20px;
+            text-align: left;
+        }
+
+        h2.heading {
+            font-size: 25px;
+        }
     }
 </style>
 
@@ -67,7 +96,8 @@ function set_fields(){
 {% block content %}
 
 <h2 class="heading">PAYMENT {{ status }} </h2>
-<p class="sub heading" style="margin-top:90px;">ORDER ID : {{ paytmParams["ORDER_ID"]}} </p>
+<br>
+<p class="sub heading">ORDER ID : {{ paytmParams["ORDER_ID"]}} </p>
 <p class="sub heading">TRANSACTION ID : {{ paytmParams["TXNID"]}} </p>
 <p class="sub heading">AMOUNT : {{ paytmParams["CURRENCY"]}} {{ paytmParams["TXNAMOUNT"]}} </p>
 <p class="sub heading">TRANSACTION DATE : {{ paytmParams["TXNDATE"]}} </p>
@@ -78,8 +108,9 @@ function set_fields(){
 
 {% if paytmParams["RESPCODE"] == "01"%}
 
-<h2 class="heading" style="margin-top: 50px;">REGISTRATION DETAILS</h2>
-<table style="margin-top: 125px">
+<h2 class="heading">REGISTRATION DETAILS</h2>
+<br><br>
+<table>
     <tr>
         <th> NAME : </th>
         <td>{{ registration["name"] }}</td>

@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block head %}
+<style>
+div.checkbox{
+    width: 100%;
+}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -37,9 +42,10 @@
         </p>
         {{ form.password }}
 
-        {{ form.remember(class="form-check-input") }}
-        {{ form.remember.label(class="form-check-label") }}
-
+        <div class="checkbox">
+        {{ form.remember }}
+        {{ form.remember.label }}
+    </div>
         {{ form.submit }}
 
         <br><br><br>

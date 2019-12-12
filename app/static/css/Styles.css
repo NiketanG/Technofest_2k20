@@ -633,7 +633,7 @@ div.flashes {
 div.gallery {
     top: 100px;
     position: relative;
-    width: 90%;
+    width: calc(100% - 30px);
     display: block;
 }
 

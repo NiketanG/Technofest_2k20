@@ -37,6 +37,7 @@ def register():
     evlist = [val for evlist in evlist.values() for val in evlist]
     list = [(str(ev_id), ev_name) for ev_id, ev_name, ev_amt, ev_solo, ev_duo, ev_squad in evlist]
     set_evlist(list)
+    session['evlist'] = evlist
 
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -98,23 +99,40 @@ def register():
                 try:
                     registration.paid = True
                     registration.paymentmode = 'Cash'
+
                     db.session.add(registration)
                     db.session.commit()
                     flash('Registration Successful')
-
-                    send_email(registration_dict,evlist)
-
+                    try:
+                        send_email(registration_dict,evlist)
+                        flash('An Email consisting of Registration Details has been sent to the specified email address')
+                    except Exception as error:
+                        print(error)
                 except Exception as error:
                     db.session.rollback()
                     flash('Registration Failed')
                     print(error)
-
-                return render_template('RegistrationSuccess.html', registration=registration_dict, evlist=evlist, paytmParams=paytmParams)
-        except:
+                
+                return redirect(url_for('.success'))
+                #return render_template('RegistrationSuccess.html', registration=registration_dict, evlist=evlist)
+                
+        except Exception as error:
+            print(error)
             return render_template('/paymentform.html', paytmParams=paytmParams, url=url, checksum=checksum)
     
     return render_template('/Main.HTML', title='Registrations', form=form, evlist=evlist)
 
+@main.route('/success')
+def success():
+    registration_dict = session['reg_info']
+    evlist = session['evlist']
+    try:
+        paytmParams = session['paytmParams']
+        paymentstatus = paytmParams["STATUS"].replace("TXN_", "")
+        print(paytmParams)
+        return render_template('PaymentStatus.html', paytmParams=paytmParams, status=paymentstatus, registration=registration_dict, evlist=evlist)
+    except:
+        return render_template('RegistrationSuccess.html', registration=registration_dict, evlist=evlist)
 
 @main.route('/payment', methods=['POST', 'GET'])
 def payment():
@@ -160,21 +178,26 @@ def payment():
     else:
         paid = False
         registration.paid = False
-
-    paymentstatus = paytmParams["STATUS"].replace("TXN_", "")
+    
+    session['paytmParams'] = paytmParams
 
     if isValidChecksum and paid:
         try:
             db.session.add(registration)
             db.session.commit()
             flash('Registration Successful')
-            send_email(registration_dict,evlist)
-
+            try:
+                send_email(registration_dict,evlist)
+                flash('An Email consisting of Registration Details has been sent to the specified email address')
+            except Exception as error:
+                print(error)
         except Exception as error:
             db.session.rollback()
             flash('Registration Failed')
             print(error)
     else:
         flash('Registration Failed')
-    return render_template('PaymentStatus.html', paytmParams=paytmParams, status=paymentstatus, registration=registration_dict, evlist=evlist)
+
+    return redirect(url_for('.success'))
+    #return render_template('PaymentStatus.html', paytmParams=paytmParams, status=paymentstatus, registration=registration_dict, evlist=evlist)
 

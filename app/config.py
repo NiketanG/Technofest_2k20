@@ -20,3 +20,8 @@ class Config:
     BCRYPT_LOG_ROUNDS = 5
     REDIS_URL = os.getenv('REDIS_URL')
     QUEUES = ['default']
+
+    
+    #SESSION_COOKIE_SECURE=True
+    SESSION_COOKIE_HTTPONLY=True
+    #PERMANENT_SESSION_LIFETIME=6

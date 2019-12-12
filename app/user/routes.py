@@ -8,7 +8,6 @@ user = Blueprint('user', __name__)
 from app import db, bcrypt
 
 @user.route('/signup', methods=['POST', 'GET'])
-@login_required
 def signup():
     form = SignUpForm()
     if form.validate_on_submit():
@@ -22,6 +21,9 @@ def signup():
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for('user.login'))
+
+    else:
+        print(form.errors)
     return render_template('signup.html', title='Sign Up', form=form)
 
 @user.route("/account", methods=['GET', 'POST'])
