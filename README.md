@@ -20,3 +20,4 @@ python3 manage.py run_redis (Run this in a new terminal window)
 python3 manage.py run_worker (Run this in a new window)
 
 flask run (Run this in a new terminal window)
+
