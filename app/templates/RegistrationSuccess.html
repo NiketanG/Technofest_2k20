@@ -36,7 +36,8 @@
     }
 
     table {
-        width: 20%;
+        width: 10%;
+        max-width: 10%;
         margin-left: 50%;
         transform: translateX(-50%);
     }
@@ -80,6 +81,8 @@
 
 {% endblock%}
 {% block content %}
+
+{% if registration['order_id'] != Null %}
 
 <h2 class="heading">REGISTRATION SUCCESSFUL </h2>
 <br>
@@ -142,5 +145,14 @@
         <td id="user">{{ registration["user"] }}</td>
     </tr>
 </table>
+
+
+
+{% else %}
+<h2 class="heading">ERROR</h2>
+<br>
+<p class="sub heading">There was an error. Registration with the provided Order_ID was not found.</p>
+{% endif %}
+
 
 {% endblock%}

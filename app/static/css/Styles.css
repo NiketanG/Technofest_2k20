@@ -568,6 +568,54 @@ div.landing div.countdown div h4 {
     font-size: 12px;
 }
 
+
+.grid-container {
+    width: 100%;
+    margin-left: 50%;
+    margin-top: 100px;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 5px;
+    padding: 5px 10px 5px 5px;
+}
+
+.grid-container div {
+    background-color: #282828;
+    color: white;
+    border: #282828 solid 1px;
+    padding: 20px;
+    transition: 0.3s ease-in-out;
+}
+
+.grid-container div:active {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    transition: 0.3s ease-in-out;
+    background-color: #323232;
+}
+
+.grid-container div h3 {
+    font-weight: 500;
+    margin-top: 5px;
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+
+.grid-container div h5 {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.grid-container div p {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.item1 {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+}
+
 @media(hover: hover) and (pointer: fine) {
     ul:hover {
         background-color: black !important;

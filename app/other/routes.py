@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint
-from flask import current_app as app
+from flask import current_app as app, session
 from app import cache
 other = Blueprint('other', __name__)
 

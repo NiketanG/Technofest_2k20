@@ -2,9 +2,9 @@
 
 {% block head %}
 <script>
-    /*if ( window.history.replaceState ) {
+    if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
-    }*/
+    }
 
     $(document).ready(function () {
         set_event();
@@ -95,18 +95,20 @@
 {% endblock%}
 {% block content %}
 
+{% if registration['order_id'] != Null %}
+
 <h2 class="heading">PAYMENT {{ status }} </h2>
 <br>
-<p class="sub heading">ORDER ID : {{ paytmParams["ORDER_ID"]}} </p>
-<p class="sub heading">TRANSACTION ID : {{ paytmParams["TXNID"]}} </p>
-<p class="sub heading">AMOUNT : {{ paytmParams["CURRENCY"]}} {{ paytmParams["TXNAMOUNT"]}} </p>
-<p class="sub heading">TRANSACTION DATE : {{ paytmParams["TXNDATE"]}} </p>
+<p class="sub heading">ORDER ID : {{ registration['order_id'] }}</p>
+<p class="sub heading">TRANSACTION ID : {{ txn_id }} </p>
+<p class="sub heading">AMOUNT : INR {{ registration['amt'] }} </p>
+<p class="sub heading">TRANSACTION DATE : {{ registration["date_registered"]}} </p>
 
-{% if paytmParams["RESPCODE"] != "01"%}
-<p class="sub heading">{{ paytmParams["RESPMSG"]}} </p>
+{% if resp_code != "01"%}
+<p class="sub heading">{{ resp_msg }} </p>
 {% endif %}
 
-{% if paytmParams["RESPCODE"] == "01"%}
+{% if resp_code == "01"%}
 
 <h2 class="heading">REGISTRATION DETAILS</h2>
 <br><br>
@@ -163,6 +165,12 @@
         <td id="user">{{ registration["user"] }}</td>
     </tr>
 </table>
+{% endif %}
+
+{% else %}
+<h2 class="heading">ERROR</h2>
+<br>
+<p class="sub heading">There was an error. Registration with the provided Order_ID was not found.</p>
 {% endif %}
 
 {% endblock%}

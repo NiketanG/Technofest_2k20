@@ -66,11 +66,13 @@
 
             {% with messages = get_flashed_messages() %}
             {% if messages %}
-            <div class=flashes>
+            
                 {% for message in messages %}
+                <div class=flashes>
                 {{ message }}
-                {% endfor %}
             </div>
+                {% endfor %}
+            
             {% endif %}
             {% endwith %}
 

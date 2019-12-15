@@ -4,10 +4,11 @@ from app.models import users, registrations
 from flask_login import login_required,current_user, logout_user, login_user
 
 user = Blueprint('user', __name__)
-
 from app import db, bcrypt
 
+
 @user.route('/signup', methods=['POST', 'GET'])
+@login_required
 def signup():
     form = SignUpForm()
     if form.validate_on_submit():
@@ -54,8 +55,8 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
+            #flash('Login Successful.')
             return redirect(next_page) if next_page else redirect(url_for('main.register'))
-            flash('Login Successful.')
         else:
             flash('Login Unsuccessful. Please check email and password')
     else:

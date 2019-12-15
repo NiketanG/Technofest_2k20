@@ -4,6 +4,7 @@ from app.main.forms import RegistrationForm, set_evlist
 from flask_login import current_user
 import uuid
 import hashlib
+from flask_sqlalchemy import SQLAlchemy
 # import checksum generation utility from PayTM
 import app.Checksum as Checksum
 from app import db
@@ -87,12 +88,11 @@ def register():
                                      order_id=ORDER_ID,
                                      cust_id=CUST_ID,
                                      amt=str(TXN_AMOUNT),
-                                     paymentmode='Paytm'
+                                     paymentmode='ONLINE'
                                      )
         registration_dict = vars(registration)
         registration_dict.pop('_sa_instance_state', None)
         session['reg_info'] = registration_dict
-        registration_dict = session['reg_info']
         registration = registrations(**registration_dict)
 
         try:
@@ -114,54 +114,57 @@ def register():
                     flash('Registration Failed')
                     print(error)
                 
-                return redirect(url_for('.success'))
+                return redirect(url_for('.success', order_id = registration_dict['order_id'], user_id = registration_dict['cust_id'] ))
                 #return render_template('RegistrationSuccess.html', registration=registration_dict, evlist=evlist)
             else:
-                return render_template('/paymentform.html', paytmParams=paytmParams, url=url, checksum=checksum)
+                return render_template('/paymentform.html', registration=registration_dict, paytmParams=paytmParams, url=url, checksum=checksum)
         except Exception as error:
             print(error)
             
-    
     return render_template('/Main.HTML', title='Registrations', form=form, evlist=evlist)
 
 @main.route('/success')
 def success():
-    registration_dict = session['reg_info']
+    Order_ID = request.args.get('order_id')
+    User_ID = request.args.get('user_id')
     evlist = session['evlist']
-    try:
-        paytmParams = session['paytmParams']
-        paymentstatus = paytmParams["STATUS"].replace("TXN_", "")
-        print(paytmParams)
-        return render_template('PaymentStatus.html', paytmParams=paytmParams, status=paymentstatus, registration=registration_dict, evlist=evlist)
-    except:
+    registration_dict = db.session.query(registrations).filter_by(order_id=Order_ID, cust_id=User_ID).first()
+    Transaction_ID = request.args.get('txn_id', False) 
+    Response_code = request.args.get('resp_code') 
+    Response_msg = request.args.get('resp_msg') 
+    Payment_Status = request.args.get('status', False)
+    if Payment_Status != False:
+        Payment_Status.replace("TXN_", "")
+
+    if (Transaction_ID == False):
         return render_template('RegistrationSuccess.html', registration=registration_dict, evlist=evlist)
+    else:
+        return render_template('PaymentStatus.html', resp_code=Response_code, resp_msg = Response_msg ,txn_id=Transaction_ID, status=Payment_Status, registration=registration_dict, evlist=evlist)
 
 @main.route('/payment', methods=['POST', 'GET'])
 def payment():
     ev_list = event_list()
     evlist = vars(ev_list)
     evlist = [val for evlist in evlist.values() for val in evlist]
-
-    registration_dict = session['reg_info']
-    registration = registrations(**registration_dict)
+    
     received_data = {
-        "MID": request.form["MID"],
-        "TXNID": request.form["TXNID"],
-        "ORDER_ID": request.form["ORDERID"],
-        "BANKTXNID": request.form["BANKTXNID"],
-        "TXNAMOUNT": request.form["TXNAMOUNT"],
-        "CURRENCY": request.form["CURRENCY"],
-        "STATUS": request.form["STATUS"],
-        "RESPCODE": request.form["RESPCODE"],
-        "RESPMSG": request.form["RESPMSG"],
-        "TXNDATE": request.form["TXNDATE"],
-        "GATEWAYNAME": request.form["GATEWAYNAME"],
-        "BANKNAME": request.form["BANKNAME"],
-        "PAYMENTMODE": request.form["PAYMENTMODE"],
-        "CHECKSUMHASH": request.form["CHECKSUMHASH"],
+        "MID": request.form.get("MID", 'Null'),
+        "TXNID": request.form.get("TXNID", 'Null'),
+        "ORDER_ID": request.form.get("ORDERID", 'Null'),
+        "BANKTXNID": request.form.get("BANKTXNID", 'Null'),
+        "TXNAMOUNT": request.form.get("TXNAMOUNT", 'Null'),
+        "CURRENCY": request.form.get("CURRENCY", 'Null'),
+        "STATUS": request.form.get("STATUS", 'Null'),
+        "RESPCODE": request.form.get("RESPCODE", 'Null'),
+        "RESPMSG": request.form.get("RESPMSG", 'Null'),
+        "TXNDATE": request.form.get("TXNDATE", 'Null'),
+        "GATEWAYNAME": request.form.get("GATEWAYNAME", 'Null'),
+        "BANKNAME": request.form.get("BANKNAME", 'Null'),
+        "PAYMENTMODE": request.form.get("PAYMENTMODE", 'Null'),
+        "CHECKSUMHASH": request.form.get("CHECKSUMHASH", 'Null'),
     }
-
     paytmChecksum = ""
+
     # Create a Dictionary from the parameters received in POST
     # received_data should contains all data received in POST
     paytmParams = {}
@@ -170,6 +173,9 @@ def payment():
             paytmChecksum = value
         else:
             paytmParams[key] = value
+    
+    registration_dict = session.get('reg_info')
+    registration = registrations(**registration_dict)
 
     isValidChecksum = Checksum.verify_checksum(
         paytmParams, app.config['MERCHANT_KEY'], paytmChecksum)
@@ -181,8 +187,6 @@ def payment():
         paid = False
         registration.paid = False
     
-    session['paytmParams'] = paytmParams
-
     if isValidChecksum and paid:
         try:
             db.session.add(registration)
@@ -200,6 +204,5 @@ def payment():
     else:
         flash('Registration Failed')
 
-    return redirect(url_for('.success'))
+    return redirect(url_for('.success', order_id = registration_dict['order_id'], user_id = registration_dict['cust_id'],txn_id = paytmParams['TXNID'], resp_code = paytmParams['RESPCODE'], resp_msg = paytmParams['RESPMSG'], status = paytmParams['STATUS']))
     #return render_template('PaymentStatus.html', paytmParams=paytmParams, status=paymentstatus, registration=registration_dict, evlist=evlist)
-

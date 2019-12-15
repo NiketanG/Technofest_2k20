@@ -59,7 +59,7 @@ class registrations(db.Model):
     date_registered = db.Column(
         db.DateTime, nullable=False, default=datetime.now(pytz.timezone('Asia/Kolkata')))
     paid = db.Column(db.Boolean, default=False, nullable=False)
-    order_id = db.Column(db.String, nullable=False)
+    order_id = db.Column(db.String, nullable=False, unique=True)
     cust_id = db.Column(db.String, nullable=False)
     amt = db.Column(db.Integer, nullable=False)
     paymentmode=db.Column(db.String, nullable=False)

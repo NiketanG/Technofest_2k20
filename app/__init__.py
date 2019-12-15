@@ -14,7 +14,7 @@ db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 login_manager.login_view = 'user.login'
-login_manager.session_protection = "strong"
+#login_manager.session_protection = "strong"
 mail = Mail()
 compress = Compress()
 cache = Cache(config={'CACHE_TYPE': 'simple'})
