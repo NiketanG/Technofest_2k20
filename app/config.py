@@ -21,6 +21,7 @@ class Config:
     REDIS_URL = os.getenv('REDIS_URL')
     QUEUES = ['default']
 
+    SERVER_NAME = os.getenv('SERVER_NAME')
     
     #SESSION_COOKIE_SECURE=True
     SESSION_COOKIE_HTTPONLY=True
