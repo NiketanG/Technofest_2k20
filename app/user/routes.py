@@ -1,11 +1,10 @@
-from flask import render_template, Blueprint, redirect, url_for, flash, request
+from flask import render_template, Blueprint, redirect, url_for, flash, request, session
 from app.user.forms import SignUpForm,AccountForm,LoginForm
 from app.models import users, registrations
 from flask_login import login_required,current_user, logout_user, login_user
 
 user = Blueprint('user', __name__)
 from app import db, bcrypt
-
 
 @user.route('/signup', methods=['POST', 'GET'])
 @login_required
@@ -49,6 +48,7 @@ def account():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('user.account'))
+    
     form = LoginForm()
     if form.validate_on_submit():
         user = users.query.filter_by(email=form.email.data).first()

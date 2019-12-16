@@ -6,6 +6,7 @@ from flask_mail import Mail
 from flask_compress import Compress
 from flask_caching import Cache
 from flask_assets import Environment, Bundle
+from flask_wtf.csrf import CSRFProtect
 import rq
 from redis import Redis
 from app.config import Config
@@ -19,6 +20,7 @@ mail = Mail()
 compress = Compress()
 cache = Cache(config={'CACHE_TYPE': 'simple'})
 assets = Environment()
+csrf = CSRFProtect()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -32,7 +34,8 @@ def create_app(config_class=Config):
     compress.init_app(app)
     cache.init_app(app)
     assets.init_app(app)
-
+    csrf.init_app(app)
+    
     from app.user.routes import user
     from app.main.routes import main
     from app.other.routes import other

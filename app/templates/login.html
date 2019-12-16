@@ -13,7 +13,7 @@ div.checkbox{
 <h2 class="heading">LOGIN</h2>
 <p class="sub heading">Registrations will be done on behalf of the user signed in</p>
 <div class="formwrapper">
-    <form method="POST" action="{{ url_for('user.login') }}" id="Register" name="Register">
+    <form method="POST" action="{{ url_for('user.login') }}">
 
         {{ form.csrf_token }}
 

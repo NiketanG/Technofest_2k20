@@ -1,4 +1,4 @@
-from flask import Flask,current_app, flash, redirect, url_for
+from flask import Flask, current_app, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import pytz  # For localizing time
