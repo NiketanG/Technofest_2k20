@@ -6,6 +6,7 @@ other = Blueprint('other', __name__)
 @other.route('/')
 @cache.cached(timeout=6000)
 def index():
+    print(session.get('reg_info'))
     return render_template('/index.html', title='Welcome')
 
 @other.route('/events')

@@ -222,6 +222,13 @@
         grid-row: 12 / span 2;
     }
 
+    .item36 {
+        grid-column: 2 / span 2;
+    }
+
+    .item37 {
+        grid-column: 4 / span 1;
+    }
 
     .grid-container div h3 {
         margin-top: 5px;

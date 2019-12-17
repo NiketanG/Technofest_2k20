@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint, flash, redirect, render_template, url_for,request, session
-from app.models import events, registrations
+from app.models import events, registrations, payments
 from app.main.forms import RegistrationForm, set_evlist
 from flask_login import current_user
 import uuid
@@ -117,6 +117,7 @@ def register():
                 return redirect(url_for('.success', order_id = registration_dict['order_id'], user_id = registration_dict['cust_id'] ))
                 #return render_template('RegistrationSuccess.html', registration=registration_dict, evlist=evlist)
             else:
+                
                 return render_template('/paymentform.html', registration=registration_dict, paytmParams=paytmParams, url=url, checksum=checksum)
         except Exception as error:
             print(error)
@@ -125,20 +126,36 @@ def register():
 
 @main.route('/success')
 def success():
-    Order_ID = request.args.get('order_id')
-    User_ID = request.args.get('user_id')
+    Order_ID = request.args.get('order_id', False)
+    User_ID = request.args.get('user_id', False)
     evlist = session['evlist']
-    registration_dict = db.session.query(registrations).filter_by(order_id=Order_ID, cust_id=User_ID).first()
+
+    if (not(Order_ID == False or User_ID == False)):
+        registration_dict = db.session.query(registrations).filter_by(order_id=Order_ID, cust_id=User_ID).first()
+    else:
+        flash('No Order_ID or User_ID was provided')
+        registration_dict = {'order_id':'Null', 'user_id':'Null'}
+        return render_template('RegistrationSuccess.html', registration=registration_dict, evlist=evlist)
+
     Transaction_ID = request.args.get('txn_id', False) 
-    Response_code = request.args.get('resp_code') 
-    Response_msg = request.args.get('resp_msg') 
-    Payment_Status = request.args.get('status', False)
-    if Payment_Status != False:
-        Payment_Status.replace("TXN_", "")
 
     if (Transaction_ID == False):
         return render_template('RegistrationSuccess.html', registration=registration_dict, evlist=evlist)
     else:
+        payment_dict = payments.query.filter_by(txn_id=Transaction_ID, order_id=Order_ID).first()
+        if payment_dict == None:
+            Payment_Status = "FAILED"
+            Response_code = "810"
+            Response_msg = "Seems like the Payment wasn't completed. You can reach us with the given Order_ID and Transaction_ID if the money has been deducted from your account."
+        else:
+            payment_dict = vars(payment_dict)
+            Response_code = str(payment_dict['resp_code'])
+            Response_msg = payment_dict['resp_msg']
+            Payment_Status = payment_dict.get('status', False)
+            
+            if Payment_Status != False:
+                Payment_Status = Payment_Status.replace("TXN_", "")
+
         return render_template('PaymentStatus.html', resp_code=Response_code, resp_msg = Response_msg ,txn_id=Transaction_ID, status=Payment_Status, registration=registration_dict, evlist=evlist)
 
 @main.route('/payment', methods=['POST', 'GET'])
@@ -187,6 +204,12 @@ def payment():
         paid = False
         registration.paid = False
     
+
+    payment = payments(txn_id=paytmParams['TXNID'], order_id=paytmParams['ORDER_ID'], txn_amount=paytmParams['TXNAMOUNT'], status=paytmParams['STATUS'], resp_code=paytmParams['RESPCODE'], resp_msg=paytmParams['RESPMSG'])
+    
+    db.session.add(payment)
+    db.session.commit()
+
     if isValidChecksum and paid:
         try:
             db.session.add(registration)
@@ -204,5 +227,4 @@ def payment():
     else:
         flash('Registration Failed')
 
-    return redirect(url_for('.success', order_id = registration_dict['order_id'], user_id = registration_dict['cust_id'],txn_id = paytmParams['TXNID'], resp_code = paytmParams['RESPCODE'], resp_msg = paytmParams['RESPMSG'], status = paytmParams['STATUS']))
-    #return render_template('PaymentStatus.html', paytmParams=paytmParams, status=paymentstatus, registration=registration_dict, evlist=evlist)
+    return redirect(url_for('.success', order_id = registration_dict['order_id'], user_id = registration_dict['cust_id'],txn_id = paytmParams['TXNID']))

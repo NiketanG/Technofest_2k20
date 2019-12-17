@@ -30,29 +30,45 @@
     table,
     th,
     td {
-        overflow: hidden;
         border: 1px solid black;
         border-collapse: collapse;
     }
 
-    table {
-        width: 10%;
-        max-width: 10%;
-        margin-left: 50%;
-        transform: translateX(-50%);
+    table{
+        width:100%;
+        table-layout: fixed;
     }
 
     th,
     td {
         padding: 10px 10px;
         text-align: left;
+        word-wrap: break-word;
     }
 
+    tr:nth-child(even) {
+         background-color: #f6f6f6;
+      }
+
+
     h2.heading {
-        font-size: 20px;
+        font-size: 17px;
+        letter-spacing: 16px !important;
+        margin: 0px 25px;
+        text-overflow: clip;
+        overflow: hidden;
+    }
+
+    p.sub.heading {
+        font-size: 15px;
     }
 
     @media screen and (min-width: 600px) and (max-width: 949px) {
+        table {
+            width: 60%;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
 
         th,
         td {
@@ -66,6 +82,11 @@
     }
 
     @media screen and (min-width: 950px) {
+        table {
+            width: 50%;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
 
         th,
         td {
@@ -82,7 +103,7 @@
 {% endblock%}
 {% block content %}
 
-{% if registration['order_id'] != Null %}
+{% if (not(registration['order_id'] == 'Null' or registration['order_id'] == Null)) %}
 
 <h2 class="heading">REGISTRATION SUCCESSFUL </h2>
 <br>
@@ -151,7 +172,7 @@
 {% else %}
 <h2 class="heading">ERROR</h2>
 <br>
-<p class="sub heading">There was an error. Registration with the provided Order_ID was not found.</p>
+<p class="sub heading">There was an error. Registration with the provided Order_ID and User_ID was not found.</p>
 {% endif %}
 
 

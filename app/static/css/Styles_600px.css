@@ -181,6 +181,19 @@
         grid-row: 11;
     }
 
+    /*Section*/
+    .item36 {
+        grid-column: 1 ;
+        grid-row: 13;
+        grid-template-columns: 50% 50%;
+    }
+
+    .item37 {
+        grid-column: 3;
+        grid-row: 13;
+        grid-template-columns: 50% 50%;
+    }
+
     div.gallery {
         width: 60%;
         margin-left: 50%;

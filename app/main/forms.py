@@ -23,20 +23,18 @@ def set_evlist(eventlist):
     list.extend(eventlist)
 
 class RegistrationForm(FlaskForm):   
-    name = StringField('Name : ', [DataRequired("Name cannot be left blank")], render_kw={"placeholder": "Severus Snape", "id": "name"})
+    name = StringField('Name : ', [DataRequired("Name cannot be left blank")], render_kw={"placeholder": "Severus Snape", "id": "name", "maxlength": "25"})
 
     phno = StringField('Phone No. :', [DataRequired("Phone no. cannot be left blank")], render_kw={
                        "placeholder": "605 475 6961", "id": "PhNo", "maxlength": "10"})
 
     email = StringField('Email Address : ', [
         Email('Not a valid email address.'),
-        DataRequired("Email Address cannot be left blank")], render_kw={"placeholder": "Severus Snape", "id": "email"})
+        DataRequired("Email Address cannot be left blank")], render_kw={"placeholder": "Severus@hogwarts.edu", "id": "email","maxlength": "30"})
 
-    clgname = StringField('Institute Name : ', [DataRequired("College Name cannot be left blank")], render_kw={
-                          "placeholder": "Hogwarts School of Witchcraft and Wizardry", "id": "ClgName"})
+    clgname = StringField('Institute Name : ', [DataRequired("College Name cannot be left blank")], render_kw={"placeholder": "Hogwarts School of Witchcraft and Wizardry", "id": "ClgName", "maxlength": "25"})
 
-    event = SelectField('Event to participate in : ', [DataRequired()],
-                        choices=list, render_kw={"id": "events"})
+    event = SelectField('Event to participate in : ', [DataRequired()], choices=list, render_kw={"id": "events"})
 
     radio_team = RadioField('No. of Participants : ', [DataRequired()],
                             choices=[('1', 'Solo ( 1 )'),
@@ -44,7 +42,7 @@ class RegistrationForm(FlaskForm):
                                      ('4', 'Squad ( 4 )')], default='1', render_kw={"id": "radio_team"})
 
     GrpName = StringField('Group Name : ', render_kw={
-                          "placeholder": "Gryffindor", "class": "inputs grp", "id": "GrpName"})
+                          "placeholder": "Gryffindor", "class": "inputs grp", "id": "GrpName",  "maxlength": "20"})
 
     submit = SubmitField('REGISTER')
 

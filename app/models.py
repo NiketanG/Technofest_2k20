@@ -83,3 +83,18 @@ class users(db.Model, UserMixin):
 
     def get_id(self):
         return (self.user_id)
+
+class payments(db.Model):
+    __tablename__='payments'
+    txn_id = db.Column(db.String, primary_key=True)
+    order_id = db.Column(db.String, nullable=False)
+    txn_amount = db.Column(db.Float, nullable=False)
+    status = db.Column(db.String, nullable=False)
+    resp_code = db.Column(db.Integer, nullable=False)
+    resp_msg = db.Column(db.String, nullable=False)
+
+    def __repr__(self):
+        return f"payments('{self.txn_id}', '{self.order_id}', '{self.txn_amount}', '{self.status}', '{self.resp_code}', '{self.resp_msg}')"
+
+    def __init__(self, **entries):
+        self.__dict__.update(entries)

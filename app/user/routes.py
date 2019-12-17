@@ -33,11 +33,13 @@ def account():
     if form.validate_on_submit():
         if bcrypt.check_password_hash(user.password, form.old_password.data):
             user.email = form.email.data
-            hashed_password = bcrypt.generate_password_hash(
-                form.new_password.data).decode('utf-8')
-            user.password = hashed_password
-            db.session.commit()
-            flash('Your account has been updated!')
+            hashed_password = bcrypt.generate_password_hash(form.new_password.data).decode('utf-8')
+            if bcrypt.check_password_hash(user.password, form.new_password.data):
+                flash('New Password cannot be same as Old Password')
+            else:
+                user.password = hashed_password
+                db.session.commit()
+                flash('Your account has been updated!')
         else:
             flash('Invalid password entered')
     else:

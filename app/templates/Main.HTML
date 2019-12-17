@@ -88,7 +88,8 @@
     function validate_name() {
         var name = $("#name").val()
         var name_regex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g
-        if (!(name_regex.test(name))) {
+        //if  {
+        if ((parseInt(name.length) <= 2) || (!(name_regex.test(name)))) {
             $("#name_v").slideDown();
             $("#name_v").html("Please enter a valid Name");
             return false;
@@ -114,7 +115,7 @@
     function validate_email() {
         var email = $("#email").val()
         var email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        if (!(email_regex.test(email))) {
+        if ((parseInt(email.length) <= 2) || (!(email_regex.test(email)))) {
             $("#email_v").slideDown()
             $("#email_v").html("Please enter a valid Email Address")
             return false;

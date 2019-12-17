@@ -616,6 +616,15 @@ div.landing div.countdown div h4 {
     grid-row: 1;
 }
 
+.item26 {
+    grid-column: 2 / span 1;
+    grid-row: 12;
+}
+
+.item37 {
+    grid-column: 1 / span 2;
+}
+
 @media(hover: hover) and (pointer: fine) {
     ul:hover {
         background-color: black !important;
@@ -658,7 +667,6 @@ div.landing div.countdown div h4 {
 }
 
 h2.heading {
-    text-indent: 25px;
     letter-spacing: 25px;
     font-weight: 400;
     text-align: center;
@@ -666,7 +674,6 @@ h2.heading {
 }
 
 p.sub.heading {
-    text-indent: 25px;
     font-weight: 400;
     margin:10px 25px -50px 25px;
     text-align: center;

@@ -35,33 +35,45 @@
     table,
     th,
     td {
-        overflow: hidden;
         border: 1px solid black;
         border-collapse: collapse;
     }
 
-    table {
-        width: 20%;
-        margin-left: 50%;
-        transform: translateX(-50%);
+    table{
+        width:100%;
+        table-layout: fixed;
     }
 
     th,
     td {
         padding: 10px 10px;
         text-align: left;
+        word-wrap: break-word;
     }
 
+    tr:nth-child(even) {
+         background-color: #f6f6f6;
+      }
+
     h2.heading {
-        font-size: 20px;
+        font-size: 17px;
+        letter-spacing: 16px !important;
+        margin: 0px 25px;
+        text-overflow: clip;
+        overflow: hidden;
     }
 
     p.sub.heading {
         margin: 10px 0px 10px 0px !important;
+        font-size: 15px;
     }
 
     @media screen and (min-width: 600px) and (max-width: 949px) {
-
+        table {
+            width: 60%;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
         th,
         td {
             padding: 10px 20px;
@@ -79,7 +91,11 @@
     }
 
     @media screen and (min-width: 950px) {
-
+        table {
+            width: 50%;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
         th,
         td {
             padding: 10px 20px;
@@ -104,11 +120,11 @@
 <p class="sub heading">AMOUNT : INR {{ registration['amt'] }} </p>
 <p class="sub heading">TRANSACTION DATE : {{ registration["date_registered"]}} </p>
 
-{% if resp_code != "01"%}
+{% if resp_code != "1"%}
 <p class="sub heading">{{ resp_msg }} </p>
 {% endif %}
 
-{% if resp_code == "01"%}
+{% if resp_code == "1"%}
 
 <h2 class="heading">REGISTRATION DETAILS</h2>
 <br><br>
