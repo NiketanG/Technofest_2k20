@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, flash, redirect, render_template, url_for,request, session
+from flask import render_template, Blueprint, flash, redirect, render_template, url_for, request, session
 from app.models import events, registrations, payments
 from app.main.forms import RegistrationForm, set_evlist
 from flask_login import current_user
@@ -6,9 +6,11 @@ import uuid
 import hashlib
 from flask_sqlalchemy import SQLAlchemy
 # import checksum generation utility from PayTM
+import requests
 import app.Checksum as Checksum
+import json
 from app import db
-from app.tasks import send_mail, check_pending_transaction
+from app.tasks import send_mail, check_pending_transaction, check_txn_status
 from flask import current_app as app
 import redis
 from rq import Queue, Connection
@@ -57,9 +59,9 @@ def register():
         paytmParams = dict()
         paytmParams = {
             "MID": app.config['MID'],
-            "WEBSITE": "WEBSTAGING",
+            "WEBSITE": app.config['WEBSITE'],
             "INDUSTRY_TYPE_ID": "Retail",
-            "CHANNEL_ID": "WEB",
+            "CHANNEL_ID": app.config['CHANNEL_ID'],
             "ORDER_ID": ORDER_ID,
             "CUST_ID": CUST_ID,
             "MOBILE_NO": str(form.phno.data),
@@ -72,7 +74,7 @@ def register():
         checksum = Checksum.generate_checksum(
             paytmParams, app.config['MERCHANT_KEY'])
         # for Staging
-        url = "https://securegw-stage.paytm.in/order/process"
+        url = app.config['PAYMENT_URL']
 
         # for Production
         # url = "https://securegw.paytm.in/order/process"
@@ -115,9 +117,8 @@ def register():
                     print(error)
                 
                 return redirect(url_for('.success', order_id = registration_dict['order_id'], user_id = registration_dict['cust_id'] ))
-                #return render_template('RegistrationSuccess.html', registration=registration_dict, evlist=evlist)
-            else:
                 
+            else:
                 return render_template('/paymentform.html', registration=registration_dict, paytmParams=paytmParams, url=url, checksum=checksum)
         except Exception as error:
             print(error)
@@ -183,7 +184,6 @@ def payment():
     paytmChecksum = ""
 
     # Create a Dictionary from the parameters received in POST
-    # received_data should contains all data received in POST
     paytmParams = {}
     for key, value in received_data.items():
         if key == 'CHECKSUMHASH':
@@ -196,19 +196,32 @@ def payment():
 
     isValidChecksum = Checksum.verify_checksum(
         paytmParams, app.config['MERCHANT_KEY'], paytmChecksum)
+    
+    payment = payments(txn_id=paytmParams['TXNID'],
+                       order_id=paytmParams['ORDER_ID'], 
+                       txn_amount=paytmParams['TXNAMOUNT'], 
+                       status=paytmParams['STATUS'], 
+                       resp_code=paytmParams['RESPCODE'], 
+                       resp_msg=paytmParams['RESPMSG'])
+    
+    try:
+        db.session.add(payment)
+        db.session.commit()
+    except Exception as error:
+        print(error)
 
-    if paytmParams["STATUS"] == "TXN_SUCCESS":
+    TxnCheck = check_txn_status(paytmParams)
+
+    if (paytmParams["STATUS"] == "TXN_SUCCESS") and (TxnCheck):
         paid = True
         registration.paid = True
+    elif paytmParams["STATUS"] == "PENDING":
+        if check_pending_transaction(paytmParams):
+            paid = True
+            registration.paid = True
     else:
         paid = False
         registration.paid = False
-    
-
-    payment = payments(txn_id=paytmParams['TXNID'], order_id=paytmParams['ORDER_ID'], txn_amount=paytmParams['TXNAMOUNT'], status=paytmParams['STATUS'], resp_code=paytmParams['RESPCODE'], resp_msg=paytmParams['RESPMSG'])
-    
-    db.session.add(payment)
-    db.session.commit()
 
     if isValidChecksum and paid:
         try:

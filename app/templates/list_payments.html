@@ -139,34 +139,27 @@
 <body><button style="float: right;">
       <a id="downloadLink" onclick="exportF(this)">Export all to Excel</a>
    </button>
-   <h2>Registrations</h2>
+   <h2>Payments</h2>
    <div class="filters">
-      Event : <select name="event_filter" id="event_filter" onclick="search_reg(this.value, 5);">
+      Status : <select name="status_filter" id="status_filter" onclick="search_reg(this.value, 3);">
          <option value="">All</option>
-         <option value="1">Webber</option>
-         <option value="2">Flash</option>
-         <option value="3">COC</option>
-         <option value="4">Hotkeys</option>
+         <option value="TXN_SUCCESS">SUCCESS</option>
+         <option value="PENDING">PENDING</option>
+         <option value="TXN_FAILURE">FAILED</option>
       </select>
 
-      Team : <select name="team_filter" id="team_filter" onclick="search_reg(this.value, 6);">
+      Amount : <select name="amt_filter" id="amt_filter" onclick="search_reg(this.value, 2);">
          <option value="">All</option>
-         <option value="1">Solo</option>
-         <option value="2">Duo</option>
-         <option value="4">Squad</option>
+         <option value="50">50</option>
+         <option value="100">100</option>
+         <option value="200">200</option>
       </select>
-   </div>
-
    <br>
 
    <input type="text" name="search" id="search" placeholder="Search" onkeyup="search_reg(this.value, search_col)">
 
-
-   <input type="radio" name="search_filter" id="s_reg_id" checked onclick="set_search_col(0)">Reg.Id
-   <input type="radio" name="search_filter" id="s_name" onclick="set_search_col(1)">Name
-   <input type="radio" name="search_filter" id="s_phno" onclick="set_search_col(2)">Phone No
-   <input type="radio" name="search_filter" id="s_OrderID" onclick="set_search_col(10)">Order ID
-   <input type="radio" name="search_filter" id="s_OrderID" onclick="set_search_col(8)">User
+   <input type="radio" name="search_filter" id="s_txn_id" checked onclick="set_search_col(0)">Txn.Id
+   <input type="radio" name="search_filter" id="s_OrderID" onclick="set_search_col(1)">Order Id
 
    <div id="records" style="margin-top: 10px;"></div>
 
@@ -175,42 +168,27 @@
    <div style="overflow-x:auto;">
       <table id="reg_table">
          <tr class="header">
-            <th onclick="sortTable(0)">Reg. ID</th>
-            <th onclick="sortTable(1)">Name</th>
-            <th onclick="sortTable(2)">Phone No</th>
-            <th onclick="sortTable(3)">Email Address</th>
-            <th onclick="sortTable(4)">College Name</th>
-            <th onclick="sortTable(5)">EventID</th>
-            <th onclick="sortTable(6)">Team</th>
-            <th onclick="sortTable(7)">Group name</th>
-            <th onclick="sortTable(8)">User</th>
-            <th onclick="sortTable(9)">Date Registered</th>
-            <th onclick="sortTable(10)">Order_ID</th>
-            <th onclick="sortTable(11)">Cust_id</th>
-            <th onclick="sortTable(12)">Amt</th>
-            <th onclick="sortTable(13)">Payment Mode</th>
+            <th onclick="sortTable(0)">Txn. ID</th>
+            <th onclick="sortTable(1)">OrderID</th>
+            <th onclick="sortTable(2)">Txn Amount</th>
+            <th onclick="sortTable(3)">Status</th>
+            <th onclick="sortTable(4)">Response Code</th>
+            <th onclick="sortTable(5)">Response Message</th>
          </tr>
 
          {% for row in rows %}
          <tr>
-            <td>{{row["reg_id"]}}</td>
-            <td>{{row["name"]}}</td>
-            <td>{{row["phno"]}}</td>
-            <td> {{ row["email"]}}</td>
-            <td>{{row["clgname"]}}</td>
-            <td>{{row["event_id"]}}</td>
-            <td> {{ row["team"]}}</td>
-            <td> {{ row["grpname"]}}</td>
-            <td> {{ row["user"]}}</td>
-            <td> {{ row["date_registered"]}}</td>
-            <td> {{ row["order_id"]}}</td>
-            <td> {{ row["cust_id"]}}</td>
-            <td> {{ row["amt"]}}</td>
-            <td> {{ row["paymentmode"]}}</td>
+            <td>{{row["txn_id"]}}</td>
+            <td>{{row["order_id"]}}</td>
+            <td>{{row["txn_amount"]}}</td>
+            <td> {{ row["status"]}}</td>
+            <td>{{row["resp_code"]}}</td>
+            <td>{{row["resp_msg"]}}</td>
          </tr>
          {% endfor %}
       </table>
    </div>
+   <a href="/list/registrations">View Registrations</a>
    <a href="/">Go back to home page</a>
 </body>
 

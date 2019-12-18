@@ -6,7 +6,6 @@ from wtforms import (StringField,
 from wtforms.validators import (DataRequired,
                                 Email,
                                 EqualTo,
-                                URL,
                                 ValidationError)
 
 from app.models import users

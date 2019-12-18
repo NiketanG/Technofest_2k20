@@ -1,6 +1,6 @@
 from flask import render_template, Blueprint, redirect, url_for, flash, request, session
 from app.user.forms import SignUpForm,AccountForm,LoginForm
-from app.models import users, registrations
+from app.models import users, registrations, payments
 from flask_login import login_required,current_user, logout_user, login_user
 
 user = Blueprint('user', __name__)
@@ -72,8 +72,13 @@ def logout():
     flash('You have been successfully logged out')
     return redirect(url_for('user.login'))
 
-@user.route('/list')
+@user.route('/list/<table>')
 @login_required
-def list():
-    rows = registrations.query.all()
-    return render_template("list.html", rows=rows)
+def list(table):
+    if table == "registrations":
+        rows = registrations.query.all()
+        return render_template("list_registrations.html", rows=rows)
+    elif table == "payments":
+        rows = payments.query.all()
+        return render_template("list_payments.html", rows=rows)
+    

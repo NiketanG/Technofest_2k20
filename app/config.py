@@ -14,14 +14,12 @@ class Config:
 
     MID = os.getenv('MID')
     MERCHANT_KEY = os.getenv('MERCHANT_KEY')
-    CHANNEL_ID = 'WEB'
-    WEBSITE = 'WEBSTAGING'
-
+    CHANNEL_ID = os.getenv('CHANNEL_ID')
+    WEBSITE = os.getenv('WEBSITE')
+    PAYMENT_URL = os.getenv('PAYMENT_URL')
     BCRYPT_LOG_ROUNDS = 5
     REDIS_URL = os.getenv('REDIS_URL')
     QUEUES = ['default']
-
-    #SERVER_NAME = os.getenv('SERVER_NAME')
     
     #SESSION_COOKIE_SECURE=False
     SESSION_COOKIE_HTTPONLY=True

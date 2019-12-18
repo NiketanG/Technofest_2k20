@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+
+<head>
+   <style>
+      body {
+         font-family: 'Segoe UI', sans-serif;
+      }
+
+      table {
+         border-collapse: collapse;
+         border: 1px solid #ddd;
+         width: 100%;
+      }
+
+      th {
+         background-color: #4CAF50;
+         color: white;
+         cursor: pointer;
+      }
+
+      th,
+      td {
+         text-align: left;
+         padding: 8px 15px;
+         border-bottom: 1px solid #ddd;
+      }
+
+      td {
+         border: 1px solid #ddd;
+
+      }
+
+      tr:nth-child(even) {
+         background-color: #f6f6f6;
+      }
+
+      tr:hover {
+         background-color: #f5f5f5;
+      }
+   </style>
+
+   <script>
+      var search_col = 0
+      var input, filter, table, tr, td, i, txtValue;
+
+      function set_search_col(n) {
+         search_col = n
+      }
+
+      function search_reg(search_term, search_filter) {
+         var row_count = 0
+         filter = search_term.toUpperCase();
+         table = document.getElementById("reg_table");
+         tr = table.getElementsByTagName("tr");
+         // Loop through all table rows, and hide those who don't match the search query
+
+         for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[search_filter];
+            if (td) {
+               txtValue = td.textContent || td.innerText;
+               if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = "";
+                  row_count++;
+               } else {
+                  tr[i].style.display = "none";
+               }
+            }
+         }
+         document.getElementById("records").innerText = row_count + " records"
+      }
+
+      function exportF(elem) {
+         var html = document.getElementById("reg_table").outerHTML;
+         var url = 'data:application/vnd.ms-excel,' + escape(html); // Set your html table into url 
+         elem.setAttribute("href", url);
+         return false;
+      }
+
+
+      function sortTable(n) {
+         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+         table = document.getElementById("reg_table");
+         switching = true;
+         // Set the sorting direction to ascending:
+         dir = "asc";
+         /* Make a loop that will continue until
+         no switching has been done: */
+         while (switching) {
+            // Start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /* Loop through all table rows (except the
+            first, which contains table headers): */
+            for (i = 1; i < (rows.length - 1); i++) {
+               // Start by saying there should be no switching:
+               shouldSwitch = false;
+               /* Get the two elements you want to compare,
+               one from current row and one from the next: */
+               x = rows[i].getElementsByTagName("TD")[n];
+               y = rows[i + 1].getElementsByTagName("TD")[n];
+               /* Check if the two rows should switch place,
+               based on the direction, asc or desc: */
+               if (dir == "asc") {
+                  if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                     // If so, mark as a switch and break the loop:
+                     shouldSwitch = true;
+                     break;
+                  }
+               } else if (dir == "desc") {
+                  if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                     // If so, mark as a switch and break the loop:
+                     shouldSwitch = true;
+                     break;
+                  }
+               }
+            }
+            if (shouldSwitch) {
+               /* If a switch has been marked, make the switch
+               and mark that a switch has been done: */
+               rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+               switching = true;
+               // Each time a switch is done, increase this count by 1:
+               switchcount++;
+            } else {
+               /* If no switching has been done AND the direction is "asc",
+               set the direction to "desc" and run the while loop again. */
+               if (switchcount == 0 && dir == "asc") {
+                  dir = "desc";
+                  switching = true;
+               }
+            }
+         }
+      }
+   </script>
+
+</head>
+
+<body><button style="float: right;">
+      <a id="downloadLink" onclick="exportF(this)">Export all to Excel</a>
+   </button>
+   <h2>Registrations</h2>
+   <div class="filters">
+      Event : <select name="event_filter" id="event_filter" onclick="search_reg(this.value, 5);">
+         <option value="">All</option>
+         <option value="1">Webber</option>
+         <option value="2">Flash</option>
+         <option value="3">COC</option>
+         <option value="4">Hotkeys</option>
+      </select>
+
+      Team : <select name="team_filter" id="team_filter" onclick="search_reg(this.value, 6);">
+         <option value="">All</option>
+         <option value="1">Solo</option>
+         <option value="2">Duo</option>
+         <option value="4">Squad</option>
+      </select>
+   </div>
+
+   <br>
+
+   <input type="text" name="search" id="search" placeholder="Search" onkeyup="search_reg(this.value, search_col)">
+
+
+   <input type="radio" name="search_filter" id="s_reg_id" checked onclick="set_search_col(0)">Reg.Id
+   <input type="radio" name="search_filter" id="s_name" onclick="set_search_col(1)">Name
+   <input type="radio" name="search_filter" id="s_phno" onclick="set_search_col(2)">Phone No
+   <input type="radio" name="search_filter" id="s_OrderID" onclick="set_search_col(10)">Order ID
+   <input type="radio" name="search_filter" id="s_OrderID" onclick="set_search_col(8)">User
+
+   <div id="records" style="margin-top: 10px;"></div>
+
+   <br>
+
+   <div style="overflow-x:auto;">
+      <table id="reg_table">
+         <tr class="header">
+            <th onclick="sortTable(0)">Reg. ID</th>
+            <th onclick="sortTable(1)">Name</th>
+            <th onclick="sortTable(2)">Phone No</th>
+            <th onclick="sortTable(3)">Email Address</th>
+            <th onclick="sortTable(4)">College Name</th>
+            <th onclick="sortTable(5)">EventID</th>
+            <th onclick="sortTable(6)">Team</th>
+            <th onclick="sortTable(7)">Group name</th>
+            <th onclick="sortTable(8)">User</th>
+            <th onclick="sortTable(9)">Date Registered</th>
+            <th onclick="sortTable(10)">Order_ID</th>
+            <th onclick="sortTable(11)">Cust_id</th>
+            <th onclick="sortTable(12)">Amt</th>
+            <th onclick="sortTable(13)">Payment Mode</th>
+         </tr>
+
+         {% for row in rows %}
+         <tr>
+            <td>{{row["reg_id"]}}</td>
+            <td>{{row["name"]}}</td>
+            <td>{{row["phno"]}}</td>
+            <td> {{ row["email"]}}</td>
+            <td>{{row["clgname"]}}</td>
+            <td>{{row["event_id"]}}</td>
+            <td> {{ row["team"]}}</td>
+            <td> {{ row["grpname"]}}</td>
+            <td> {{ row["user"]}}</td>
+            <td> {{ row["date_registered"]}}</td>
+            <td> {{ row["order_id"]}}</td>
+            <td> {{ row["cust_id"]}}</td>
+            <td> {{ row["amt"]}}</td>
+            <td> {{ row["paymentmode"]}}</td>
+         </tr>
+         {% endfor %}
+      </table>
+   </div>
+   <a href="/list/payments">View Payments</a>
+   <a href="/">Go back to home page</a>
+</body>
+
+</html>

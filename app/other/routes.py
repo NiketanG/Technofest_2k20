@@ -1,12 +1,11 @@
 from flask import render_template, Blueprint
-from flask import current_app as app, session
+from flask import current_app as app
 from app import cache
 other = Blueprint('other', __name__)
 
 @other.route('/')
 @cache.cached(timeout=6000)
 def index():
-    print(session.get('reg_info'))
     return render_template('/index.html', title='Welcome')
 
 @other.route('/events')
