@@ -14,7 +14,7 @@ def send_mail(registration_dict):
 
 def check_txn_status(paytmParams):
     # for Staging
-    url = "https://securegw-stage.paytm.in/order/status"
+    url = "https://securegw.paytm.in/order/status"
 
     # for Production
     # url = "https://securegw.paytm.in/order/status"

@@ -24,13 +24,11 @@ class event_list:
         return f"{self.evlist}"
 
 def send_email(registration_dict, evlist):
-    reg_info = registration_dict
+    reg_info = vars(registration_dict)
     event_selected = int(reg_info['event_id']) - 1
     reg_info['event_name'] = evlist[event_selected][1]
     redis_url = app.config['REDIS_URL']
-    with Connection(redis.from_url(redis_url)):
-                    q = Queue()
-                    q.enqueue(send_mail, reg_info)
+    send_mail(reg_info)
 
 @main.route('/register/', methods=['POST', 'GET'])
 @main.route('/register', methods=['POST', 'GET'])
@@ -133,6 +131,7 @@ def success():
 
     if (not(Order_ID == False or User_ID == False)):
         registration_dict = db.session.query(registrations).filter_by(order_id=Order_ID, cust_id=User_ID).first()
+        send_email(registration_dict, evlist)
     else:
         flash('No Order_ID or User_ID was provided')
         registration_dict = {'order_id':'Null', 'user_id':'Null'}
@@ -156,6 +155,8 @@ def success():
             
             if Payment_Status != False:
                 Payment_Status = Payment_Status.replace("TXN_", "")
+            if Payment_Status == 'SUCCESS':
+                send_email(registration_dict, evlist)
 
         return render_template('PaymentStatus.html', resp_code=Response_code, resp_msg = Response_msg ,txn_id=Transaction_ID, status=Payment_Status, registration=registration_dict, evlist=evlist)
 
