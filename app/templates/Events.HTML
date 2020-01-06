@@ -28,14 +28,14 @@
     .toggle {
         filter: invert(0) !important;
     }
-
 </style>
 
 {% endblock %}
 {% block content %}
 
 <div class="bgimg">
-    <img alt="Background Image" src="{{ url_for('static', filename='img/christian-wiediger-WkfDrhxDMC8-unsplash.jpg') }}"
+    <img alt="Background Image"
+        src="{{ url_for('static', filename='img/christian-wiediger-WkfDrhxDMC8-unsplash.jpg') }}"
         srcset="{{ url_for('static', filename='img/christian-wiediger-WkfDrhxDMC8-unsplash_min.jpg') }} 480w,{{ url_for('static', filename='img/christian-wiediger-WkfDrhxDMC8-unsplash_med.jpg') }} 960w,{{ url_for('static', filename='img/christian-wiediger-WkfDrhxDMC8-unsplash.jpg') }} 1920w"
         sizes="(max-width: 480px) 320px,(max-width: 960px) 480px, 1920px">
     <div class="text">
@@ -50,7 +50,8 @@
 <div class="gallery">
     <div class="col" onclick="event_desc(1)">
         <div class="img">
-            <img alt="Clash of Code Image" src="{{ url_for('static', filename='img/safar-safarov-LKsHwgzyk7c-unsplash.jpg') }}"
+            <img alt="Clash of Code Image"
+                src="{{ url_for('static', filename='img/safar-safarov-LKsHwgzyk7c-unsplash.jpg') }}"
                 srcset="{{ url_for('static', filename='img/safar-safarov-LKsHwgzyk7c-unsplash_min.jpg') }} 480w,{{ url_for('static', filename='img/safar-safarov-LKsHwgzyk7c-unsplash_med.jpg') }} 960w, {{ url_for('static', filename='img/safar-safarov-LKsHwgzyk7c-unsplash.jpg') }} 1920w"
                 sizes="(max-width: 480px) 320px,(max-width: 960px) 480px, 1920px">
             <div class="text-block">
@@ -73,7 +74,8 @@
 
     <div class="col" onclick="event_desc(3)">
         <div class="img">
-            <img alt="Hotkeys image" src="{{ url_for('static', filename='img/anas-alshanti-feXpdV001o4-unsplash.jpg') }}"
+            <img alt="Hotkeys image"
+                src="{{ url_for('static', filename='img/anas-alshanti-feXpdV001o4-unsplash.jpg') }}"
                 srcset="{{ url_for('static', filename='img/anas-alshanti-feXpdV001o4-unsplash_min.jpg') }} 480w,{{ url_for('static', filename='img/anas-alshanti-feXpdV001o4-unsplash_med.jpg') }} 960w, {{ url_for('static', filename='img/anas-alshanti-feXpdV001o4-unsplash.jpg') }} 1920w"
                 sizes="(max-width: 480px) 320px,(max-width: 960px) 480px, 1920px">
             <div class="text-block">
@@ -139,6 +141,20 @@
         <b>Entry Fee</b>: 200 <br>
         <b>Prize</b>: 500<br>
     </p>
+    <p class="event_desc_text">
+        <b>Counter Strike - Global Offensive</b><br>
+        It's time for some gaming fun. COM'e'IT is presenting you Counter Strike - Global Offensive, a widely favoured video-game. Get set for the battle as it comes with many exciting prizes.
+        <br>
+        <b>Structure :</b>
+        <i>3 Rounds - Knockout</i>
+        <br>
+        <b>Maps</b> : de_mirage, de_cache and de_dust2<br>
+        Each Round will consist of 10 in-game rounds. After 5 rounds, teams will be swapped.
+        <br>
+        <b>Participants</b> : 4<br>
+        <b>Entry Fee</b>: 200 <br>
+        <b>Prize</b>: 1000<br>
+    </p>
 </div>
 <div class="gallery">
     <div class="col" onclick="event_desc(4)">
@@ -156,7 +172,8 @@
     <div class="col" onclick="event_desc(5)">
         <div class="active_event" id="event_5"></div>
         <div class="img">
-            <img alt="Capture Image" src="{{ url_for('static', filename='img/william-bayreuther-hfk6xOjQlFk-unsplash.jpg') }}"
+            <img alt="Capture Image"
+                src="{{ url_for('static', filename='img/william-bayreuther-hfk6xOjQlFk-unsplash.jpg') }}"
                 srcset="{{ url_for('static', filename='img/william-bayreuther-hfk6xOjQlFk-unsplash_min.jpg') }} 480w,{{ url_for('static', filename='img/william-bayreuther-hfk6xOjQlFk-unsplash_med.jpg') }} 960w, {{ url_for('static', filename='img/william-bayreuther-hfk6xOjQlFk-unsplash.jpg') }} 1920w"
                 sizes="(max-width: 480px) 320px,(max-width: 960px) 480px, 1920px">
             <div class="text-block">
@@ -168,7 +185,8 @@
     <div class="col" onclick="event_desc(6)">
         <div class="active_event" id="event_6"></div>
         <div class="img">
-            <img alt="Project Presentation Image" src="{{ url_for('static', filename='img/alex-litvin-MAYsdoYpGuk-unsplash.jpg') }}"
+            <img alt="Project Presentation Image"
+                src="{{ url_for('static', filename='img/alex-litvin-MAYsdoYpGuk-unsplash.jpg') }}"
                 srcset="{{ url_for('static', filename='img/alex-litvin-MAYsdoYpGuk-unsplash_min.jpg') }} 480w,{{ url_for('static', filename='img/alex-litvin-MAYsdoYpGuk-unsplash_med.jpg') }} 960w, {{ url_for('static', filename='img/alex-litvin-MAYsdoYpGuk-unsplash.jpg') }} 1920w"
                 sizes="(max-width: 480px) 320px,(max-width: 960px) 480px, 1920px">
             <div class="text-block">
@@ -177,6 +195,25 @@
         </div>
     </div>
 </div>
+
+<br><br><br>
+
+<div class="gallery">
+    
+    <div class="col" onclick="event_desc(7)">
+        <div class="active_event" id="event_7"></div>
+        <div class="img">
+            <img alt="CSGO Image" src="{{ url_for('static', filename='img/n-RFId0_7kep4-unsplash.jpg') }}"
+                srcset="{{ url_for('static', filename='img/n-RFId0_7kep4-unsplash_min.jpg') }} 480w,{{ url_for('static', filename='img/n-RFId0_7kep4-unsplash_med.jpg') }} 960w, {{ url_for('static', filename='img/n-RFId0_7kep4-unsplash.jpg') }} 1920w"
+                sizes="(max-width: 480px) 320px,(max-width: 960px) 480px, 1920px">
+            <div class="text-block">
+                <p>CSGO</p>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
 </div>
 
 {% endblock %}

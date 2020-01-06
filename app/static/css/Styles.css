@@ -625,46 +625,6 @@ div.landing div.countdown div h4 {
     grid-column: 1 / span 2;
 }
 
-@media(hover: hover) and (pointer: fine) {
-    ul:hover {
-        background-color: black !important;
-        color: white !important;
-    }
-
-    .item:hover {
-        background-color: white;
-        color: black;
-    }
-
-    .accordion:hover {
-        background-color: #ccc;
-    }
-
-    .grid-container div:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75);
-        transition: 0.3s ease-in-out;
-        background-color: #323232;
-    }
-
-    div.col img:hover {
-        filter: blur(0);
-        cursor: pointer;
-    }
-
-    div#totop:hover {
-        background-color: #000;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
-    }
-
-    .select-items div:hover {
-        background-color: rgba(0, 0, 0, 0.1);
-        transition: 0.3s ease-in-out;
-    }
-
-    p.social:hover {
-        color: black;
-    }
-}
 
 h2.heading {
     letter-spacing: 25px;
@@ -764,3 +724,43 @@ div.event_desc p b {
     display: none;
     margin: 15px 0px;
 }
+
+.hover ul:hover {
+    background-color: black !important;
+    color: white !important;
+}
+
+.hover .item:hover {
+    background-color: white;
+    color: black;
+}
+
+.hover .accordion:hover {
+    background-color: #ccc;
+}
+
+.hover .grid-container div:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75);
+    transition: 0.3s ease-in-out;
+    background-color: #323232;
+}
+
+.hover div.col img:hover {
+    filter: blur(0);
+    cursor: pointer;
+}
+
+.hover div#totop:hover {
+    background-color: #000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.hover .select-items div:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+}
+
+.hover p.social:hover {
+    color: black;
+}
+

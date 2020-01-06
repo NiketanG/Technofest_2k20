@@ -115,19 +115,6 @@
         height: 50px;
     }
 
-    input.registerbtn:hover,
-    input.registerbtn:active {
-        background-color: transparent;
-        border-color: white;
-        border-width: 1.5px;
-        color: white;
-    }
-
-    input.inputs:hover,
-    input.inputs:active {
-        border-bottom: 1.5px solid #1565C0;
-    }
-
     /*Contact US Page Styling*/
     div.emailsupport {
         margin-left: 100px;
@@ -214,6 +201,9 @@
         transform: translateX(-50%);
 
     }
+
+    
+    
 }
 
 

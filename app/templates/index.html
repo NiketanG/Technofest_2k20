@@ -10,7 +10,7 @@
                     $(this).prop('Counter', 0).animate({
                         Counter: $(this).text()
                     }, {
-                        duration: 2000,
+                        duration: 3000,
                         easing: 'swing',
                         step: function (now) {
                             $(this).text(Math.ceil(now));
@@ -18,7 +18,7 @@
                     });
                 });
             $(".count_stats").addClass("already-visible");
-            $(".stats").fadeTo(1000, 1);
+            $(".stats").fadeTo(500, 1);
         }
 
         if (($(".time_left").isInViewport())) {
@@ -27,7 +27,7 @@
                     $(this).prop('Counter', 0).animate({
                         Counter: $(this).text()
                     }, {
-                        duration: 2000,
+                        duration: 3000,
                         easing: 'swing',
                         step: function (now) {
                             $(this).text(Math.ceil(now));

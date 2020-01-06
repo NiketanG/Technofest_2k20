@@ -27,7 +27,6 @@ def send_email(registration_dict, evlist):
     reg_info = vars(registration_dict)
     event_selected = int(reg_info['event_id']) - 1
     reg_info['event_name'] = evlist[event_selected][1]
-    redis_url = app.config['REDIS_URL']
     send_mail(reg_info)
 
 @main.route('/register/', methods=['POST', 'GET'])

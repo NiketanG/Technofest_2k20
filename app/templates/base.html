@@ -9,12 +9,14 @@
 
     {% assets filters="jsmin", output="gen/packed.js",
           "js/jquery.mini.js", "js/Script.js" %}
-          <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
 
     {% if title %}
     <title>{{ title }} - COMeIT</title>
     {% endif %}
+
+    
 
     {% block head %}{% endblock %}
 
@@ -24,8 +26,10 @@
         media="screen and (min-width: 600px) and (max-width: 949px)">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Styles_900px.css') }}"
         media="screen and (min-width: 950px)">
-    
+        
+
 </head>
+
 <body>
     <div class="loader">
         <div class="box">
@@ -45,12 +49,12 @@
                     <li class="item" onclick="window.location.href = '/events';">Events</li>
                     <li class="item" onclick="window.location.href = '/register';">Register</li>
                     <li class="item" onclick="window.location.href = '/contactus';">Contact Us</li>
-                    <li class="item" onclick="window.location.href = '/aboutus';">About Us</li> 
+                    <li class="item" onclick="window.location.href = '/aboutus';">About Us</li>
                     {% if current_user.is_authenticated %}
                     <li class="item" onclick="window.location.href = '/account';">{{ current_user.username }}</li>
                     {% else %}
                     <li class="item" onclick="window.location.href = '/login';">Login</li>
-                    {% endif %}                   
+                    {% endif %}
                     <li class="toggle" onclick="toggle()">
                         <div>
                             <img alt="Hamburger Menu Icon"
@@ -66,13 +70,13 @@
 
             {% with messages = get_flashed_messages() %}
             {% if messages %}
-            
-                {% for message in messages %}
-                <div class=flashes>
+
+            {% for message in messages %}
+            <div class=flashes>
                 {{ message }}
             </div>
-                {% endfor %}
-            
+            {% endfor %}
+
             {% endif %}
             {% endwith %}
 
@@ -90,11 +94,12 @@
                         target="_blank" rel="noopener">Niketan Gulekar</a> for COMeIT, Government Polytechnic Pune.
                     Copyright © 2019 All
                     rights
-                    reserved.<br>Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp"
-                        target="_blank" rel="noopener">Eucalyp</a> from <a href="https://www.flaticon.com/"
-                        title="Flaticon" target="_blank" rel="noopener">www.flaticon.com</a></div>
+                    reserved.<br></div>
             </footer>
         </div>
+        <script type="text/javascript">
+            document.body.className = 'ontouchstart' in document.documentElement ? '' : 'hover';
+        </script>
 </body>
 
 </html>

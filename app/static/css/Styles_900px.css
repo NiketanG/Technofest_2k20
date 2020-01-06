@@ -327,19 +327,6 @@
         height: 50px;
     }
 
-    input.registerbtn:hover,
-    input.registerbtn:active {
-        background-color: transparent;
-        border-color: white;
-        border-width: 1.5px;
-        color: white;
-    }
-
-    input.inputs:hover,
-    input.inputs:active {
-        border-bottom: 1.5px solid #1565C0;
-    }
-
     div.flashes {
         margin: 100px 0px -75px 0px; 
         border: 1px solid black; 
