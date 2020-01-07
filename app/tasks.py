@@ -14,10 +14,7 @@ def send_mail(registration_dict):
 
 def check_txn_status(paytmParams):
     # for Staging
-    url = "https://securegw.paytm.in/order/status"
-
-    # for Production
-    # url = "https://securegw.paytm.in/order/status"
+    url = app.config['PAYMENT_URL'] + str("status")
 
     # Generate checksum by parameters we have
     checksum = Checksum.generate_checksum(paytmParams, app.config['MERCHANT_KEY'])

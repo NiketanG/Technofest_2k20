@@ -24,7 +24,7 @@ class event_list:
         return f"{self.evlist}"
 
 def send_email(registration_dict, evlist):
-    reg_info = vars(registration_dict)
+    reg_info = registration_dict.__dict__
     event_selected = int(reg_info['event_id']) - 1
     reg_info['event_name'] = evlist[event_selected][1]
     send_mail(reg_info)
@@ -70,11 +70,8 @@ def register():
         # Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys
         checksum = Checksum.generate_checksum(
             paytmParams, app.config['MERCHANT_KEY'])
-        # for Staging
-        url = app.config['PAYMENT_URL']
 
-        # for Production
-        # url = "https://securegw.paytm.in/order/process"
+        url = app.config['PAYMENT_URL'] + str("process")
 
         registration = registrations(name=form.name.data,
                                      phno=form.phno.data,
