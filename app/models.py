@@ -18,7 +18,7 @@ def load_user(user_id):
 class events(db.Model):
     __tablename__ = 'events'
     event_id = db.Column(db.Integer, primary_key=True)
-    event_name = db.Column(db.String(20), nullable=True)
+    event_name = db.Column(db.String(40), nullable=True)
     amt_per_head = db.Column(db.Integer, nullable=False)
     solo = db.Column(db.Boolean, nullable=False, default=True)
     duo = db.Column(db.Boolean, nullable=False, default=True)
