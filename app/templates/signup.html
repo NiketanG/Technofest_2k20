@@ -16,64 +16,61 @@
         <p class="reg_header">
             {{ form.email.label }}
         </p>
-
-        {% if form.email.errors %}
-        <p class="validation">
-            {% for error in form.email.errors %}
-            {{ error }}
-            {% endfor %}
-            {% endif %}
+        {% for error in form.email.errors %}
+        <p class="validation_form">
+        {{ error }}
         </p>
+        {% endfor %}
+
         {{ form.email }}
 
         <p class="reg_header">
             {{ form.username.label }}
         </p>
 
-        {% if form.username.errors %}
-        <p class="validation">
-            {% for error in form.username.errors %}
-            {{ error }}
-            {% endfor %}
-            {% endif %}
+        {% for error in form.username.errors %}
+        <p class="validation_form">
+        {{ error }}
         </p>
+        {% endfor %}
         {{ form.username }}
 
         <p class="reg_header">
             {{ form.name.label }}
         </p>
-        {% if form.name.errors %}
-        <p class="validation">
-            {% for error in form.name.errors %}
-            {{ error }}
-            {% endfor %}
-            {% endif %}
+        {% for error in form.name.errors %}
+        <p class="validation_form">
+        {{ error }}
         </p>
+        {% endfor %}
         {{ form.name }}
 
         <p class="reg_header">
             {{ form.password.label }}
         </p>
-        {% if form.password.errors %}
-        <p class="validation">
-            {% for error in form.password.errors %}
-            {{ error }}
-            {% endfor %}
-            {% endif %}
+        {% for error in form.password.errors %}
+        <p class="validation_form">
+        {{ error }}
         </p>
+        {% endfor %}
         {{ form.password }}
 
         <p class="reg_header">
-                {{ form.confirm_password.label }}
-            </p>
-            {% if form.confirm_password.errors %}
-            <p class="validation">
-                {% for error in form.confirm_password.errors %}
-                {{ error }}
-                {% endfor %}
-                {% endif %}
-            </p>
-            {{ form.confirm_password }}
+            {{ form.confirm_password.label }}
+        </p>
+        {% for error in form.confirm_password.errors %}
+        <p class="validation_form">
+        {{ error }}
+        </p>
+        {% endfor %}
+
+        {{ form.confirm_password }}
+
+        <p class="reg_header">
+            {{ form.auth_code.label }}
+        </p>
+        
+        {{ form.auth_code }}
 
         {{ form.submit }}
         <br><br><br>

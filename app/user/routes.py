@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, redirect, url_for, flash, request, session
+from flask import render_template, Blueprint, redirect, url_for, flash, request, session, current_app as app
 from app.user.forms import SignUpForm,AccountForm,LoginForm
 from app.models import users, registrations, payments
 from flask_login import login_required,current_user, logout_user, login_user
@@ -7,20 +7,23 @@ user = Blueprint('user', __name__)
 from app import db, bcrypt
 
 @user.route('/signup', methods=['POST', 'GET'])
-@login_required
 def signup():
     form = SignUpForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(
             form.password.data).decode('utf-8')
-        user = users(username=form.username.data,
-                     name=form.name.data,
-                     email=form.email.data,
-                     password=hashed_password)
-        db.session.add(user)
-        db.session.commit()
-        flash('Your account has been created! You are now able to log in', 'success')
-        return redirect(url_for('user.login'))
+        auth_code = form.auth_code.data;
+        if (auth_code == app.config['AUTH_CODE']):
+            user = users(username=form.username.data,
+                        name=form.name.data,
+                        email=form.email.data,
+                        password=hashed_password)
+            db.session.add(user)
+            db.session.commit()
+            flash('Your account has been created! You are now able to log in', 'success')
+            return redirect(url_for('user.login'))
+        else:
+            flash('Invalid Authentication Code !  Contact Technical Secretaries or Developers.')
     else:
         print(form.errors)
     return render_template('signup.html', title='Sign Up', form=form)
