@@ -1,24 +1,24 @@
 import os
 
 class Config:
-    SECRET_KEY = os.getenv('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
+    SECRET_KEY = '57bde4dd-0da1-41dd-b5bc-38d5997d0fc1'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:comeit_db@localhost/comeit_db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 465
-    MAIL_USERNAME = os.getenv('MAIL_USERNAME')
-    MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
+    MAIL_USERNAME = 'nikegulekar@gmail.com'
+    MAIL_PASSWORD = 'xyofglsluyzlacbi'
     MAIL_USE_TLS = False
     MAIL_USE_SSL = True
-    MAIL_DEFAULT_SENDER = os.getenv('MAIL_DEFAULT_SENDER')
+    MAIL_DEFAULT_SENDER = 'nikegulekar@gmail.com'
 
-    MID = os.getenv('MID')
-    MERCHANT_KEY = os.getenv('MERCHANT_KEY')
-    CHANNEL_ID = os.getenv('CHANNEL_ID')
-    WEBSITE = os.getenv('WEBSITE')
-    PAYMENT_URL = os.getenv('PAYMENT_URL')
+    MID = 'LmKkyo30678627278847'
+    MERCHANT_KEY = 'qPi6D9SNG6faAdLn'
+    CHANNEL_ID = 'WEB'
+    WEBSITE = 'DEFAULT'
+    PAYMENT_URL = 'https://securegw.paytm.in/order/'
     BCRYPT_LOG_ROUNDS = 5
-    REDIS_URL = os.getenv('REDIS_URL')
+    REDIS_URL = 'redis://localhost:6379/0'
     QUEUES = ['default']
     
     #SESSION_COOKIE_SECURE=False
