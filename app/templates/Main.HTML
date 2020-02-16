@@ -215,7 +215,7 @@
         var e = $("#events").prop('selectedIndex');
         if (e > 0) {
             var event_selected = parseInt(e - 1);
-            var amt = list[event_selected][2] * parseInt(checkedrdbtn);
+            var amt = list[event_selected][2];
             $("#amount").show();
             $("#amount").html("Amount : Rs." + amt);
         }

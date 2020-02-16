@@ -15,16 +15,18 @@ from flask import current_app as app
 import redis
 from rq import Queue, Connection
 
+
+import traceback
+
 main = Blueprint('main', __name__)
 
 class event_list:
     def __init__(self):
-        self.evlist = db.session.query(events.event_id, events.event_name, events.amt_per_head, events.solo, events.duo, events.squad, events.team_5).all()
+        self.evlist = db.session.query(events.event_id, events.event_name, events.amt, events.solo, events.duo, events.squad, events.team_5).all()
     def __repr__(self):
         return f"{self.evlist}"
 
 def send_email(registration_dict, evlist):
-    
     try:
         reg_info = registration_dict.__dict__
         event_selected = int(reg_info['event_id']) - 1
@@ -32,7 +34,8 @@ def send_email(registration_dict, evlist):
         send_mail(reg_info)
     except Exception as e:
         print(e)
-
+        traceback.print_exc()
+    
 @main.route('/register/', methods=['POST', 'GET'])
 @main.route('/register', methods=['POST', 'GET'])
 def register():
@@ -55,7 +58,7 @@ def register():
                                   form.phno.data.encode()).hexdigest())
         ev_selected = int(form.event.data) - 1
         TXN_AMOUNT = (int([amt for ev_id, ev_name, amt, solo, duo,
-                           squad, team_5 in evlist][ev_selected]))*int(form.radio_team.data)
+                           squad, team_5 in evlist][ev_selected]))
         # initialize a dictionary
         paytmParams = dict()
         paytmParams = {
@@ -104,15 +107,18 @@ def register():
                     db.session.add(registration)
                     db.session.commit()
                     flash('Registration Successful')
+                    print('Offline Registration Done')
                     try:
-                        send_email(registration_dict,evlist)
+                        #send_email(registration_dict,evlist)
                         flash('An Email consisting of Registration Details has been sent to the specified email address')
                     except Exception as error:
                         print(error)
+                        traceback.print_exc()
                 except Exception as error:
                     db.session.rollback()
                     flash('Registration Failed')
                     print(error)
+                    traceback.print_exc()
                 
                 return redirect(url_for('.success', order_id = registration_dict['order_id'], user_id = registration_dict['cust_id'] ))
                 
@@ -120,6 +126,7 @@ def register():
                 return render_template('/paymentform.html', registration=registration_dict, paytmParams=paytmParams, url=url, checksum=checksum)
         except Exception as error:
             print(error)
+            traceback.print_exc()
             
     return render_template('/Main.HTML', title='Registrations', form=form, evlist=evlist)
 
@@ -131,6 +138,7 @@ def success():
 
     if (not(Order_ID == False or User_ID == False)):
         registration_dict = db.session.query(registrations).filter_by(order_id=Order_ID, cust_id=User_ID).first()
+
         send_email(registration_dict, evlist)
     else:
         flash('No Order_ID or User_ID was provided')
@@ -198,6 +206,8 @@ def payment():
     isValidChecksum = Checksum.verify_checksum(
         paytmParams, app.config['MERCHANT_KEY'], paytmChecksum)
     
+    print("Checksum : " + str(isValidChecksum))
+
     payment = payments(txn_id=paytmParams['TXNID'],
                        order_id=paytmParams['ORDER_ID'], 
                        txn_amount=paytmParams['TXNAMOUNT'], 
@@ -208,14 +218,18 @@ def payment():
     try:
         db.session.add(payment)
         db.session.commit()
+        print('Payment Details Added')
     except Exception as error:
         print(error)
+        traceback.print_exc()
 
     TxnCheck = check_txn_status(paytmParams)
+    print("TxnCheck" + str(TxnCheck))
 
     if (paytmParams["STATUS"] == "TXN_SUCCESS") and (TxnCheck):
         paid = True
         registration.paid = True
+        print('Paid')
     elif paytmParams["STATUS"] == "PENDING":
         if check_pending_transaction(paytmParams):
             paid = True
@@ -228,16 +242,20 @@ def payment():
         try:
             db.session.add(registration)
             db.session.commit()
+
+            print('Registration Done')
             flash('Registration Successful')
             try:
-                send_email(registration_dict,evlist)
+                #send_email(registration_dict,evlist)
                 flash('An Email consisting of Registration Details has been sent to the specified email address')
             except Exception as error:
                 print(error)
+                traceback.print_exc()
         except Exception as error:
             db.session.rollback()
             flash('Registration Failed')
             print(error)
+            traceback.print_exc()
     else:
         flash('Registration Failed')
 

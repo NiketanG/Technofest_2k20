@@ -19,18 +19,18 @@ class events(db.Model):
     __tablename__ = 'events'
     event_id = db.Column(db.Integer, primary_key=True)
     event_name = db.Column(db.String(40), nullable=True)
-    amt_per_head = db.Column(db.Integer, nullable=False)
+    amt = db.Column(db.Integer, nullable=False, default=50)
     solo = db.Column(db.Boolean, nullable=False, default=True)
     duo = db.Column(db.Boolean, nullable=False, default=True)
     squad = db.Column(db.Boolean, nullable=False, default=True)
     team_5 = db.Column(db.Boolean, nullable=False, default=False)
 
     def __repr__(self):
-        return f"events({self.event_id}, '{self.event_name}', {self.amt_per_head}, {self.solo}, {self.duo}, {self.squad}, , {self.team_5})"
+        return f"events({self.event_id}, '{self.event_name}', {self.amt}, {self.solo}, {self.duo}, {self.squad}, , {self.team_5})"
     
-    def __init__(self, event_name, amt_per_head, solo, duo, squad, team_5):
+    def __init__(self, event_name, amt, solo, duo, squad, team_5):
         self.event_name = event_name
-        self.amt_per_head = amt_per_head
+        self.amt = amt
         self.solo = solo
         self.duo = duo
         self.squad = squad
@@ -40,7 +40,7 @@ class events(db.Model):
         return {
             self.event_id,
             self.event_name,
-            self.amt_per_head,
+            self.amt,
             self.solo,
             self.duo,
             self.squad,
