@@ -134,8 +134,6 @@ def success():
     Order_ID = request.args.get('order_id', False)
     User_ID = request.args.get('user_id', False)
     evlist = session['evlist']
-    print(evlist)
-
 
     if (not(Order_ID == False or User_ID == False)):
         registration_dict = db.session.query(registrations).filter_by(order_id=Order_ID, cust_id=User_ID).first()
@@ -174,7 +172,7 @@ def payment():
     ev_list = event_list()
     evlist = vars(ev_list)
     evlist = [val for evlist in evlist.values() for val in evlist]
-    
+
     received_data = {
         "MID": request.form.get("MID", 'Null'),
         "TXNID": request.form.get("TXNID", 'Null'),
@@ -204,6 +202,8 @@ def payment():
     #possible error
     registration_dict = session.get('reg_info')
     registration = registrations(**registration_dict)
+
+    print(registration)
 
     isValidChecksum = Checksum.verify_checksum(
         paytmParams, app.config['MERCHANT_KEY'], paytmChecksum)
