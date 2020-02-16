@@ -301,7 +301,7 @@ div.stats {
 }
 
 .stats div {
-    width: 30%;
+    width: 49%;
     text-align: center;
     display: inline-block;
     padding: 0;
@@ -315,10 +315,11 @@ div.stats h2 {
     letter-spacing: 10px;
 }
 
-.stats div:not(:last-child) {
+
+
+.stats div:nth-child(2n) {
     border-right: #999 solid 1px;
 }
-
 .stats div img {
     width: 48px;
 }

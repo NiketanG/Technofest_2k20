@@ -71,7 +71,11 @@
 
     .stats div {
         float: left;
-        width: 33.33%;
+        width: 24.99%;
+    }
+
+    .stats div:not(:last-child) {
+        border-right: #999 solid 1px;
     }
 
     .stats div img {
