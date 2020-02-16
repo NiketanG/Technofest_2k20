@@ -19,15 +19,19 @@ main = Blueprint('main', __name__)
 
 class event_list:
     def __init__(self):
-        self.evlist = db.session.query(events.event_id, events.event_name, events.amt_per_head, events.solo, events.duo, events.squad).all()
+        self.evlist = db.session.query(events.event_id, events.event_name, events.amt_per_head, events.solo, events.duo, events.squad, events.team_5).all()
     def __repr__(self):
         return f"{self.evlist}"
 
 def send_email(registration_dict, evlist):
-    reg_info = registration_dict.__dict__
-    event_selected = int(reg_info['event_id']) - 1
-    reg_info['event_name'] = evlist[event_selected][1]
-    send_mail(reg_info)
+    
+    try:
+        reg_info = registration_dict.__dict__
+        event_selected = int(reg_info['event_id']) - 1
+        reg_info['event_name'] = evlist[event_selected][1]
+        send_mail(reg_info)
+    except Exception as e:
+        print(e)
 
 @main.route('/register/', methods=['POST', 'GET'])
 @main.route('/register', methods=['POST', 'GET'])
@@ -35,7 +39,7 @@ def register():
     ev_list = event_list()
     evlist = vars(ev_list)
     evlist = [val for evlist in evlist.values() for val in evlist]
-    list = [(str(ev_id), ev_name) for ev_id, ev_name, ev_amt, ev_solo, ev_duo, ev_squad in evlist]
+    list = [(str(ev_id), ev_name) for ev_id, ev_name, ev_amt, ev_solo, ev_duo, ev_squad, ev_team_5 in evlist]
     set_evlist(list)
     session['evlist'] = evlist
 
@@ -51,7 +55,7 @@ def register():
                                   form.phno.data.encode()).hexdigest())
         ev_selected = int(form.event.data) - 1
         TXN_AMOUNT = (int([amt for ev_id, ev_name, amt, solo, duo,
-                           squad in evlist][ev_selected]))*int(form.radio_team.data)
+                           squad, team_5 in evlist][ev_selected]))*int(form.radio_team.data)
         # initialize a dictionary
         paytmParams = dict()
         paytmParams = {

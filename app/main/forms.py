@@ -39,7 +39,8 @@ class RegistrationForm(FlaskForm):
     radio_team = RadioField('No. of Participants : ', [DataRequired()],
                             choices=[('1', 'Solo ( 1 )'),
                                      ('2', 'Duo ( 2 )'),
-                                     ('4', 'Squad ( 4 )')], default='1', render_kw={"id": "radio_team"})
+                                     ('4', 'Squad ( 4 )'),
+                                     ('5', 'Team ( 5 )')], default='1', render_kw={"id": "radio_team"})
 
     GrpName = StringField('Group Name : ', render_kw={
                           "placeholder": "Gryffindor", "class": "inputs grp", "id": "GrpName",  "maxlength": "20"})

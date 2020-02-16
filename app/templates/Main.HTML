@@ -146,6 +146,8 @@
         var solo_enabled = list[event_selected][3]
         var duo_enabled = list[event_selected][4]
         var squad_enabled = list[event_selected][5]
+        var team_enabled = list[event_selected][6]
+
         if (solo_enabled) {
             $("div.radio:eq(0)").show();
         }
@@ -164,17 +166,24 @@
         else {
             $("div.radio:eq(2)").hide();
         }
+        if (team_enabled) {
+            $("div.radio:eq(3)").show();
+        }
+        else {
+            $("div.radio:eq(3)").hide();
+        }
         validate_team();
     }
 
     function validate_team() {
         var checkedrdbtn = parseInt(document.querySelector('input[name="radio_team"]:checked').value);
-        for (let i = 1; i <= 4; i++) {
+        for (let i = 1; i <= 5; i++) {
             if (i == 3) {
                 continue;
             }
             if (!($("input[name=radio_team][value=" + i + "]").is(":hidden"))) {
                 $("input[name=radio_team][value=" + i + "]").prop("checked",true)
+                setgrp();
                 break;
             }
         }
@@ -197,7 +206,6 @@
             $(".grp").show();
             $("#GrpName").attr("disabled", false);
         }
-        
         set_amount();
     }
 

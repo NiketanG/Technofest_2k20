@@ -167,12 +167,14 @@
     </tr>
 </table>
 
-
-
 {% else %}
 <h2 class="heading">ERROR</h2>
 <br>
 <p class="sub heading">There was an error. Registration with the provided Order_ID and User_ID was not found.</p>
+
+<p class="sub heading">ORDER ID : {{ registration['order_id'] }}</p>
+
+
 {% endif %}
 
 <br><br><br>

@@ -60,8 +60,9 @@ def create_events():
         solo = int(input("SOLO Participation : (1 or 0) : "))
         duo = int(input("DUO Participation : (1 or 0) : "))
         squad = int(input("SQUAD Participation : (1 or 0) : "))
-        
-        event = events(event_name=event_name,amt_per_head=amt_per_head,solo=solo,duo=duo,squad=squad)
+        team_5 = int(input("Team Participation (5 Players): (1 or 0) : "))
+
+        event = events(event_name=event_name,amt_per_head=amt_per_head,solo=solo,duo=duo,squad=squad, team_5=team_5)
         db.session.add(event)
         db.session.commit()
 
