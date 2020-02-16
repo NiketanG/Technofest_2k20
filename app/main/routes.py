@@ -20,7 +20,7 @@ main = Blueprint('main', __name__)
 
 class event_list:
     def __init__(self):
-        self.evlist = db.session.query(events.event_id, events.event_name, events.amt, events.solo, events.duo, events.squad, events.team_5).all()
+        self.evlist = db.session.query(events.event_id, events.event_name, events.amt, events.solo, events.duo, events.squad, events.team_5).order_by(events.event_id).all()
     def __repr__(self):
         return f"{self.evlist}"
 
@@ -29,7 +29,7 @@ def send_email(registration_dict, evlist):
         reg_info = registration_dict.__dict__
         event_selected = int(reg_info['event_id']) - 1
         reg_info['event_name'] = evlist[event_selected][1]
-        send_mail(reg_info)
+        #send_mail(reg_info)
     except Exception as e:
         print(e)
         traceback.print_exc()
@@ -133,6 +133,8 @@ def success():
     Order_ID = request.args.get('order_id', False)
     User_ID = request.args.get('user_id', False)
     evlist = session['evlist']
+    print(evlist)
+
 
     if (not(Order_ID == False or User_ID == False)):
         registration_dict = db.session.query(registrations).filter_by(order_id=Order_ID, cust_id=User_ID).first()
