@@ -104,6 +104,7 @@ def register():
 
                     db.session.add(registration)
                     db.session.commit()
+
                     flash('Registration Successful')
                     print('Offline Registration Done')
                     try:
@@ -200,6 +201,7 @@ def payment():
         else:
             paytmParams[key] = value
     
+    #possible error
     registration_dict = session.get('reg_info')
     registration = registrations(**registration_dict)
 
@@ -238,7 +240,8 @@ def payment():
         paid = False
         registration.paid = False
 
-    if isValidChecksum and paid:
+    #if isValidChecksum and paid:
+    if paid:
         try:
             db.session.add(registration)
             db.session.commit()
