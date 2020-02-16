@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flask_compress import Compress
 from flask_caching import Cache
-from flask_assets import Environment, Bundle
+#from flask_assets import Environment, Bundle
 
 import rq
 from redis import Redis
@@ -19,7 +19,7 @@ login_manager.login_view = 'user.login'
 mail = Mail()
 compress = Compress()
 cache = Cache(config={'CACHE_TYPE': 'simple'})
-assets = Environment()
+#assets = Environment()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -32,7 +32,7 @@ def create_app(config_class=Config):
     mail.init_app(app)
     compress.init_app(app)
     cache.init_app(app)
-    assets.init_app(app)
+    #assets.init_app(app)
     
     from app.user.routes import user
     from app.main.routes import main

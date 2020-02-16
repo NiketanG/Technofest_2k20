@@ -7,16 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    {% assets filters="jsmin", output="gen/packed.js",
-          "js/jquery.mini.js", "js/Script.js" %}
-    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-    {% endassets %}
+  
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.mini.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/Script.js') }}"></script>
 
     {% if title %}
     <title>{{ title }} - COMeIT</title>
     {% endif %}
-
-    
 
     {% block head %}{% endblock %}
 
