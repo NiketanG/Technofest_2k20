@@ -14,8 +14,6 @@ from app.tasks import send_mail, check_pending_transaction, check_txn_status
 from flask import current_app as app
 import redis
 from rq import Queue, Connection
-
-
 import traceback
 
 main = Blueprint('main', __name__)
