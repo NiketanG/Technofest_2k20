@@ -29,7 +29,7 @@ def send_email(registration_dict, evlist):
         reg_info = registration_dict.__dict__
         event_selected = int(reg_info['event_id']) - 1
         reg_info['event_name'] = evlist[event_selected][1]
-        #send_mail(reg_info)
+        send_mail(reg_info)
     except Exception as e:
         print(e)
         traceback.print_exc()
