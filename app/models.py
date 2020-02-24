@@ -23,18 +23,21 @@ class events(db.Model):
     solo = db.Column(db.Boolean, nullable=False, default=True)
     duo = db.Column(db.Boolean, nullable=False, default=True)
     squad = db.Column(db.Boolean, nullable=False, default=True)
-    team_5 = db.Column(db.Boolean, nullable=False, default=False)
+    team = db.Column(db.Boolean, nullable=False, default=False)
+    team_participants = db.Column(db.Integer, nullable=True)
 
     def __repr__(self):
-        return f"events({self.event_id}, '{self.event_name}', {self.amt}, {self.solo}, {self.duo}, {self.squad}, , {self.team_5})"
+        return f"events({self.event_id}, '{self.event_name}', {self.amt}, {self.solo}, {self.duo}, {self.squad}, {self.team}, {self.team_participants})"
     
-    def __init__(self, event_name, amt, solo, duo, squad, team_5):
+    def __init__(self, event_name, amt, solo, duo, squad, team, team_participants):
         self.event_name = event_name
         self.amt = amt
         self.solo = solo
         self.duo = duo
         self.squad = squad
-        self.team_5 = team_5
+        self.team = team
+        self.team_participants = team_participants
+
 
     def serialize(self):
         return {
@@ -44,7 +47,8 @@ class events(db.Model):
             self.solo,
             self.duo,
             self.squad,
-            self.team_5
+            self.team,
+            self.team_participants
         }
 
 class registrations(db.Model):

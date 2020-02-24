@@ -20,7 +20,7 @@ main = Blueprint('main', __name__)
 
 class event_list:
     def __init__(self):
-        self.evlist = db.session.query(events.event_id, events.event_name, events.amt, events.solo, events.duo, events.squad, events.team_5).order_by(events.event_id).all()
+        self.evlist = db.session.query(events.event_id, events.event_name, events.amt, events.solo, events.duo, events.squad, events.team, events.team_participants).order_by(events.event_id).all()
     def __repr__(self):
         return f"{self.evlist}"
 
@@ -40,7 +40,7 @@ def register():
     ev_list = event_list()
     evlist = vars(ev_list)
     evlist = [val for evlist in evlist.values() for val in evlist]
-    list = [(str(ev_id), ev_name) for ev_id, ev_name, ev_amt, ev_solo, ev_duo, ev_squad, ev_team_5 in evlist]
+    list = [(str(ev_id), ev_name) for ev_id, ev_name, ev_amt, ev_solo, ev_duo, ev_squad, ev_team, ev_team_participants in evlist]
     set_evlist(list)
     session['evlist'] = evlist
 
@@ -56,7 +56,7 @@ def register():
                                   form.phno.data.encode()).hexdigest())
         ev_selected = int(form.event.data) - 1
         TXN_AMOUNT = (int([amt for ev_id, ev_name, amt, solo, duo,
-                           squad, team_5 in evlist][ev_selected]))
+                           squad, team, team_participants in evlist][ev_selected]))
         # initialize a dictionary
         paytmParams = dict()
         paytmParams = {

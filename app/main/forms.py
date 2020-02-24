@@ -17,10 +17,18 @@ from app import db
 from app.models import events
 
 list = list()
+ev_participants = []
+
 def set_evlist(eventlist):
     list.clear()
     list.insert(0, ('0', 'Select Event :'))
     list.extend(eventlist)
+    ev_participants.clear()
+    prt = events.query.filter(events.team_participants!=None).all()
+    ev_participants.extend([('1', 'Solo ( 1 )'), ('2', 'Duo ( 2 )'), ('4', 'Squad ( 4 )')])
+    for row in prt:
+        row = row.__dict__
+        ev_participants.append((str(row["team_participants"]), "Team ("+ str(row["team_participants"]) +")"))
 
 class RegistrationForm(FlaskForm):   
     name = StringField('Name : ', [DataRequired("Name cannot be left blank")], render_kw={"placeholder": "Severus Snape", "id": "name", "maxlength": "25"})
@@ -37,10 +45,7 @@ class RegistrationForm(FlaskForm):
     event = SelectField('Event to participate in : ', [DataRequired()], choices=list, render_kw={"id": "events"})
 
     radio_team = RadioField('No. of Participants : ', [DataRequired()],
-                            choices=[('1', 'Solo ( 1 )'),
-                                     ('2', 'Duo ( 2 )'),
-                                     ('4', 'Squad ( 4 )'),
-                                     ('5', 'Team ( 5 )')], default='1', render_kw={"id": "radio_team"})
+                            choices=ev_participants, default='1', render_kw={"id": "radio_team"})
 
     GrpName = StringField('Group Name : ', render_kw={
                           "placeholder": "Gryffindor", "class": "inputs grp", "id": "GrpName",  "maxlength": "20"})
