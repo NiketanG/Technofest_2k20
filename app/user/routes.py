@@ -1,6 +1,7 @@
 from flask import render_template, Blueprint, redirect, url_for, flash, request, session, current_app as app
 from app.user.forms import SignUpForm,AccountForm,LoginForm
-from app.models import users, registrations, payments
+from app.main.forms import set_evlist
+from app.models import users, registrations, payments, events
 from flask_login import login_required,current_user, logout_user, login_user
 
 user = Blueprint('user', __name__)
@@ -75,12 +76,24 @@ def logout():
     flash('You have been successfully logged out')
     return redirect(url_for('user.login'))
 
+class event_list:
+    def __init__(self):
+        self.evlist = db.session.query(events.event_id, events.event_name, events.amt, events.solo, events.duo, events.squad, events.team, events.team_participants).order_by(events.event_id).all()
+    def __repr__(self):
+        return f"{self.evlist}"
+
 @user.route('/list/<table>')
 @login_required
 def list(table):
     if table == "registrations":
+        ev_list = event_list()
+        evlist = vars(ev_list)
+        evlist = [val for evlist in evlist.values() for val in evlist]
+        list = [(str(ev_id), ev_name) for ev_id, ev_name, ev_amt, ev_solo, ev_duo, ev_squad, ev_team, ev_team_participants in evlist]
+        set_evlist(list)
+        session['evlist'] = evlist
         rows = registrations.query.all()
-        return render_template("list_registrations.html", rows=rows)
+        return render_template("list_registrations.html", rows=rows, evlist=evlist)
     elif table == "payments":
         rows = payments.query.all()
         return render_template("list_payments.html", rows=rows)

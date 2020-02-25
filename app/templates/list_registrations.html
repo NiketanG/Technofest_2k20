@@ -43,6 +43,7 @@
    <script>
       var search_col = 0
       var input, filter, table, tr, td, i, txtValue;
+      var list = {{ evlist| tojson }};
 
       function set_search_col(n) {
          search_col = n
@@ -180,25 +181,27 @@
             <th onclick="sortTable(2)">Phone No</th>
             <th onclick="sortTable(3)">Email Address</th>
             <th onclick="sortTable(4)">College Name</th>
-            <th onclick="sortTable(5)">EventID</th>
-            <th onclick="sortTable(6)">Team</th>
-            <th onclick="sortTable(7)">Group name</th>
-            <th onclick="sortTable(8)">User</th>
-            <th onclick="sortTable(9)">Date Registered</th>
-            <th onclick="sortTable(10)">Order_ID</th>
-            <th onclick="sortTable(11)">Cust_id</th>
-            <th onclick="sortTable(12)">Amt</th>
-            <th onclick="sortTable(13)">Payment Mode</th>
+            <th onclick="sortTable(5)">Event ID</th>
+            <th onclick="sortTable(6)">Event Name</th>
+            <th onclick="sortTable(7)">Team</th>
+            <th onclick="sortTable(8)">Group name</th>
+            <th onclick="sortTable(9)">User</th>
+            <th onclick="sortTable(10)">Date Registered</th>
+            <th onclick="sortTable(11)">Order_ID</th>
+            <th onclick="sortTable(12)">Cust_id</th>
+            <th onclick="sortTable(13)">Amt</th>
+            <th onclick="sortTable(14)">Payment Mode</th>
          </tr>
 
          {% for row in rows %}
          <tr>
-            <td>{{row["reg_id"]}}</td>
-            <td>{{row["name"]}}</td>
-            <td>{{row["phno"]}}</td>
+            <td>{{ row["reg_id"]}}</td>
+            <td>{{ row["name"]}}</td>
+            <td>{{ row["phno"]}}</td>
             <td> {{ row["email"]}}</td>
-            <td>{{row["clgname"]}}</td>
-            <td>{{row["event_id"]}}</td>
+            <td>{{ row["clgname"]}}</td>
+            <td>{{ row["event_id"] }}</td>
+            <td>{{ evlist[row["event_id"]-1][1] }}</td>
             <td> {{ row["team"]}}</td>
             <td> {{ row["grpname"]}}</td>
             <td> {{ row["user"]}}</td>

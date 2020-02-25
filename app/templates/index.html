@@ -35,9 +35,9 @@
                     });
                 });
             $(".time_left").addClass("already-visible");
-            $(".text").fadeTo(2000, 1);
+            
         }
-
+        $(".text").fadeTo(2000, 1);
     });
 </script>
 
@@ -59,7 +59,8 @@
     <div class="text" style="opacity: 0;">
         <h3>COMEIT PRESENTS</h3>
         <h1>TECHNOFEST 2020</h1>
-        <p>A multi day technical celebration to empower the young talents<br><br>Organized by Students, For Students.</p>
+        <p>A multi day technical celebration to empower the young talents<br><br>Organized by Students, For Students.
+        </p>
         <h1 id="coming_soon">COMING SOON</h1>
         <div class="countdown">
             <div class="months">
@@ -76,7 +77,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <!--
@@ -114,7 +114,7 @@
         <p>Participants</p>
     </div>
     <div class="crowd">
-        <img src="{{ url_for('static', filename='img/crowd.svg') }}" alt="crowd"/>
+        <img src="{{ url_for('static', filename='img/crowd.svg') }}" alt="crowd" />
         <h3 class="count_stats">3000</h3>
         <p>Crowd</p>
     </div>

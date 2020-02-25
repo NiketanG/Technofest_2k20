@@ -91,8 +91,12 @@ function toggle() {
 
 // Set the date we're counting down to
 var countDownDate = new Date("Mar 6, 2020 09:30:00").getTime();
+
 // Get today's date and time
 var now = new Date().getTime();
+
+var x = setInterval(set_counter, 1000);
+
 
 function set_counter() {
     // Find the distance between now and the count down date
@@ -107,10 +111,11 @@ function set_counter() {
     // If the count down is finished, write some text
     if (distance < 0) {
         clearInterval(x);
+        $(".countdown").hide();
+        $("#coming_soon").html("LIVE NOW");
     }
 }
 // Update the count down every 1 minute
-setInterval(set_counter, 1000);
 
 $(document).ready(function () {
     $("ul").hover(function () {
