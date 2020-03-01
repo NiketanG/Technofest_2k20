@@ -149,7 +149,6 @@
         var team_enabled = list[event_selected][6]
         var team_participants = list[event_selected][7]
 
-        
         if (solo_enabled) {
             $("div.radio:eq(0)").show();
         }
@@ -173,8 +172,9 @@
                 $("input[type='radio'][value='5']").parent().show()    
                 $("input[type='radio'][value='7']").parent().hide()
             } else if (team_participants == 7){
-                $("input[type='radio'][value='5']").parent().show()
+                $("input[type='radio'][value='5']").parent().hide()
                 $("input[type='radio'][value='7']").parent().show()
+                $("input[type='radio'][value='7']").prop("checked", true)
             }
 
         } else {
@@ -182,6 +182,8 @@
             $("input[type='radio'][value='5']").parent().hide()
         }
         validate_team();
+        setgrp();
+        
     }
 
     function set_participants(){
