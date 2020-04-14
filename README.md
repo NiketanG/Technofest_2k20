@@ -1,6 +1,9 @@
 # COMeIT_RegistrationApp
 Web App for the registration of COMeIT's events in Government Polytechnic, Pune.
 
+Demo at : bit.ly/technofest2k20
+
+
 
 # How to run:
 Requires Python v3. Replace python3 and pip3 with py or python and pip, if necessary.
