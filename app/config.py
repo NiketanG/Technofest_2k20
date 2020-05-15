@@ -1,28 +1,25 @@
 import os
 
 class Config:
-    SECRET_KEY = '57bde4dd-0da1-41dd-b5bc-38d5997d0fc1'
+    SECRET_KEY = os.getenv('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
-    #'postgresql://postgres:N!kketanGT16@localhost/comeit_db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    MAIL_SERVER = 'smtp.gmail.com'
-    MAIL_PORT = 465
-    MAIL_USERNAME = 'comeit2k19@gmail.com'
-    MAIL_PASSWORD = 'COMeIT2k19'
-    MAIL_USE_TLS = False
-    MAIL_USE_SSL = True
-    MAIL_DEFAULT_SENDER = 'comeit2k19@gmail.com'
+    MAIL_SERVER = os.getenv('MAIL_SERVER')
+    MAIL_PORT = os.getenv('MAIL_PORT')
+    MAIL_USERNAME = os.getenv('MAIL_USERNAME')
+    MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
+    MAIL_USE_TLS = os.getenv('MAIL_USE_TLS')
+    MAIL_USE_SSL = os.getenv('MAIL_USE_SSL')
+    MAIL_DEFAULT_SENDER = os.getenv('MAIL_DEFAULT_SENDER')
 
-    MID = 'LmKkyo30678627278847'
-    MERCHANT_KEY = 'qPi6D9SNG6faAdLn'
-    CHANNEL_ID = 'WEB'
-    WEBSITE = 'DEFAULT'
-    PAYMENT_URL = 'https://securegw.paytm.in/order/'
-    BCRYPT_LOG_ROUNDS = 5
-    REDIS_URL = 'redis://localhost:6379/0'
-    QUEUES = ['default']
+    MID = os.getenv('MID')
+    MERCHANT_KEY = os.getenv('MERCHANT_KEY')
+    CHANNEL_ID = os.getenv('CHANNEL_ID')
+    WEBSITE = os.getenv('WEBSITE')
+    PAYMENT_URL = os.getenv('PAYMENT_URL')
+    BCRYPT_LOG_ROUNDS = os.getenv('BCRYPT_LOG_ROUNDS')
+    REDIS_URL = os.getenv('REDIS_URL')
+    QUEUES = os.getenv('QUEUES')
     
-    AUTH_CODE = 'COMeIT_TF_2020'
-    #SESSION_COOKIE_SECURE=False
+    AUTH_CODE = os.getenv('AUTH_CODE')
     SESSION_COOKIE_HTTPONLY=True
-    #PERMANENT_SESSION_LIFETIME=6
