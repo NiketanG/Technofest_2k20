@@ -1,7 +1,7 @@
 # COMeIT_RegistrationApp
 Web App for the registration of COMeIT's events in Government Polytechnic, Pune.
 
-Demo at : bit.ly/technofest2k20
+Demo at : [https://bit.ly/technofest2k20]{https://bit.ly/technofest2k20}
 
 
 
