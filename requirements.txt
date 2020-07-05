@@ -31,7 +31,7 @@ python-dateutil==2.8.1
 python-dotenv==0.13.0
 python-editor==1.0.4
 pytz==2020.1
-redis==3.5.2
+redis==3.5.3
 requests==2.23.0
 rq==1.4.3
 six==1.14.0
