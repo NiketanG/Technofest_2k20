@@ -17,7 +17,7 @@ class Config:
     CHANNEL_ID = os.getenv('CHANNEL_ID')
     WEBSITE = os.getenv('WEBSITE')
     PAYMENT_URL = os.getenv('PAYMENT_URL')
-    BCRYPT_LOG_ROUNDS = os.getenv('BCRYPT_LOG_ROUNDS')
+    BCRYPT_LOG_ROUNDS = int(os.getenv('BCRYPT_LOG_ROUNDS'))
     REDIS_URL = os.getenv('REDIS_URL')
     QUEUES = os.getenv('QUEUES')
     
