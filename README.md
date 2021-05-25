@@ -20,8 +20,8 @@ pip install -r requirements.txt
 ```
 ###### Configure the Environment Variables
 #
-> SECRET_KEY
 ```
+SECRET_KEY
 SQLALCHEMY_DATABASE_URI
 MAIL_SERVER
 MAIL_PORT
