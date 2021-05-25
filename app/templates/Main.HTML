@@ -2,6 +2,7 @@
 
 {% block head %}
 
+<title>Register - COMeIT</title>
 <script language="javascript" type="text/javascript">
     $(document).ready(function () {
         selectlist();
@@ -142,12 +143,12 @@
     }
 
     function event_list_team(event_selected) {
-        var list = {{ evlist| tojson }};
-        var solo_enabled = list[event_selected][3]
-        var duo_enabled = list[event_selected][4]
-        var squad_enabled = list[event_selected][5]
-        var team_enabled = list[event_selected][6]
-        var team_participants = list[event_selected][7]
+        var list = {{ evlist|tojson }};
+        var solo_enabled = list[event_selected].solo
+        var duo_enabled = list[event_selected].duo
+        var squad_enabled = list[event_selected].squad
+        var team_enabled = list[event_selected].team
+        var team_participants = list[event_selected].team_participants
 
         if (solo_enabled) {
             $("div.radio:eq(0)").show();
@@ -226,11 +227,11 @@
 
     function set_amount() {
         var checkedrdbtn = document.querySelector('input[name="radio_team"]:checked').value;
-        var list = {{ evlist| tojson }};
+        var list = {{ evlist|tojson }};
         var e = $("#events").prop('selectedIndex');
         if (e > 0) {
             var event_selected = parseInt(e - 1);
-            var amt = list[event_selected][2];
+            var amt = list[event_selected].amt
             $("#amount").show();
             $("#amount").html("Amount : Rs." + amt);
         }

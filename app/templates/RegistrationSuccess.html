@@ -1,20 +1,18 @@
 {% extends "base.html" %}
 
 {% block head %}
+<title>Registration Success - COMeIT</title>
 <script>
-    /*if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }*/
+   
     $(document).ready(function () {
         set_event();
         set_fields()
     });
 
     function set_event() {
-        var list = {{ evlist| tojson
-    }};
+        var list = {{ evlist|tojson}};
     var event_id = {{ registration['event_id'] }} - 1;
-    event_selected = list[event_id][1];
+    event_selected = list[event_id].event_name;
     $("#event_name").html(event_selected);
 }
 
@@ -178,6 +176,7 @@
 {% endif %}
 
 <br><br><br>
-<p class="sub heading">In case of any errors/issues: Reach out to <a href="mailto:nikegulekar@gmail.com">Niketan Gulekar</a> - 8381075093 / 9518543727 along with a Screenshot of Payment/Registration Status & Details and we'll be happy to assist you. </p>
+<p class="sub heading">In case of any errors/issues: Reach out to <a href="mailto:nikegulekar@gmail.com">Niketan Gulekar</a> - <a href="tel:+918381075093">+918381075093</a> / <a href="tel:+919518543727">+919518543727</a>
+     along with a Screenshot of Payment/Registration Status & Details and we'll be happy to assist you. </p>
 
 {% endblock%}

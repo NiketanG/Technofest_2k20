@@ -12,11 +12,11 @@
     });
 
     function set_event() {
-        var list = {{ evlist| tojson }};
-    var event_id = {{ registration['event_id'] }} - 1;
-    event_selected = list[event_id][1];
-    $("#event_name").html(event_selected);
-}
+        var list = {{ evlist|tojson}};
+        var event_id = {{ registration['event_id'] }} - 1;
+        event_selected = list[event_id].event_name;
+        $("#event_name").html(event_selected);
+    }
 
     function set_fields() {
         grpname = $("#grpname").html();

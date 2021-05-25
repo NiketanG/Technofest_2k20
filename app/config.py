@@ -1,5 +1,6 @@
 import os
 
+
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
@@ -17,9 +18,10 @@ class Config:
     CHANNEL_ID = os.getenv('CHANNEL_ID')
     WEBSITE = os.getenv('WEBSITE')
     PAYMENT_URL = os.getenv('PAYMENT_URL')
+    PAYMENT_URL_STAGING = os.getenv('PAYMENT_URL_STAGING')
     BCRYPT_LOG_ROUNDS = int(os.getenv('BCRYPT_LOG_ROUNDS'))
     REDIS_URL = os.getenv('REDIS_URL')
     QUEUES = os.getenv('QUEUES')
-    
+
     AUTH_CODE = os.getenv('AUTH_CODE')
-    SESSION_COOKIE_HTTPONLY=True
+    SESSION_COOKIE_HTTPONLY = True
