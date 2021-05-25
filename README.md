@@ -21,6 +21,7 @@ pip install -r requirements.txt
 ###### Configure the Environment Variables
 #
 > SECRET_KEY
+```
 SQLALCHEMY_DATABASE_URI
 MAIL_SERVER
 MAIL_PORT
@@ -38,7 +39,7 @@ BCRYPT_LOG_ROUNDS
 REDIS_URL
 QUEUES
 AUTH_CODE
-
+```
 ###### Create the database and events.
 #
 ```
