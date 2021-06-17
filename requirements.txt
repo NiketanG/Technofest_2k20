@@ -27,7 +27,7 @@ Jinja2==3.0.1
 Mako==1.1.4
 MarkupSafe==2.0.1
 paytmchecksum==1.7.0
-psycopg2-binary==2.8.6
+psycopg2-binary==2.9.1
 pycodestyle==2.7.0
 pycparser==2.20
 pycryptodome==3.10.1
